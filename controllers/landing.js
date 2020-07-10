@@ -19,10 +19,7 @@ router.post('/register', async function(req,res){
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(req.body.password, salt);
         req.body.password = hash;
-        const newUser = await db.User.create({username: req.body.username, email: req.body.email, password: req.body.password});
-        const newProfile = await db.Profile.create({firstName: req.body.firstName, lastName: req.body.lastName, user: newUser._id});
-        console.log(newUser);
-        console.log(newProfile);
+        const newUser = await db.User.create(req.body);
         res.redirect('/');
     } catch (err) {
         console.log(err)
@@ -41,10 +38,20 @@ router.post('/login', async function(req, res){
         if (!match) {
             return res.send({message:'Password or email incorrect.'})
         }
-        res.send({message:'authenticated', user: foundUser})
+        req.session.currentUser = {
+            id: foundUser._id,
+            username: foundUser.username,
+        }
+        res.redirect('/home')
+
     } catch(err) {
         res.send({message: 'Internal Server Error'})
     }
+})
+
+router.delete('/logout', async function(req, res){
+    await req.session.destroy();
+    res.redirect('/')
 })
 
 
