@@ -14,7 +14,7 @@ const mongoURI = 'mongodb://localhost:27017/circusnetwork';
 
 
 router.get('/', (req, res) => {
-    db.User.find({}, (err, allProfiles) => {
+    db.User.find({}, (err, allUsers) => {
         if(err) {
             console.log(err)
         }
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
                 if(err) {
                     console.log(err)
                 } else {
-                    res.render('home', {profiles: allProfiles, user: foundUser});
+                    res.render('home', {profiles: allUsers, user: foundUser});
                 }
             })
         }
