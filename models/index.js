@@ -18,5 +18,5 @@ module.exports = {
     Gig: require('./Gig'),
     Post: require('./Post'),
     Profile: require('./Profile'),
-    // User: require('./User')
+    User: require('./User')
 }

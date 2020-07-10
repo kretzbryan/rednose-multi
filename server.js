@@ -30,7 +30,7 @@ app.use(
     }
 }))
 
-app.use('/landing', controllers.landing);
+app.use('/', controllers.landing);
 app.use('/home', controllers.home);
 app.use('/profile', controllers.profile);
 app.use('/faq', controllers.faq);

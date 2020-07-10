@@ -3,11 +3,10 @@ const mongoose = require('mongoose')
 const profileSchema = new mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    email: {type: String, required: true},
-    title: {type: String, required: true},
+    title: {type: String, required: false},
     photo: {type:String, required: false},
-    location: {type: String, required: true},
-    active: {type: Boolean, required: true},
+    location: {type: String, required: false},
+    active: {type: Boolean, default: true},
     certifications: [{
         type: String,
         required: false
@@ -24,7 +23,11 @@ const profileSchema = new mongoose.Schema({
     gigs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Gig'
-    }]
+    }],
+    user: {
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 })
 
 module.exports = mongoose.model('Profile', profileSchema);
