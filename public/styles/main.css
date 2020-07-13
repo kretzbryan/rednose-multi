@@ -1,3 +1,85 @@
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
 .edit__profile__container {
     width: 300px;
+}
+
+/* For Browse Profiles */
+
+.profile__card__container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 70vw;
+}
+
+.profile__image {
+    height: 175px;
+    width: 150px;
+    object-fit:cover;
+    border-radius: 100%;
+}
+
+.user__profile__card {
+    margin: 10px 0px 0px 20px;
+    padding: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 275px;
+    width: 175px;
+}
+
+.navbar-collapse {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.create__post__thumb, .image__thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.row.create__post,.row.post__container {
+    max-width: 500px;
+    padding: 15px 30px;
+    margin: 10px 20px;
+}
+
+.card.create__post {
+    display: flex;
+    flex-direction: row;
+}
+.post__content {
+    margin-top: 15px;
+}
+
+.post__column {
+    padding: auto;
+}
+
+.options {
+    float: right;
+}
+
+.poster__name {
+    margin: auto;
+}
+
+.create__post__caption {
+    padding: 3px 15px;
+    margin: auto;
+    margin-left: 10px;
+    width: 350px;
+    height: 30px;
+    background-color: rgb(169, 180, 190);
+    border-radius: 15px;
 }

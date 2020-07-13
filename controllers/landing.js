@@ -1,13 +1,62 @@
 const express = require('express');
+const mongo = require('mongodb')
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const db = require('../models');
 const { render } = require('ejs');
+const { replaceOne } = require('../models/Gig');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const mongoose= require('mongoose')
+
+const mongoURI = 'mongodb://localhost:27017/circusnetwork';
+const conn = mongoose.createConnection(mongoURI);
+
+let gfs;
+
+conn.once('open', () => {
+    gfs = Grid(conn.db, mongoose.mongo);
+    gfs.collection('profileImages');
+})
 
 
 
 router.get('/', (req, res) => {
-    res.render('landing');
+    if(req.session.currentUser) {
+        db.User.findById(req.session.currentUser.id, (err, foundUser) => {
+            if(err) {
+                console.log(err)
+            } else {
+                res.render('landing', {user: foundUser});
+            }
+        })
+    } else {
+        res.render('landing', {user: null})
+    }
+})
+
+
+
+
+router.get('/images', (req, res) => {
+    gfs.files.find().toArray((err, files) => {
+        if(!files) {
+            res.render('landing', {files: false})
+        }
+        return res.json(files)
+    })
+})
+
+router.get('/images/:filename', (req, res) => {
+    gfs.files.findOne({filename: req.params.filename}, (err, file) => {
+        if(!file) {
+            res.status(404).json({message: 'image not found'})
+        }
+        if (file.contentType === 'image/jpeg' || file.contentType === 'img/png') {
+            const readstream = gfs.createReadStream(file.filename);
+            readstream.pipe(res)
+        }
+    })
 })
 
 router.post('/register', async function(req,res){

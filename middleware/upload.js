@@ -12,8 +12,14 @@ const storage = new GridFsStorage({
         const match = ['image/png', 'image/jpeg'];
 
         if (match.indexOf(file.mimetype) === -1) {
-            const filename = `${Date.now()}-rednose-${file.originalname}`
-        };
+            const filename = `${Date.now()}-rednose-${file.originalname}`;
+            return filename;
+        }
+
+        return {
+            bucketName: 'profileImages',
+            filename: `${Date.now()}-rednose-${file.originalname}`
+        }
     }
 });
 

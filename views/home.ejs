@@ -3,62 +3,171 @@
 <head>
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"defer></script>
+    <script src="https://use.fontawesome.com/cc5e0ec11b.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    
+    <%- include('./partials/nav')%>
 
-    <!-- Log out form -->
-    <form action="/logout?_method=DELETE" method='POST'>
-    <input type="submit" value="Logout"></form>
-</body>
-</html>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
-    edit
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="editModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editTitle">Edit Profile</h5>
+    <div class="row container">
+        <section class="col-3 card user__profile__card">
+            <img class='profile__image' src="/images/<%= user.profileImage.filename%>" alt="profile image">
+            <a class="edit__modal__anchor" data-toggle="modal" data-target="#profilePhotoModal">
+                edit photo
+            </a>
+            <a class="edit__modal__anchor" data-toggle="modal" data-target="#editModal">
+                edit
+            </a>
+            <h5 class="card-title"><%= user.firstName %> <%= user.lastName %></h5>
+        </section>
+        
+        <div class="col post__column">
+            <section class="row card create__post">
+                <img src="https://thispersondoesnotexist.com/image" alt="" class="create__post__thumb">
+                <p class='create__post__caption'>Say Something!</p>
+            </section>
+            <section class="row card post__container">
+                <header class="row profile__header">
+                    <div class="col-2 poster__thumb">
+                        <img src="https://thispersondoesnotexist.com/image" alt="" class="image__thumb">
+                    </div>
+                    <p class="col-8 poster__name">Test Name</p>
+                    <div class="col-2 post__options">
+                        <a href="">
+                            <i class="fa fa-cog options" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </header>
+                <section class="post__content">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur non modi nobis vitae aut quaerat, vel aliquid facere, impedit maxime veritatis, autem debitis nesciunt sapiente quia earum labore quasi cumque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sit dolores, dicta deleniti, voluptates reprehenderit sapiente eius autem laboriosam ipsam maxime magnam nisi mollitia, tempore sunt earum unde aliquid Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat maiores temporibus debitis sit ut doloribus, odio voluptas dolore quasi omnis est sunt vel aliquam ad fuga repellendus facere magni quisquam.</p>
+                </section>
+        </section>
+        <section class="row card post__container">
+            <header class="row profile__header">
+                <div class="col-2 poster__thumb">
+                    <img src="https://thispersondoesnotexist.com/image" alt="" class="image__thumb">
+                </div>
+                <p class="col-8 poster__name">Test Name</p>
+                <div class="col-2 post__options">
+                    <a href="">
+                        <i class="fa fa-cog options" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </header>
+            <section class="post__content">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur non modi nobis vitae aut quaerat, vel aliquid facere, impedit maxime veritatis, autem debitis nesciunt sapiente quia earum labore quasi cumque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sit dolores, dicta deleniti, voluptates reprehenderit sapiente eius autem laboriosam ipsam maxime magnam nisi mollitia, tempore sunt earum unde aliquid Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat maiores temporibus debitis sit ut doloribus, odio voluptas dolore quasi omnis est sunt vel aliquam ad fuga repellendus facere magni quisquam.</p>
+            </section>
+        </section>
+        <section class="row card post__container">
+            <header class="row profile__header">
+                <div class="col-2 poster__thumb">
+                    <img src="https://thispersondoesnotexist.com/image" alt="" class="image__thumb">
+                </div>
+                <p class="col-8 poster__name">Test Name</p>
+                <div class="col-2 post__options">
+                    <a href="">
+                        <i class="fa fa-cog options" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </header>
+            <section class="post__content">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur non modi nobis vitae aut quaerat, vel aliquid facere, impedit maxime veritatis, autem debitis nesciunt sapiente quia earum labore quasi cumque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sit dolores, dicta deleniti, voluptates reprehenderit sapiente eius autem laboriosam ipsam maxime magnam nisi mollitia, tempore sunt earum unde aliquid Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat maiores temporibus debitis sit ut doloribus, odio voluptas dolore quasi omnis est sunt vel aliquam ad fuga repellendus facere magni quisquam.</p>
+            </section>
+        </section>
         </div>
-        <div class="modal-body">
-             <!-- Edit Profile Form-->
-            <div class="edit__profile__container">
-                <form action='/edit' method=POST enctype="multipart/form-data">
-                    <section class="form-group row">
-                        <input class='col' type="text" name='firstName' value=<%= user.firstName %>>
-                    </section>
-                    <section class="form-group row">
-                        <input class='col' type="text" name='lastName' value=<%= user.lastName %>>
-                    </section>
-                    <section class="form-group row">
-                        <input class='col' type="text" name='title' value=<%= user.title %>>
-                    </section>
-                    <section class="form-group row">
-                        <label class='col' for="profileImage">Choose image</label>
-                        <input class='col' type="file" name='profileImage'>
-                    </section>
-                    <section class="form-group row">
-                        <input class='col' type="text" name='certifications' placeholder='Certifications'>
-                    </section>
-                    <section class="form-group row">
-                        <input class='col' type="text" name='insurance' placeholder='Insurance'>
-                    </section>
+        
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- Edit Profile Picture Modal -->
+        <div class="modal fade" id="profilePhotoModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editTitle">Edit Profile Photo</h5>
+                    </div>
+                    <div class="modal-body">
+                    <!-- Edit Profile Form-->
+                        <div class="profile__photo__container">
+                            <form action="home/add/?_method=PUT" method="POST" enctype="multipart/form-data">
+                                <label class='col' for="profileImage">Choose image</label>
+                                <input class='col' type="file" name='profileImage'>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add Photo</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+          
+          <!-- Edit Profile Modal -->
+        <div class="modal fade" id="editModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editTitle">Edit Profile</h5>
+                    </div>
+                    <div class="modal-body">
+                    <!-- Edit Profile Form-->
+                        <div class="edit__profile__container">
+                            <form action='home/edit/?_method=PUT' method='POST'>
+                                <section class="form-group row">
+                                  <input class='col' type="text" name='firstName' value=<%= user.firstName %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='lastName' value=<%= user.lastName %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='title' placeholder='Title' value=<%= user.title %>>
+                                </section>
+                                <section class="form-group row">
+                                    <label class='col' for="profileImage">Choose image</label>
+                                    <input class='col' type="file" name='profileImage'>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='certifications' placeholder='Certifications'>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='insurance' placeholder='Insurance'>
+                                </section>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
+</body>
