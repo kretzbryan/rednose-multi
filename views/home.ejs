@@ -14,74 +14,172 @@
     
     <%- include('./partials/nav')%>
 
-    <div class="row container">
-        <section class="col-3 card user__profile__card">
-            <img class='profile__image' src="/images/<%= user.profileImage.filename%>" alt="profile image">
-            <a class="edit__modal__anchor" data-toggle="modal" data-target="#profilePhotoModal">
-                edit photo
-            </a>
-            <a class="edit__modal__anchor" data-toggle="modal" data-target="#editModal">
-                edit
-            </a>
+    <div class="row main__container">
+
+        <!-- User Profile Card -->
+        <section class="card user__profile__card">
+            <% if(!user.profileImage.filename) { %>
+                <img class="default__profile__image" src="/images/1594697689234-rednose-blank-profile-picture.png" alt="profile image">
+            <% } else { %>
+                <img class='profile__image' src="/images/<%= user.profileImage.filename%>" alt="profile image">
+            <% } %>
+            <a class="edit__modal__anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal">edit photo</a>
+            <a class="edit__modal__anchor" href="#" data-toggle="modal" data-target="#editModal"> edit profile</a>
             <h5 class="card-title"><%= user.firstName %> <%= user.lastName %></h5>
         </section>
-        
-        <div class="col post__column">
+        <!-- End User Profile Card -->
+
+        <!-- Post Column -->
+        <div class="post__column">
             <section class="row card create__post">
-                <img src="https://thispersondoesnotexist.com/image" alt="" class="create__post__thumb">
-                <p class='create__post__caption'>Say Something!</p>
+                <img src="/images/<%= user.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
+                    <a href='#' data-toggle="modal" data-target="#addPostModal" class='create__post__caption'>Say Something!</a>
             </section>
-            <section class="row card post__container">
-                <header class="row profile__header">
-                    <div class="col-2 poster__thumb">
-                        <img src="https://thispersondoesnotexist.com/image" alt="" class="image__thumb">
-                    </div>
-                    <p class="col-8 poster__name">Test Name</p>
-                    <div class="col-2 post__options">
-                        <a href="">
-                            <i class="fa fa-cog options" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </header>
-                <section class="post__content">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur non modi nobis vitae aut quaerat, vel aliquid facere, impedit maxime veritatis, autem debitis nesciunt sapiente quia earum labore quasi cumque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sit dolores, dicta deleniti, voluptates reprehenderit sapiente eius autem laboriosam ipsam maxime magnam nisi mollitia, tempore sunt earum unde aliquid Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat maiores temporibus debitis sit ut doloribus, odio voluptas dolore quasi omnis est sunt vel aliquam ad fuga repellendus facere magni quisquam.</p>
+
+            
+            <% posts.forEach( post => { %>
+                <section class="row card post__container">
+                    <header class="row profile__header">
+                        <div class="col-2 poster__thumb">
+                            <img src="images/<%= post.author.profileImage.filename %>" alt="" class="image__thumb">
+                        </div>
+                        <p class="col-8 poster__name"><%= post.author.firstName %> <%= post.author.lastName %></p>
+                        <div class="col-2 post__options">
+                            <a href="#">
+                                <i class="fa fa-cog options" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </header>
+                    <section class="post__content">
+                        <p><%= post.content %></p>
+                    </section>
+                    <% if(user._id.toString() === post.author._id.toString()) { %>
+                        <a href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal">Delete</a>
+                        <a href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal">Edit</a>
+
+                            <!-- Edit Post Modal -->
+                        <div class="modal fade" id="edit<%= post._id %>PostModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <header class="modal-header">
+                                        <h5 class="modal-title" id="edit__post__title">Edit Post </h5>
+                                    </header>
+                                    <div class="modal-body">
+                                    <!-- Edit Post Form-->
+                                        <div class="edit__gig__container">
+                                            <form action="home/edit-post/<%= post._id %>?_method=PUT" method="POST">
+                                                <textarea name="content" placeholder="Whats on your mind?" cols="45" rows="4"> <%= post. content %> </textarea>
+                                                <input type="hidden" name="author" value="<%= user._id %>">
+                                                <footer class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary"> Edit Gig</button>
+                                                </footer>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                                <!-- Delete Post Modal -->
+                        <div class="modal fade" id="delete<%= post._id %>PostModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <header class="modal-header">
+                                        <h5 class="modal-title" id="delete__post__title">Delete Post </h5>
+                                    </header>
+                                    <div class="modal-body">
+                                    <!-- Delete Post Form-->
+                                        <div class="delete__post__container">
+                                            <form action="home/delete-gig/<%= post._id %>?_method=DELETE" method="post">
+                                                <button type=submit>delete </button>
+                                            </form>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
                 </section>
-        </section>
-        <section class="row card post__container">
-            <header class="row profile__header">
-                <div class="col-2 poster__thumb">
-                    <img src="https://thispersondoesnotexist.com/image" alt="" class="image__thumb">
-                </div>
-                <p class="col-8 poster__name">Test Name</p>
-                <div class="col-2 post__options">
-                    <a href="">
-                        <i class="fa fa-cog options" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </header>
-            <section class="post__content">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur non modi nobis vitae aut quaerat, vel aliquid facere, impedit maxime veritatis, autem debitis nesciunt sapiente quia earum labore quasi cumque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sit dolores, dicta deleniti, voluptates reprehenderit sapiente eius autem laboriosam ipsam maxime magnam nisi mollitia, tempore sunt earum unde aliquid Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat maiores temporibus debitis sit ut doloribus, odio voluptas dolore quasi omnis est sunt vel aliquam ad fuga repellendus facere magni quisquam.</p>
-            </section>
-        </section>
-        <section class="row card post__container">
-            <header class="row profile__header">
-                <div class="col-2 poster__thumb">
-                    <img src="https://thispersondoesnotexist.com/image" alt="" class="image__thumb">
-                </div>
-                <p class="col-8 poster__name">Test Name</p>
-                <div class="col-2 post__options">
-                    <a href="">
-                        <i class="fa fa-cog options" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </header>
-            <section class="post__content">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur non modi nobis vitae aut quaerat, vel aliquid facere, impedit maxime veritatis, autem debitis nesciunt sapiente quia earum labore quasi cumque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sit dolores, dicta deleniti, voluptates reprehenderit sapiente eius autem laboriosam ipsam maxime magnam nisi mollitia, tempore sunt earum unde aliquid Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat maiores temporibus debitis sit ut doloribus, odio voluptas dolore quasi omnis est sunt vel aliquam ad fuga repellendus facere magni quisquam.</p>
-            </section>
-        </section>
+            <% }) %>
+        </div>
+        <!-- End Posts -->
+        
+        <!-- Gig Column -->
+        <div class="gig__column">
+            <a class='create__gig__anchor' href="#" data-toggle='modal' data-target="#addGigModal">+</a>
+
+            <% gigs.forEach( gig => { %>
+                <section class="row card gig__container">
+                    <header class="row gig__header">
+                        <div class="col-2 gig__thumb">
+                            <img src="images/<%= gig.author.profileImage.filename %>" alt="" class="image__thumb">
+                        </div>
+                        <p class='col-8 gig__name'><%= gig.title %></p>
+                    </header>
+                    <section class="gig__description">
+                        <p><%= gig.description  %></p>
+                    </section>
+                    <% if(user._id.toString() === gig.author._id.toString()) { %>
+                        <a href="#" data-target="#delete<%= gig._id %>GigModal" data-toggle="modal">Delete</a>
+                        <a href="#" data-target="#edit<%= gig._id %>GigModal" data-toggle="modal">Edit</a>
+                        
+
+                            <!-- Edit Gig Modal -->
+                        <div class="modal fade" id="edit<%= gig._id %>GigModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <header class="modal-header">
+                                        <h5 class="modal-title" id="edit__gig__title">Edit Gig </h5>
+                                    </header>
+                                    <div class="modal-body">
+                                    <!-- Edit Gig Form-->
+                                        <div class="edit__gig__container">
+                                            <form action="home/edit-gig/<%= gig._id %>?_method=PUT" method="POST">
+                                                <input type="text" name="title" value='<%= gig.title %>' placeholder='What are you offering?'>
+                                                <input type="text" name="location" placeholder="Where are you located?" value='<%= gig.location %>'>
+                                                <textarea name="description" placeholder="Description..." cols="45" rows="4"> <%= gig.description %> </textarea>
+                                                <input type="hidden" name="author" value="<%= user._id %>">
+                                                <footer class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary"> Edit Gig</button>
+                                                </footer>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                                <!-- Delete Gig Modal -->
+                        <div class="modal fade" id="delete<%= gig._id %>GigModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <header class="modal-header">
+                                        <h5 class="modal-title" id="edit__gig__title">Edit Gig </h5>
+                                    </header>
+                                    <div class="modal-body">
+                                    <!-- Delete Gig Form-->
+                                        <div class="edit__gig__container">
+                                            <form action="home/delete-gig/<%= gig._id %>?_method=DELETE" method="post">
+                                                <button type=submit>delete </button>
+                                            </form>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </section>
+            <% }) %> 
         </div>
         
-            
         
         
         
@@ -97,11 +195,61 @@
         
         
         
+        <!-- MODALS -->
         
+
+        <!-- Add Post Modal -->
+        <div class="modal fade" id="addPostModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h5 class="modal-title" id="editTitle">Create Post </h5>
+                    </header>
+                    <div class="modal-body">
+                    <!-- Add Post Form-->
+                        <div class="add__post__container">
+                            <form action="home/add-post" method="POST">
+                                <textarea name="content" placeholder="Say whats on your mind..." cols="45" rows="7"></textarea>
+                                <input type="hidden" name="author" value='<%= user._id %>'>
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add Photo</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
+
+        <!-- Add Gig Modal -->
+        <div class="modal fade" id="addGigModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h5 class="modal-title" id="add__gig__title">Create Gig </h5>
+                    </header>
+                    <div class="modal-body">
+                    <!-- Add Gig Form-->
+                        <div class="add__gig__container">
+                            <form action="home/add-gig" method="POST">
+                                <input type="text" name="title" placeholder='What are you offering?'>
+                                <input type="text" name="location" placeholder="Where are you located?">
+                                <textarea name="description" placeholder="Description..." cols="45" rows="4"></textarea>
+                                <input type="hidden" name="author" value="<%= user._id %>">
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add Gig</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
-        
-        
+
         
         
         
@@ -109,19 +257,19 @@
         <div class="modal fade" id="profilePhotoModal">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <header class="modal-header">
                         <h5 class="modal-title" id="editTitle">Edit Profile Photo</h5>
-                    </div>
+                    </header>
                     <div class="modal-body">
                     <!-- Edit Profile Form-->
                         <div class="profile__photo__container">
-                            <form action="home/add/?_method=PUT" method="POST" enctype="multipart/form-data">
+                            <form action="home/upload-profile-image/?_method=PUT" method="POST" enctype="multipart/form-data">
                                 <label class='col' for="profileImage">Choose image</label>
                                 <input class='col' type="file" name='profileImage'>
-                                <div class="modal-footer">
+                                <footer class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Add Photo</button>
-                                </div>
+                                </footer>
                             </form>
                         </div>
                     </div>
@@ -134,12 +282,12 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editTitle">Edit Profile</h5>
+                        <h5 class="modal-title" id="editTitle">Edit Profile</h5>d
                     </div>
                     <div class="modal-body">
                     <!-- Edit Profile Form-->
                         <div class="edit__profile__container">
-                            <form action='home/edit/?_method=PUT' method='POST'>
+                            <form action='home/edit-profile/<%= user._id %>?_method=PUT' method='POST'>
                                 <section class="form-group row">
                                   <input class='col' type="text" name='firstName' value=<%= user.firstName %>>
                                 </section>
@@ -147,11 +295,7 @@
                                     <input class='col' type="text" name='lastName' value=<%= user.lastName %>>
                                 </section>
                                 <section class="form-group row">
-                                    <input class='col' type="text" name='title' placeholder='Title' value=<%= user.title %>>
-                                </section>
-                                <section class="form-group row">
-                                    <label class='col' for="profileImage">Choose image</label>
-                                    <input class='col' type="file" name='profileImage'>
+                                    <input class='col' type="text" name='title' placeholder='Occupation' value=<%= user.title %>>
                                 </section>
                                 <section class="form-group row">
                                     <input class='col' type="text" name='certifications' placeholder='Certifications'>
@@ -159,10 +303,10 @@
                                 <section class="form-group row">
                                     <input class='col' type="text" name='insurance' placeholder='Insurance'>
                                 </section>
-                                <div class="modal-footer">
+                                <footer class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>
+                                </footer>
                             </form>
                         </div>
                     </div>

@@ -3,6 +3,10 @@ const router = express.Router();
 const db = require('../models');
 
 
+
+
+
+// Shows all profiles with the exception of the current User
 router.get('/', (req, res) => {
     if(req.session.currentUser) {
         db.User.find({

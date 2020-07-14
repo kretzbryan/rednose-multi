@@ -37,8 +37,8 @@ router.get('/', (req, res) => {
 
 
 
-
-router.get('/images', (req, res) => {
+// Creates a json list of uploaded files
+router.get('/files', (req, res) => {
     gfs.files.find().toArray((err, files) => {
         if(!files) {
             res.render('landing', {files: false})
@@ -47,18 +47,21 @@ router.get('/images', (req, res) => {
     })
 })
 
+// creates a show route based on file name to for reference later
 router.get('/images/:filename', (req, res) => {
     gfs.files.findOne({filename: req.params.filename}, (err, file) => {
         if(!file) {
             res.status(404).json({message: 'image not found'})
         }
-        if (file.contentType === 'image/jpeg' || file.contentType === 'img/png') {
+        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
             const readstream = gfs.createReadStream(file.filename);
             readstream.pipe(res)
         }
     })
 })
 
+
+// Creates new user and redefines the password with a hash
 router.post('/register', async function(req,res){
     try {
         const foundUser = await db.User.findOne({email: req.body.email});
@@ -75,6 +78,8 @@ router.post('/register', async function(req,res){
     }
 })
 
+
+// logs in user and creates cookie for logged user
 router.post('/login', async function(req, res){
     try {
         users = await db.User.find({});
@@ -98,6 +103,8 @@ router.post('/login', async function(req, res){
     }
 })
 
+
+// logs out user
 router.delete('/logout', async function(req, res){
     await req.session.destroy();
     res.redirect('/')

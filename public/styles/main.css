@@ -2,10 +2,21 @@
     box-sizing: border-box;
 }
 
+body {
+    max-width: 1600px
+}
+
+.row.main__container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 .row {
     margin-left: 0px;
     margin-right: 0px;
 }
+
+
 
 .edit__profile__container {
     width: 300px;
@@ -13,11 +24,22 @@
 
 /* For Browse Profiles */
 
-.profile__card__container {
+div.profile__card__container {
+    width: 1200px;
     display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    width: 70vw;
+    flex-wrap: wrap;
+    margin: 0 30px;
+}
+
+.profile__card {
+    margin: 15px 20px;
+}
+
+.default__profile__image {
+    height: 175px;
+    width: 150px;
+    object-fit:cover;
+    border-radius: 100%;
 }
 
 .profile__image {
@@ -28,40 +50,63 @@
 }
 
 .user__profile__card {
-    margin: 10px 0px 0px 20px;
+    background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.2), 30%, white),
+        linear-gradient(to bottom, rgba(236, 16, 16, 0.2), 30%, white),
+        linear-gradient(to left, rgba(236, 16, 16, 0.2), 30%, white),
+        linear-gradient(to right, rgba(236, 16, 16, 0.2), 30%, white);
+    margin: 34px 0px 0px 40px;
     padding: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 275px;
-    width: 175px;
+    width: 225px;
+}
+.navbar-brand, .nav-link {
+    color: rgb(216, 7, 7);
+    text-decoration: rgba(216, 7, 7, 0.6);
 }
 
+.navbar {
+    background-color: rgba(216, 7, 7, 0.3);
+
+}
 .navbar-collapse {
     display: flex;
     justify-content: flex-end;
 }
 
-.create__post__thumb, .image__thumb {
+.gig__thumb, .create__post__thumb, .image__thumb {
     width: 50px;
     height: 50px;
     border-radius: 100%;
+    object-fit:cover;
 }
 
 .row.create__post,.row.post__container {
-    max-width: 500px;
+    background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.2), 30%, white),
+        linear-gradient(to bottom, rgba(236, 16, 16, 0.2), 30%, white),
+        linear-gradient(to left, rgba(236, 16, 16, 0.2), 30%, white),
+        linear-gradient(to right, rgba(236, 16, 16, 0.2), 30%, white);
+    max-width: 550px;
     padding: 15px 30px;
-    margin: 10px 20px;
+    margin: 34px 20px;
 }
 
 .card.create__post {
     display: flex;
     flex-direction: row;
+    margin-bottom: 25px;
 }
 .post__content {
     margin-top: 15px;
 }
 
+.gig__description {
+    padding: 5px;
+}
 .post__column {
     padding: auto;
 }
@@ -71,15 +116,76 @@
 }
 
 .poster__name {
-    margin: auto;
+    margin: auto -5px;
+}
+
+.gig__name {
+    margin: auto 10px;
 }
 
 .create__post__caption {
+    color: black;
     padding: 3px 15px;
     margin: auto;
     margin-left: 10px;
     width: 350px;
     height: 30px;
-    background-color: rgb(169, 180, 190);
+    background-color: rgba(216, 7, 7, 0.2);
     border-radius: 15px;
 }
+
+.edit__modal__anchor {
+    font-style: italic;
+    color: rgb(216, 7, 7);
+}
+
+.main__container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.gig__column {
+    margin: 5px 40px -15px 0px;
+}
+
+.gig__container {
+    background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.2), 30%, white),
+        linear-gradient(to bottom, rgba(236, 16, 16, 0.2), 30%, white),
+        linear-gradient(to left, rgba(236, 16, 16, 0.2), 30%, white),
+        linear-gradient(to right, rgba(236, 16, 16, 0.2), 30%, white);
+    width: 300px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+.create__gig__anchor {
+    font-size: large;
+    position: relative;
+    left: 270px;
+    color: rgb(216, 7, 7);
+}
+
+.options {
+    color: rgb(216, 7, 7);
+}
+
+.carousel__content {
+    height: 500px;
+}
+
+.carousel__image {
+    object-fit:cover;
+    height: 500px
+}
+
+.about__title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.about__container {
+    margin: 35px;
+}
+

@@ -14,7 +14,15 @@
 
     <%- include('./partials/nav') %>
 
-    <div class="profile__card__container d-flex">
+    <div class="profile__card__container">
+        <% users.forEach( user => { %>
+            <section class="profile__card">
+                <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile__image">
+                <h6><%= user.firstName %> <%= user.lastName %></h6>
+                <h6>user.location</h6>
+                <h6>user.title</h6>
+            </section>
+        <% }) %>
         <section class="profile__card">
             <img src="https://thispersondoesnotexist.com/image" alt="" class="profile__image">
             <h6>name</h6>

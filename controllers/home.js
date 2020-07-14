@@ -23,29 +23,99 @@ conn.once('open', () => {
     gfs.collection('profileImages');
 })
 
-router.get('/', (req, res) => {
+
+
+// User Home Page
+router.get('/', async (req, res) => {
     if (req.session.currentUser) {
-        db.User.find({}, (err, allUsers) => {
-            if(err) {
-                console.log(err)
-            }
-            else {
-                db.User.findById(req.session.currentUser.id, (err, foundUser) => {
-                    if(err) {
-                        console.log(err)
-                    } else {
-                        res.render('home', {profiles: allUsers, user: foundUser});
-                    }
-                })
-            }
-        })
+        try {
+            const currentUser = await db.User.findById(req.session.currentUser.id);
+            const allPosts = await db.Post.find({}).populate('author');
+            const allGigs = await db.Gig.find({}).populate('author');
+            res.render('home', { user: currentUser, posts: allPosts, gigs: allGigs })
+        } catch (err) {
+            console.log(err);
+        }
+        
     } else {
         res.redirect('/')
     }
 })
 
-router.put('/add', async function(req, res) {
 
+
+// Creates a post with author id, adds post id to User.posts
+router.post('/add-post', (req, res) => {
+    db.Post.create(req.body, (err, addedPost) => {
+        if (err) {
+            console.log(err);
+        } else {
+            db.User.findById(req.session.currentUser.id, (err, foundUser) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    foundUser.posts.push(addedPost.id);
+                    foundUser.save();
+                    res.redirect('/home')
+                }
+            })
+        }
+    })
+})
+
+
+// Creates gig with author Id, adds gig id to user.Gigs
+router.post('/add-gig', (req, res) => {
+    db.Gig.create(req.body, (err, addedGig) => {
+        if (err) {
+            console.log(err);
+        } else {
+            db.User.findById(req.session.currentUser.id, (err, foundUser) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    foundUser.gigs.push(addedGig.id);
+                    foundUser.save();
+                    res.redirect('/home')
+                }
+            })
+        }
+    })
+})
+
+
+router.put('/edit-profile/:id', (req, res) => {
+    db.User.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedUser) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/home');
+        }
+    })
+})
+
+router.put('/edit-gig/:id', (req, res) => {
+    db.Gig.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedGig) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/home');
+        }
+    })
+})
+
+router.put('/edit-post/:id', (req, res) => {
+    db.Post.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedPost) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/home');
+        }
+    })
+})
+
+// Uploads profile image to Grid-Fs storage in mongodb
+router.put('/upload-profile-image', async function(req, res) {
     try {
         await upload(req, res);
         const updatedUser = await db.User.findByIdAndUpdate(req.session.currentUser.id, {
@@ -54,7 +124,6 @@ router.put('/add', async function(req, res) {
                 mimetype: req.file.mimetype
             }
         }) 
-        console.log(updatedUser);
         if (req.file === undefined) {
             return res.send('Select a file');
         }
@@ -65,16 +134,43 @@ router.put('/add', async function(req, res) {
     }
 })
 
-// router.post('/add', (req, res) => {
-//     console.log(req.file)
-    // db.User.findByIdAndUpdate(req.session.currentUser.id, req.body, {new:true}, (err, updatedUser) => {
-    //     if(err) {
-    //         console.log(err)
-    //     } else {
-    //         console.log(req.body);
-    //         res.redirect('/');
-    //     }
-    // })
-// })
+// Delete Gig
+router.delete('/delete-gig/:id', (req, res) => {
+    db.Gig.findByIdAndDelete(req.params.id, (err, deletedGig) => {
+        if(err) {
+            console.log(err)
+        } else {
+            db.User.findById(deletedGig.author, (err, foundUser) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    foundUser.gigs.remove(deletedGig)
+                    foundUser.save();
+                    res.redirect('/home');
+                }
+            })
+        }
+    })
+})
+
+router.delete('/delete-post/:id', (req, res) => {
+    db.Post.findByIdAndDelete(req.params.id, (err, deletedPost) => {
+        if(err) {
+            console.log(err)
+        } else {
+            db.User.findById(deletedPost.author, (err, foundUser) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    foundUser.posts.remove(deletedpost)
+                    foundUser.save();
+                    res.redirect('/home');
+                }
+            })
+        }
+    })
+})
+
+
 
 module.exports = router;
