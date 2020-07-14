@@ -162,7 +162,7 @@ router.delete('/delete-post/:id', (req, res) => {
                 if(err) {
                     console.log(err);
                 } else {
-                    foundUser.posts.remove(deletedpost)
+                    foundUser.posts.remove(deletedPost)
                     foundUser.save();
                     res.redirect('/home');
                 }
