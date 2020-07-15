@@ -1,13 +1,15 @@
 * {
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
-    max-width: 1600px
+    max-width: 1600px;
 }
 
 .row.main__container {
     max-width: 1400px;
+    max-height: 860px;
     margin: 0 auto;
 }
 
@@ -33,6 +35,8 @@ div.profile__card__container {
 
 .profile__card {
     margin: 15px 20px;
+    border: none;
+    border-radius: 10px;
 }
 
 .default__profile__image {
@@ -49,7 +53,7 @@ div.profile__card__container {
     border-radius: 100%;
 }
 
-.user__profile__card {
+.card.user__profile__card {
     background: 
         linear-gradient(to top, rgba(236, 16, 16, 0.2), 30%, white),
         linear-gradient(to bottom, rgba(236, 16, 16, 0.2), 30%, white),
@@ -62,6 +66,8 @@ div.profile__card__container {
     align-items: center;
     height: 275px;
     width: 225px;
+    border: none;
+    border-radius: 10px;
 }
 .navbar-brand, .nav-link {
     color: rgb(216, 7, 7);
@@ -70,7 +76,6 @@ div.profile__card__container {
 
 .navbar {
     background-color: rgba(216, 7, 7, 0.3);
-
 }
 .navbar-collapse {
     display: flex;
@@ -93,12 +98,16 @@ div.profile__card__container {
     max-width: 550px;
     padding: 15px 30px;
     margin: 34px 20px;
+    border: none;
+    border-radius: 10px;
 }
 
 .card.create__post {
     display: flex;
     flex-direction: row;
-    margin-bottom: 25px;
+    margin-bottom: 0px;
+    border: none;
+    border-radius: 10px;
 }
 .post__content {
     margin-top: 15px;
@@ -109,6 +118,16 @@ div.profile__card__container {
 }
 .post__column {
     padding: auto;
+    margin-top: 0px;
+}
+
+.post__row {
+    overflow: scroll;
+    max-height: 720px;
+}
+
+.post__row::-webkit-scrollbar {
+    display: none;
 }
 
 .options {
@@ -149,7 +168,7 @@ div.profile__card__container {
     margin: 5px 40px -15px 0px;
 }
 
-.gig__container {
+.card.gig__container {
     background: 
         linear-gradient(to top, rgba(236, 16, 16, 0.2), 30%, white),
         linear-gradient(to bottom, rgba(236, 16, 16, 0.2), 30%, white),
@@ -158,6 +177,8 @@ div.profile__card__container {
     width: 300px;
     padding: 10px 15px;
     margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
 }
 .create__gig__anchor {
     font-size: large;
@@ -189,3 +210,7 @@ div.profile__card__container {
     margin: 35px;
 }
 
+
+.options__footer {
+    text-align: end;
+}

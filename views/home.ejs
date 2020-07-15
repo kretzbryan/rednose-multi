@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"defer></script>
     <script src="https://use.fontawesome.com/cc5e0ec11b.js" defer></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initAutocomplete&libraries=places&v=weekly"
+      defer
+    ></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -35,78 +40,83 @@
                 <img src="/images/<%= user.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
                     <a href='#' data-toggle="modal" data-target="#addPostModal" class='create__post__caption'>Say Something!</a>
             </section>
-
-            
-            <% posts.forEach( post => { %>
-                <section class="row card post__container">
-                    <header class="row profile__header">
-                        <div class="col-2 poster__thumb">
-                            <img src="images/<%= post.author.profileImage.filename %>" alt="" class="image__thumb">
-                        </div>
-                        <p class="col-8 poster__name"><%= post.author.firstName %> <%= post.author.lastName %></p>
-                        <div class="col-2 post__options">
-                            <a href="#">
-                                <i class="fa fa-cog options" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </header>
-                    <section class="post__content">
-                        <p><%= post.content %></p>
+            <section class="post__row">
+                <% posts.forEach( post => { %>
+                    <section class="row card post__container">
+                        <header class="row profile__header">
+                            <div class="col-2 poster__thumb">
+                                <img src="images/<%= post.author.profileImage.filename %>" alt="" class="image__thumb">
+                            </div>
+                            <p class="col-8 poster__name">
+                                <a href="/profile/<%= post.author._id %>"><%= post.author.firstName %> <%= post.author.lastName %></a>
+                            </p>
+                            <div class="col-2 post__options">
+                                <a href="#">
+                                    <i class="fa fa-cog options" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </header>
+                        <section class="post__content">
+                            <p><%= post.content %></p>
+                        </section>
+                        <% if(user._id.toString() === post.author._id.toString()) { %>
+                            <footer class='options__footer'>
+                                <a href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal">Delete</a>
+                                <a href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal">Edit</a>
+                            </footer>
+    
+                                <!-- Edit Post Modal -->
+                            <div class="modal fade" id="edit<%= post._id %>PostModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <header class="modal-header">
+                                            <h5 class="modal-title" id="edit__post__title">Edit Post </h5>
+                                        </header>
+                                        <div class="modal-body">
+                                        <!-- Edit Post Form-->
+                                            <div class="edit__gig__container">
+                                                <form action="home/edit-post/<%= post._id %>?_method=PUT" method="POST">
+                                                    <textarea name="content" placeholder="Whats on your mind?" cols="45" rows="4"> <%= post. content %> </textarea>
+                                                    <input type="hidden" name="author" value="<%= user._id %>">
+                                                    <footer class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary"> Edit Gig</button>
+                                                    </footer>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+    
+                                    <!-- Delete Post Modal -->
+                            <div class="modal fade" id="delete<%= post._id %>PostModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <header class="modal-header">
+                                            <h5 class="modal-title" id="delete__post__title">Delete Post </h5>
+                                        </header>
+                                        <div class="modal-body">
+                                        <!-- Delete Post Form-->
+                                            <div class="delete__post__container">
+                                                <form action="home/delete-post/<%= post._id %>?_method=DELETE" method="post">
+                                                    <button type=submit>delete </button>
+                                                </form>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
                     </section>
-                    <% if(user._id.toString() === post.author._id.toString()) { %>
-                        <a href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal">Delete</a>
-                        <a href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal">Edit</a>
-
-                            <!-- Edit Post Modal -->
-                        <div class="modal fade" id="edit<%= post._id %>PostModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <header class="modal-header">
-                                        <h5 class="modal-title" id="edit__post__title">Edit Post </h5>
-                                    </header>
-                                    <div class="modal-body">
-                                    <!-- Edit Post Form-->
-                                        <div class="edit__gig__container">
-                                            <form action="home/edit-post/<%= post._id %>?_method=PUT" method="POST">
-                                                <textarea name="content" placeholder="Whats on your mind?" cols="45" rows="4"> <%= post. content %> </textarea>
-                                                <input type="hidden" name="author" value="<%= user._id %>">
-                                                <footer class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary"> Edit Gig</button>
-                                                </footer>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                                <!-- Delete Post Modal -->
-                        <div class="modal fade" id="delete<%= post._id %>PostModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <header class="modal-header">
-                                        <h5 class="modal-title" id="delete__post__title">Delete Post </h5>
-                                    </header>
-                                    <div class="modal-body">
-                                    <!-- Delete Post Form-->
-                                        <div class="delete__post__container">
-                                            <form action="home/delete-post/<%= post._id %>?_method=DELETE" method="post">
-                                                <button type=submit>delete </button>
-                                            </form>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <% } %>
-                </section>
-            <% }) %>
+                <% }) %>
+            </section>
         </div>
-        <!-- End Posts -->
+            <!-- End Posts -->
+            
         
         <!-- Gig Column -->
         <div class="gig__column">
@@ -124,8 +134,10 @@
                         <p><%= gig.description  %></p>
                     </section>
                     <% if(user._id.toString() === gig.author._id.toString()) { %>
-                        <a href="#" data-target="#delete<%= gig._id %>GigModal" data-toggle="modal">Delete</a>
-                        <a href="#" data-target="#edit<%= gig._id %>GigModal" data-toggle="modal">Edit</a>
+                        <footer class='options__footer'>
+                            <a href="#" data-target="#delete<%= gig._id %>GigModal" data-toggle="modal">Delete</a>
+                            <a href="#" data-target="#edit<%= gig._id %>GigModal" data-toggle="modal">Edit</a>
+                        </footer>
                         
 
                             <!-- Edit Gig Modal -->

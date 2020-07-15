@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
     gigs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Gig'
+    }],
+    following: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }]
 }, {timestamps: true});
 

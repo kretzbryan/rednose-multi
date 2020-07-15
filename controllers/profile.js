@@ -1,18 +1,14 @@
 const express = require('express');
 const router = express.Router();
-db = require('../models');
+const db = require('../models');
 
-router.get('/', (req, res) => {
-    if(req.session.currentUser) {
-    db.User.findById(req.session.currentUser.id, (err, foundUser) => {
-        if(err) {
-            console.log(err)
-        } else {
-            res.render('profile', {user: foundUser});
-        }
-    })
-} else {
-    res.redirect('/')
+router.get('/:id', async (req, res) => {
+    try {
+        const foundProfile = await db.User.findById(req.params.id).populate('posts').populate('gigs');
+        const currentUser = await db.User.findById(req.session.currentUser.id)
+        res.render('profile', {user: currentUser, profile: foundProfile})
+    } catch(err) {
+        console.log(err)
 }
 })
 
