@@ -263,3 +263,7 @@ footer.page__footer {
 .occupation {
     font-size: small;
 }
+
+.edit__gig__container {
+    display: block;
+}
