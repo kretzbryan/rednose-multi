@@ -5,12 +5,18 @@
 
 body {
     max-width: 1600px;
+    padding: 0 20px;
 }
+
 
 .row.main__container {
     max-width: 1400px;
     max-height: 860px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
 }
 
 .row {
@@ -27,16 +33,24 @@ body {
 /* For Browse Profiles */
 
 div.profile__card__container {
-    width: 1200px;
+    max-width: 1000px;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 30px;
+    padding: 0px 25px;
+    margin: 15px 30px;
+    background-color: rgba(216, 7, 7, 0.3);
+    border-radius: 15px;
 }
 
 .profile__card {
-    margin: 15px 20px;
+    margin: 15px auto;
+    padding: 0px 25px;
     border: none;
     border-radius: 10px;
+    height: 250px;
+    width: 200px;
+    background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0));
 }
 
 .default__profile__image {
@@ -55,10 +69,7 @@ div.profile__card__container {
 
 .card.user__profile__card {
     background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.2), 30%, white),
-        linear-gradient(to bottom, rgba(236, 16, 16, 0.2), 30%, white),
-        linear-gradient(to left, rgba(236, 16, 16, 0.2), 30%, white),
-        linear-gradient(to right, rgba(236, 16, 16, 0.2), 30%, white);
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0));
     margin: 34px 0px 0px 40px;
     padding: auto;
     display: flex;
@@ -76,6 +87,7 @@ div.profile__card__container {
 
 .navbar {
     background-color: rgba(216, 7, 7, 0.4);
+    width: 100vw;
 }
 .navbar-collapse {
     display: flex;
@@ -89,13 +101,10 @@ div.profile__card__container {
     object-fit:cover;
 }
 
-.row.create__post,.row.post__container {
+.row.create__post,.card.post__container {
     background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.2), 30%, white),
-        linear-gradient(to bottom, rgba(236, 16, 16, 0.2), 30%, white),
-        linear-gradient(to left, rgba(236, 16, 16, 0.2), 30%, white),
-        linear-gradient(to right, rgba(236, 16, 16, 0.2), 30%, white);
-    max-width: 550px;
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0));
+    width: 550px;
     padding: 15px 30px;
     margin: 34px 20px;
     border: none;
@@ -117,6 +126,7 @@ div.profile__card__container {
     padding: 5px;
 }
 .post__column {
+    max-width: 600px;
     padding: auto;
     margin-top: 0px;
 }
@@ -142,6 +152,9 @@ div.profile__card__container {
     margin: auto 10px;
 }
 
+a.anchor {
+    color: rgb(216, 7, 7);
+}
 .create__post__caption {
     color: black;
     padding: 3px 15px;
@@ -158,22 +171,13 @@ div.profile__card__container {
     color: rgb(216, 7, 7);
 }
 
-.main__container {
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-}
-
 .gig__column {
     margin: 5px 40px -15px 0px;
 }
 
 .card.gig__container {
     background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.2), 30%, white),
-        linear-gradient(to bottom, rgba(236, 16, 16, 0.2), 30%, white),
-        linear-gradient(to left, rgba(236, 16, 16, 0.2), 30%, white),
-        linear-gradient(to right, rgba(236, 16, 16, 0.2), 30%, white);
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0));
     width: 300px;
     padding: 10px 15px;
     margin-bottom: 15px;
@@ -200,14 +204,17 @@ div.profile__card__container {
     height: 500px;
 }
 
-.about__title__header {
+.row.about__title__header {
     background-color: rgba(216, 7, 7, 0.4);
     color: rgba(216, 7, 7, 0.7);
+    margin-bottom: 25px;
     display: flex;
     justify-content: center;
-    margin-bottom: 25px;
     height: 60px;
+    width: 100%;
     padding: 15px;
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 
@@ -225,3 +232,34 @@ div.profile__card__container {
     padding: 25px 50px;
 }
 
+footer.page__footer {
+
+    background-color: rgba(216, 7, 7, 0.4);
+    margin: 0px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100vw;
+    padding: 12px 10px;
+    text-align: end;
+    height: 40px;
+}
+
+
+.landing__container {
+    width: 100vw;
+    padding: 0 auto;
+}
+
+
+.profile__card__text {
+    text-align: center;
+}
+
+.profile__image {
+    margin-bottom: 10px;
+}
+
+.occupation {
+    font-size: small;
+}

@@ -27,11 +27,11 @@ router.get('/', (req, res) => {
             if(err) {
                 console.log(err)
             } else {
-                res.render('landing', {user: foundUser});
+                res.render('landing', {currentUser: foundUser});
             }
         })
     } else {
-        res.render('landing', {user: null})
+        res.render('landing', {currentUser: null})
     }
 })
 

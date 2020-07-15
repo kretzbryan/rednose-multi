@@ -6,7 +6,7 @@ router.get('/:id', async (req, res) => {
     try {
         const foundProfile = await db.User.findById(req.params.id).populate('posts').populate('gigs');
         const currentUser = await db.User.findById(req.session.currentUser.id)
-        res.render('profile', {user: currentUser, profile: foundProfile})
+        res.render('profile', {currentUser: currentUser, profile: foundProfile})
     } catch(err) {
         console.log(err)
 }

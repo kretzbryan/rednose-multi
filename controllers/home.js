@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
             const currentUser = await db.User.findById(req.session.currentUser.id);
             const allPosts = await db.Post.find({}).populate('author');
             const allGigs = await db.Gig.find({}).populate('author');
-            res.render('home', { user: currentUser, posts: allPosts, gigs: allGigs })
+            res.render('home', { currentUser: currentUser, posts: allPosts, gigs: allGigs })
         } catch (err) {
             console.log(err);
         }

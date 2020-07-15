@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
             id: {
                 $not: {
                     $eq: {
-                        id: req.session.currentUser.id
+                        _id: req.session.currentUser.id
                     }
                 }
             }
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
                     if(err) {
                         console.log(err)
                     } else {
-                        res.render('profile-browse', {users: foundUsers, user: foundUser});
+                        res.render('profile-browse', {users: foundUsers, currentUser: foundUser});
                     }
                 })
             }

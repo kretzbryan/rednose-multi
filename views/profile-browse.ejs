@@ -14,16 +14,41 @@
 <body>
 
     <%- include('./partials/nav') %>
-
-    <div class="profile__card__container">
-        <% users.forEach( user => { %>
-            <section class="profile__card">
-                <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile__image">
-                <h6><%= user.firstName %> <%= user.lastName %></h6>
-                <h6><%= user.location %></h6>
-                <h6><%= user.title %></5></h6>
-            </section>
-        <% }) %>
+    <div class="row main__container">
+        <!-- User Profile Card -->
+        <section class="card user__profile__card">
+            <% if(!currentUser.profileImage.filename) { %>
+                <img class="default__profile__image" src="/images/1594697689234-rednose-blank-profile-picture.png" alt="profile image">
+            <% } else { %>
+                <img class='profile__image' src="/images/<%= currentUser.profileImage.filename%>" alt="profile image">
+            <% } %>
+            <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal">edit photo</a>
+            <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"> edit profile</a>
+            <h5 class="card-title"><%= currentUser.firstName %> <%= currentUser.lastName %></h5>
+        </section>
+        <!-- End User Profile Card -->
+    
+        <div class="profile__card__container">
+            <% users.forEach( user => { %>
+                <section class="profile__card">
+                    <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile__image">
+                    <h6 class='profile__card__text'><%= user.firstName %> <%= user.lastName %></h6>
+                    <h6 class='profile__card__text'>
+                        <%= user.location %></h6>
+                    <h6 class='profile__card__text occupation'>
+                        Occupation:
+                        <% if(!user.title) { %>
+                            unknown
+                        <% } else { %>
+                             <%= user.title %>
+                        <% } %>
+                    </h6>
+                </section>
+            <% }) %>
+        </div>
     </div>
+    <footer class="page__footer">
+        <h6>&copy; Bryan Kretz</h6>
+    </footer>
 </body>
 </html>
