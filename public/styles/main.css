@@ -5,18 +5,17 @@
 
 body {
     max-width: 1600px;
-    padding: 0 20px;
 }
 
 
 .row.main__container {
-    max-width: 1400px;
+    width: 100%;
     max-height: 860px;
-    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-
+    padding: 20px 50px;
+    margin: 0 auto;
 }
 
 .row {
@@ -33,13 +32,20 @@ body {
 /* For Browse Profiles */
 
 div.profile__card__container {
-    max-width: 1000px;
+    max-width: 800px;
+    max-height: 800px;
     display: flex;
     flex-wrap: wrap;
     padding: 0px 25px;
-    margin: 15px 30px;
+    margin: 15px 50px 30px 20px;
     background-color: rgba(216, 7, 7, 0.3);
     border-radius: 15px;
+    overflow: scroll;
+}
+
+
+div.profile__card__container::-webkit-scrollbar {
+    display: none;
 }
 
 .profile__card {
@@ -70,7 +76,7 @@ div.profile__card__container {
 .card.user__profile__card {
     background: 
         linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0));
-    margin: 34px 0px 0px 40px;
+    margin-top: 34px;
     padding: auto;
     display: flex;
     justify-content: center;
@@ -172,7 +178,8 @@ a.anchor {
 }
 
 .gig__column {
-    margin: 5px 40px -15px 0px;
+    margin: 5px 0px -15px 0px;
+    width: 300px;
 }
 
 .card.gig__container {
@@ -180,7 +187,7 @@ a.anchor {
         linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0));
     width: 300px;
     padding: 10px 15px;
-    margin-bottom: 15px;
+    margin: 0 auto 15px;
     border: none;
     border-radius: 10px;
 }
@@ -233,7 +240,6 @@ a.anchor {
 }
 
 footer.page__footer {
-
     background-color: rgba(216, 7, 7, 0.4);
     margin: 0px;
     position: fixed;
@@ -266,4 +272,27 @@ footer.page__footer {
 
 .edit__gig__container {
     display: block;
+}
+
+.btn.btn-primary {
+    background-color: rgba(216, 7, 7, 0.6);
+    border: none;
+}
+
+.btn.btn-primary:hover {
+    background-color: rgba(216, 7, 7, 0.4);
+}
+
+div.modal-footer {
+    margin: 15px;
+}
+
+div.modal-header {
+    margin: 15px;
+}
+
+div.modal-body {
+    display: flex;
+    justify-content: center;
+    padding: 10px 30px;
 }

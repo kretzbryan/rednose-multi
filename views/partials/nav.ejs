@@ -9,8 +9,12 @@
                 <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
         </li>
         <% if (currentUser) {%>
-          <li class="nav-item">
-            <a class="nav-link" href="/profile/<%= currentUser._id %>">Profile</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" href="#">Profile</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/profile/<%= currentUser._id %>"> View Profile</a>
+              <a class="dropdown-item" href='#' data-toggle="modal" data-target="#deleteProfileModal">Delete Profile</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/browse-profiles">Browse Profiles</a>
@@ -29,9 +33,10 @@
       </ul>
     </div>
   </nav>
+
   <!-- Login Modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal fade" id="loginModal">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Login</h5>
@@ -41,22 +46,26 @@
         </div>
         <div class="modal-body">
             <form action='/login' method='POST'>
+              <div class="form-group">
                 <input type="text" name='username' placeholder='Username'>
+              </div>
+              <div class="form-group">
                 <input type="password" name='password' placeholder='Password'>
-                <input type="submit" value="Log In">
+              </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Log In</button>
+                </div>
             </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
   </div>
+  <!-- End Login Modal -->
 
   <!-- Logout Modal -->
   <div class="modal fade" id="logoutModal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="logoutModalLabel">Login</h5>
@@ -67,20 +76,21 @@
         <div class="modal-body">
             <!-- Log out form -->
             <form action="/logout?_method=DELETE" method='POST'>
-              <a class='nav-link' href="#"><input type="submit" value=Logout></button></a>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Log Out</button>
+              </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
   </div>
+  <!-- End Logout Modal -->
+
 
   <!--  Register Modal -->
   <div class="modal fade" id="registerModal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
@@ -90,16 +100,49 @@
         </div>
         <div class="modal-body">
             <form action="/register" method='POST'>
-                <input type="text" name='firstName' placeholder='First Name' required>
-                <input type="text" name='lastName' placeholder='Last Name' required>
-                <input type="text" name="username" placeholder='Username' required />
-                <input type="email" name="email" placeholder="Email" required />
-                <input type="password" name="password" placeholder="Password" required />
-                <input type="submit" value="Register">
+              <div class="form-group">
+                <input type="text" name='firstName' required />
+              </div>
+              <div class="form-group">
+                <input type="text" name='lastName' required />
+              </div>
+              <div class="form-group">
+                <input type="text" name="username" required />
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <input type="password" name="password" required /></div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Register</button>
+                </div>
             </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+  <!--  End Register Modal -->
+
+  <!-- Delete Profile Modal -->
+  <div class="modal fade" id="deleteProfileModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteProfileModalLabel">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!-- Delete Profile Form -->
+            <form action="/delete-profile/<%= currentUser._id %>?_method=DELETE" method='POST'>
+              <h5>Are you sure you want to delete your profile?</h5>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Delete</button>
+              </div>
+          </form>
         </div>
       </div>
     </div>
