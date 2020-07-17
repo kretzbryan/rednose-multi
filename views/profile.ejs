@@ -23,8 +23,7 @@
         <% } else { %>
             <img class='profile__image' src="/images/<%= profile.profileImage.filename%>" alt="profile image">
         <% } %>
-        <a class="edit__modal__anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal">edit photo</a>
-        <a class="edit__modal__anchor" href="#" data-toggle="modal" data-target="#editModal"> edit profile</a>
+        
         <h5 class="card-title"><%= profile.firstName %> <%= profile.lastName %></h5>
     </section>
     <!-- End User Profile Card -->
@@ -35,7 +34,9 @@
         <img src="/images/<%= currentUser.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
             <a href='#' data-toggle="modal" data-target="#addPostModal" class='create__post__caption anchor'>Say Something!</a>
         </section>
-        <section class="post__row">
+        <% if(!profile.posts) { %>
+            <h3>This profile has no posts!</h3>
+        <% } else { %>
             <% profile.posts.forEach( post => { %>
                 <section class="row card post__container">
                     <header class="row profile__header">
@@ -54,7 +55,8 @@
                     </section>
                 </section>
             <% }) %>
-        </section>
+        <% } %>
+        
     </div>
         <!-- End Posts -->
         

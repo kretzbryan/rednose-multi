@@ -30,10 +30,12 @@ app.use(
     }
 }))
 
-app.use('/images', controllers.imageshow);
+
 app.use('/', controllers.landing);
+app.use('/register', controllers.register);
 app.use('/home', controllers.home);
 app.use('/profile', controllers.profile);
+app.use('/images', controllers.imageshow);
 app.use('/faq', controllers.faq);
 app.use('/browse-profiles', controllers.profileBrowse);
 

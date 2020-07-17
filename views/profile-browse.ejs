@@ -27,24 +27,25 @@
             <h5 class="card-title"><%= currentUser.firstName %> <%= currentUser.lastName %></h5>
         </section>
         <!-- End User Profile Card -->
-    
-        <div class="profile__card__container">
-            <% users.forEach( user => { %>
-                <section class="profile__card">
-                    <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile__image">
-                    <h6 class='profile__card__text'><%= user.firstName %> <%= user.lastName %></h6>
-                    <h6 class='profile__card__text'>
-                        <%= user.location %></h6>
-                    <h6 class='profile__card__text occupation'>
-                        Occupation:
-                        <% if(!user.title) { %>
-                            unknown
-                        <% } else { %>
-                             <%= user.title %>
-                        <% } %>
-                    </h6>
-                </section>
-            <% }) %>
+        <div class="profile__column">
+            <div class="profile__card__container">
+                <% users.forEach( user => { %>
+                    <section class="profile__card">
+                        <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile__image">
+                        <h6 class='profile__card__text'><%= user.firstName %> <%= user.lastName %></h6>
+                        <h6 class='profile__card__text'>
+                            <%= user.location %></h6>
+                        <h6 class='profile__card__text occupation'>
+                            Occupation:
+                            <% if(!user.title) { %>
+                                unknown
+                            <% } else { %>
+                                 <%= user.title %>
+                            <% } %>
+                        </h6>
+                    </section>
+                <% }) %>
+            </div>
         </div>
     </div>
     <footer class="page__footer">

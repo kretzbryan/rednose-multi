@@ -47,36 +47,7 @@ router.get('/files', (req, res) => {
     })
 })
 
-// creates a show route based on file name to for reference later
-router.get('/images/:filename', (req, res) => {
-    gfs.files.findOne({filename: req.params.filename}, (err, file) => {
-        if(!file) {
-            res.status(404).json({message: 'image not found'})
-        }
-        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-            const readstream = gfs.createReadStream(file.filename);
-            readstream.pipe(res)
-        }
-    })
-})
 
-
-// Creates new user and redefines the password with a hash
-router.post('/register', async function(req,res){
-    try {
-        const foundUser = await db.User.findOne({email: req.body.email});
-        if (foundUser) {
-            return res.send({message: 'Email is already in use'})
-        }
-        const salt = await bcrypt.genSalt(10);
-        const hash = await bcrypt.hash(req.body.password, salt);
-        req.body.password = hash;
-        const newUser = await db.User.create(req.body);
-        res.redirect('/');
-    } catch (err) {
-        console.log(err)
-    }
-})
 
 
 // logs in user and creates cookie for logged user

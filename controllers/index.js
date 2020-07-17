@@ -4,5 +4,7 @@ module.exports = {
     profileBrowse: require('./profile-browse'),
     profile: require('./profile'),
     faq: require('./faq'),
-    imageshow: require('./imageshow')
+    imageshow: require('./imageshow'),
+    register: require('./register'),
+    
 }
