@@ -11,6 +11,11 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+i.fas.fa-user-edit {
+    height: 5px;
+    width: 5px;
+}
+
 
 .row {
     margin-left: 0px;
@@ -30,15 +35,10 @@ body::-webkit-scrollbar {
     flex-wrap: wrap;
     padding: 0px 50px;
     margin: 0 auto;
+    background-color: #fbf9fa;
 }
 
 
-
-
-/* For Edit profile Modal */
-.edit__profile__container {
-    width: 300px;
-}
 
 /* For Browse Profiles */
 
@@ -48,7 +48,7 @@ div.profile__card__container {
     flex-wrap: wrap;
     padding: 0px 25px;
     margin: 15px 50px 30px 20px;
-    background-color: rgba(216, 7, 7, 0.3);
+    background-color: rgba(43, 32, 36, .1);
     border-radius: 15px;
 }
 
@@ -69,8 +69,9 @@ div.profile__column::-webkit-scrollbar {
     border-radius: 10px;
     height: 250px;
     width: 200px;
-    background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0));
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+    background-color: rgba(43, 32, 36, .2);
 }
 
 .profile__card__text {
@@ -92,8 +93,11 @@ div.profile__column::-webkit-scrollbar {
 
 /* Current Users profile card */
 .card.user__profile__card {
-    background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0));
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+
+    background-color: rgba(43, 32, 36, .2);
+    color: #2b2024;
     margin-top: 34px;
     padding: auto;
     display: flex;
@@ -110,6 +114,7 @@ div.profile__column::-webkit-scrollbar {
     width: 150px;
     object-fit:cover;
     border-radius: 100%;
+    margin-top: 10px;
 }
 
 
@@ -117,12 +122,12 @@ div.profile__column::-webkit-scrollbar {
     /* Nav */
 
 .navbar-brand, .nav-link {
-    color: rgb(216, 7, 7);
+    color:  #fbf9fa;
     text-decoration: rgba(216, 7, 7, 0.7);
 }
 
 .navbar {
-    background-color: rgba(216, 7, 7, 0.4);
+    background-color: #fd0054;
     width: 100vw;
     height: 5vh;
     position: fixed;
@@ -159,8 +164,10 @@ div.profile__column::-webkit-scrollbar {
 }
 
 .row.create__post,.card.post__container {
-    background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0));
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+
+    background-color: rgba(43, 32, 36, .2);
     width: 550px;
     padding: 15px 30px;
     margin: 34px 20px;
@@ -183,7 +190,7 @@ div.profile__column::-webkit-scrollbar {
     margin-left: 10px;
     width: 350px;
     height: 30px;
-    background-color: rgba(216, 7, 7, 0.2);
+    background-color: rgba(43, 32, 36, 0.1);
     border-radius: 15px;
 }
 
@@ -215,8 +222,9 @@ div.profile__column::-webkit-scrollbar {
 }
 
 .card.gig__container {
-    background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0));
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+    background-color: rgba(43, 32, 36, .2);
     width: 300px;
     padding: 10px 15px;
     margin: 0 auto 15px;
@@ -239,20 +247,15 @@ div.profile__column::-webkit-scrollbar {
 }
 
 .options {
-    color: rgb(216, 7, 7);
+    color: #2b2024;
     margin: 0;
     text-decoration: none;
 }
 
 .options:hover {
-    text-decoration: none;
+    color: #a80038;
 }
 
-
-a.anchor {
-    color: rgb(216, 7, 7);
-    text-decoration: none;
-}
 
 
     /* Landing Page Elements */
@@ -267,8 +270,8 @@ a.anchor {
 }
 
 .row.about__title__header {
-    background-color: rgba(216, 7, 7, 0.4);
-    color: rgba(216, 7, 7, 0.7);
+    background-color: #fd0054;
+    color:  #fbf9fa;
     margin-bottom: 25px;
     display: flex;
     justify-content: center;
@@ -293,7 +296,8 @@ a.anchor {
 }
 
 footer.page__footer {
-    background-color: rgba(216, 7, 7, 0.4);
+    background-color: #fd0054;
+    color:  #fbf9fa;
     margin: 0px;
     position: fixed;
     bottom: 0px;
@@ -310,6 +314,7 @@ footer.page__footer {
     height: 90vh;
     padding: 0 auto;
     overflow: scroll;
+    background-color:  #fbf9fa;
 }
 
 .landing__container::-webkit-scrollbar {
@@ -341,4 +346,8 @@ div.modal-body {
     display: flex;
     justify-content: center;
     padding: 10px 30px;
+}
+
+.edit__profile__container {
+    width: 300px;
 }

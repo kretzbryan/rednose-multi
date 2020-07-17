@@ -13,13 +13,11 @@ const userSchema = new mongoose.Schema({
         required: false
     },
     location: {type: String, required: false},
-    active: {type: Boolean, default: true},
     certifications: [{
         type: String,
         required: false
     }],
     insurance: {type:String, required: false},
-    externalLinks:{ type: String, required: false },
     posts: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'

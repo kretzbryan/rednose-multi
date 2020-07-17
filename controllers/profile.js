@@ -12,5 +12,16 @@ router.get('/:id', async (req, res) => {
 }
 })
 
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const deletedUser = await db.User.findByIdAndDelete(req.params.id);
+        const deletedPosts = await db.Post.remove({ author: deletedUser._id });
+        const deletedGigs = await db.Gig.remove({ author: deletedUser._id });
+        res.redirect('/');
+    } catch (err) {
+        console.log(err);
+    }
+
+})
 
 module.exports = router;
