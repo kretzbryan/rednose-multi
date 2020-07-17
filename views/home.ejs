@@ -1,11 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"defer></script>
+    <script src="https://kit.fontawesome.com/cdaaf810db.js" crossorigin="anonymous" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     
+    <%- include('./partials/nav')%>
+
+    <div class="row main__container">
+
+        <!-- User Profile Card -->
+        <section class="card user__profile__card">
+            <% if(!currentUser.profileImage.filename) { %>
+                <img class="profile__image" src="/images/1594697689234-rednose-blank-profile-picture.png" alt="profile image">
+            <% } else { %>
+                <img class='profile__image' src="/images/<%= currentUser.profileImage.filename%>" alt="profile image">
+            <% } %>
+            <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal"><p class ='options'>edit photo</p></a>
+            <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"><p class ='options'>edit profile</p></a>
+            <h5 class="card-title"><%= currentUser.firstName %> <%= currentUser.lastName %></h5>
+        </section>
+        <!-- End User Profile Card -->
+
+        <!-- Post Column -->
+        <div class="post__column">
+            <section class="row card create__post">
+                <img src="/images/<%= currentUser.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
+                    <a href='#' data-toggle="modal" data-target="#addPostModal" class='create__post__caption anchor'><p class='options'>Say Something!</p></a>
+            </section>
+                <% posts.forEach( post => { %>
+                    <section class="row card post__container">
+                        <header class="row profile__header">
+                            <div class="col-2 poster__thumb">
+                                <img src="images/<%= post.author.profileImage.filename %>" alt="" class="image__thumb">
+                            </div>
+                            <div class="col-8 poster__name">
+                                <a class='anchor' href="/profile/<%= post.author._id %>">
+                                    <p class='options'><%= post.author.firstName %> <%= post.author.lastName %></p>
+                                </a>
+                            </div>
+                            <div class="col-2 post__options">
+                                <a class='anchor' href="#">
+                                    <i class="fa fa-cog options" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </header>
+                        <section class="post__content">
+                            <p><%= post.content %></p>
+                        </section>
+                        <% if(currentUser._id.toString() === post.author._id.toString()) { %>
+                            <footer class='options__footer'>
+                                <a class='anchor options' href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
+                                <a class='anchor options' href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal"><i class="fas fa-user-edit"></i></a>
+                            </footer>
+                            
+    
+                                <!-- Edit Post Modal -->
+                            <div class="modal fade" id="edit<%= post._id %>PostModal">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog modal-dialog-centered-centered">
+                                    <div class="modal-content">
+                                        <header class="modal-header">
+                                            <h5 class="modal-title" id="edit__gig__title">Edit Post </h5>
+                                        </header>
+                                        <div class="modal-body">
+    
+    
+                                        <!-- Edit Post Form-->
+                                            <div class="edit__gig__container">
+                                                <form action="home/edit-post/<%= post._id %>?_method=PUT" method="POST">
+                                                    <textarea name="content" placeholder="Say whats on your mind..." cols="45" rows="7"><%= post.content %></textarea>
+                                                    <input type="hidden" name="author" value='<%= currentUser._id %>'>
+                                                    <footer class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Confirm</button>
+                                                    </footer>
+                                                </form>
+                                                <!-- End Edit Form -->
+    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <!-- End Edit Post Modal -->
+    
+    
+                                    <!-- Delete Post Modal -->
+                            <div class="modal fade" id="delete<%= post._id %>PostModal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <header class="modal-header">
+                                            <h5 class="modal-title" id="edit__gig__title">Edit Gig </h5>
+                                        </header>
+                                        <div class="modal-body">
+                                        <!-- Delete Post Form-->
+                                            <div class="edit__post__container">
+                                                <form action="home/delete-post/<%= post._id %>?_method=DELETE" method="post">
+                                                    <h4>Are you sure you want to delete this post?</h4>
+                                                    <footer class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button class='btn btn-primary'type=submit>Delete</button>
+                                                    </footer>
+                                                </form>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Delete Post Modal -->
+    
+                        <% } %>
+                    </section>
+                <% }) %>
+        </div>
+            <!-- End Post Column -->
+            
+        
+        <!-- Gig Column -->
+        <div class="gig__column">
+            <a class='create__gig__anchor' href="#" data-toggle='modal' data-target="#addGigModal">+</a>
+
+            <% gigs.forEach( gig => { %>
+                <section class="row card gig__container">
+                    <header class="row gig__header">
+                        <div class="col-2 gig__thumb"><a href="profile/<%=gig.author._id%>">
+                            <img src="images/<%= gig.author.profileImage.filename %>" alt="" class="image__thumb">
+                        </a>
+                        </div>
+                        <p class='col-8 gig__name'><%= gig.title %></p>
+                    </header>
+                    <section class="gig__description">
+                        <p><%= gig.description  %></p>
+                    </section>
+                    <% if(currentUser._id.toString() === gig.author._id.toString()) { %>
+                        <footer class='options__footer'>
+                            <a class='options' href="#" data-target="#delete<%= gig._id %>GigModal" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
+                            <a class='options' href="#" data-target="#edit<%= gig._id %>GigModal" data-toggle="modal"><i class="fas fa-user-edit"></i></a>
+                        </footer>
+                        
+
+                            <!-- Edit Gig Modal -->
+                        <div class="modal fade" id="edit<%= gig._id %>GigModal">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog modal-dialog-centered-centered">
+                                <div class="modal-content">
+                                    <header class="modal-header">
+                                        <h5 class="modal-title" id="edit__gig__title">Edit Gig </h5>
+                                    </header>
+                                    <div class="modal-body">
+
+
+                                    <!-- Edit Gig Form-->
+                                        <div class="edit__gig__container">
+                                            <form action="home/edit-gig/<%= gig._id %>?_method=PUT" method="POST">
+                                                <div class="form-group">
+                                                    <label for="location">Location</label>
+                                                    <input type="text" name="location" placeholder="Where are you located?" value='<%= gig.location %>'>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="title">What are you offering?</label>
+                                                    <input type="text" name="title" value='<%= gig.title %>' placeholder='What are you offering?'>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="description">Description</label>
+                                                    <textarea name="description" placeholder="Description..." cols="45" rows="4"> <%= gig.description %> </textarea>
+                                                </div>
+                                                <input type="hidden" name="author" value="<%= currentUser._id %>">
+                                                <footer class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Confirm</button>
+                                                </footer>
+                                            </form>
+                                            <!-- End Edit Form -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <!-- End Edit Gig Modal -->
+
+
+                                <!-- Delete Gig Modal -->
+                        <div class="modal fade" id="delete<%= gig._id %>GigModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <header class="modal-header">
+                                        <h5 class="modal-title" id="edit__gig__title">Edit Gig </h5>
+                                    </header>
+                                    <div class="modal-body">
+                                    <!-- Delete Gig Form-->
+                                        <div class="edit__gig__container">
+                                            <form action="home/delete-gig/<%= gig._id %>?_method=DELETE" method="post">
+                                                <h4>Are you sure you want to delete this post?</h4>
+                                                <footer class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button class='btn btn-primary'type=submit>Delete</button>
+                                                </footer>
+                                            </form>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Delete Modal -->
+
+                    <% } %>
+                </section>
+            <% }) %>
+        </div>
+
+        <!-- Page Footer -->
+        <footer class="page__footer">
+            <h6>&copy; Bryan Kretz</h6>
+        </footer>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- MODALS -->
+        
+
+        <!-- Add Post Modal -->
+        <div class="modal fade" id="addPostModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h5 class="modal-title" id="editTitle">Create Post </h5>
+                    </header>
+                    <div class="modal-body">
+                    <!-- Add Post Form-->
+                        <div class="add__post__container">
+                            <form action="home/add-post" method="POST">
+                                <textarea name="content" placeholder="Say whats on your mind..." cols="45" rows="7"></textarea>
+                                <input type="hidden" name="author" value='<%= currentUser._id %>'>
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Confirm</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Add Gig Modal -->
+        <div class="modal fade" id="addGigModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h5 class="modal-title" id="add__gig__title">Create Gig </h5>
+                    </header>
+                    <div class="modal-body">
+                    <!-- Add Gig Form-->
+                        <div class="add__gig__container">
+                            <form action="home/add-gig" method="POST">
+                                <div class="form-group">
+                                    <label for="location">Location</label>
+                                    <input type="text" name="location"  >
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">What are you offering?</label>
+                                    <input type="text" name="title" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea name="description"  cols="45" rows="4"></textarea>
+                                </div>
+                                <input type="hidden" name="author" value="<%= currentUser._id %>">
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Confirm</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        
+        
+        <!-- Edit Profile Picture Modal -->
+        <div class="modal fade" id="profilePhotoModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h5 class="modal-title" id="editTitle">Edit Profile Photo</h5>
+                    </header>
+                    <div class="modal-body">
+                    <!-- Edit Profile Form-->
+                        <div class="profile__photo__container">
+                            <form action="home/upload-profile-image/?_method=PUT" method="POST" enctype="multipart/form-data">
+                                <label class='col' for="profileImage">Choose image</label>
+                                <input class='col' type="file" name='profileImage'>
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add Photo</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+          <!-- Edit Profile Modal -->
+        <div class="modal fade" id="editModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editTitle">Edit Profile</h5>d
+                    </div>
+                    <div class="modal-body">
+                    <!-- Edit Profile Form-->
+                        <div class="edit__profile__container">
+                            <form action='home/edit-profile/<%= currentUser._id %>?_method=PUT' method='POST'>
+                                <section class="form-group row">
+                                  <input class='col' type="text" name='firstName' value=<%= currentUser.firstName %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='lastName' value=<%= currentUser.lastName %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='title' placeholder='Occupation' value=<%= currentUser.title %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='certifications' placeholder='Certifications'>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='insurance' placeholder='Insurance'>
+                                </section>
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-</html>
+

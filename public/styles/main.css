@@ -1,0 +1,353 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    max-width: 1600px;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+i.fas.fa-user-edit {
+    height: 5px;
+    width: 5px;
+}
+
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.options__footer {
+    text-align: end;
+}
+
+/* All pages except the landing page are contained within this container */
+.row.main__container {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0px 50px;
+    margin: 0 auto;
+    background-color: #fbf9fa;
+}
+
+
+
+/* For Browse Profiles */
+
+div.profile__card__container {
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 25px;
+    margin: 15px 50px 30px 20px;
+    background-color: rgba(43, 32, 36, .1);
+    border-radius: 15px;
+}
+
+
+div.profile__column {
+    height: 90vh;
+    overflow: scroll;
+}
+
+div.profile__column::-webkit-scrollbar {
+    display: none;
+}
+
+.profile__card {
+    margin: 15px auto;
+    padding: 0px 25px;
+    border: none;
+    border-radius: 10px;
+    height: 250px;
+    width: 200px;
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+    background-color: rgba(43, 32, 36, .2);
+}
+
+.profile__card__text {
+    text-align: center;
+}
+
+.profile__image {
+    margin-bottom: 10px;
+}
+
+.occupation {
+    font-size: small;
+}
+
+.edit__gig__container {
+    display: block;
+}
+
+
+/* Current Users profile card */
+.card.user__profile__card {
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+
+    background-color: rgba(43, 32, 36, .2);
+    color: #2b2024;
+    margin-top: 34px;
+    padding: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 275px;
+    width: 225px;
+    border: none;
+    border-radius: 10px;
+}
+
+.profile__image {
+    height: 175px;
+    width: 150px;
+    object-fit:cover;
+    border-radius: 100%;
+    margin-top: 10px;
+}
+
+
+
+    /* Nav */
+
+.navbar-brand, .nav-link {
+    color:  #fbf9fa;
+    text-decoration: rgba(216, 7, 7, 0.7);
+}
+
+.navbar {
+    background-color: #fd0054;
+    width: 100vw;
+    height: 5vh;
+    position: fixed;
+    top: 0px;
+}
+.navbar-collapse {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+    /* Image Thumbs */
+
+.gig__thumb, .create__post__thumb, .image__thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit:cover;
+}
+
+
+
+    /* Post Column and Children */
+
+.post__column {
+    max-width: 600px;
+    margin-top: 0px;
+    overflow: scroll;
+    height: 90vh;
+}
+
+.post__column::-webkit-scrollbar {
+    display: none;
+}
+
+.row.create__post,.card.post__container {
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+
+    background-color: rgba(43, 32, 36, .2);
+    width: 550px;
+    padding: 15px 30px;
+    margin: 34px 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+.card.create__post {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0px;
+    border: none;
+    border-radius: 10px;
+}
+
+.create__post__caption {
+    color: black;
+    padding: 3px 15px;
+    margin: auto;
+    margin-left: 10px;
+    width: 350px;
+    height: 30px;
+    background-color: rgba(43, 32, 36, 0.1);
+    border-radius: 15px;
+}
+
+.post__row {
+    overflow: scroll;
+    max-height: 720px;
+}
+
+.post__content {
+    margin-top: 15px;
+}
+
+.poster__name {
+    margin: auto -5px;
+    color: rgb(216, 7, 7);
+}
+
+    /* Gig Column and Children */
+
+.gig__column {
+    margin: 0px 0px -15px 0px;
+    width: 300px;
+    height: 90vh;
+    overflow: scroll;
+}
+
+.gig__column::-webkit-scrollbar {
+    display: none;
+}
+
+.card.gig__container {
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+    background-color: rgba(43, 32, 36, .2);
+    width: 300px;
+    padding: 10px 15px;
+    margin: 0 auto 15px;
+    border: none;
+    border-radius: 10px;
+}
+.create__gig__anchor {
+    font-size: large;
+    position: relative;
+    left: 270px;
+    color: rgb(216, 7, 7);
+}
+
+.gig__description {
+    padding: 5px;
+}
+
+.gig__name {
+    margin: auto 10px;
+}
+
+.options {
+    color: #2b2024;
+    margin: 0;
+    text-decoration: none;
+}
+
+.options:hover {
+    color: #a80038;
+}
+
+
+
+    /* Landing Page Elements */
+
+.carousel__content {
+    height: 500px;
+}
+
+.carousel__image {
+    object-fit:cover;
+    height: 500px;
+}
+
+.row.about__title__header {
+    background-color: #fd0054;
+    color:  #fbf9fa;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    padding: 15px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+
+.about__container {
+    margin: 0px;
+    width: 100%;
+}
+
+
+
+
+.about__main {
+    padding: 25px 50px;
+}
+
+footer.page__footer {
+    background-color: #fd0054;
+    color:  #fbf9fa;
+    margin: 0px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100vw;
+    padding: 15px;
+    text-align: end;
+    height: 5vh;
+}
+
+
+.landing__container {
+    width: 100vw;
+    height: 90vh;
+    padding: 0 auto;
+    overflow: scroll;
+    background-color:  #fbf9fa;
+}
+
+.landing__container::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+    /* For Modals */
+
+.btn.btn-primary {
+    background-color: rgba(216, 7, 7, 0.6);
+    border: none;
+}
+
+.btn.btn-primary:hover {
+    background-color: rgba(216, 7, 7, 0.4);
+}
+
+div.modal-footer {
+    margin: 15px;
+}
+
+div.modal-header {
+    margin: 15px;
+}
+
+div.modal-body {
+    display: flex;
+    justify-content: center;
+    padding: 10px 30px;
+}
+
+.edit__profile__container {
+    width: 300px;
+}

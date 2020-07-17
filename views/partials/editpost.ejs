@@ -1,0 +1,62 @@
+<% if(currentUser._id.toString() === post.author._id.toString()) { %>
+    <footer class='options__footer'>
+        <a href="#" class='anchor'data-target="#delete<%= post._id %>PostModal" data-toggle="modal">Delete</a>
+        <a href="#" class='anchor'data-target="#edit<%= post._id %>PostModal" data-toggle="modal">Edit</a>
+    </footer>
+
+        <!-- Edit Post Modal -->
+    <div class="modal fade" id="edit<%= post._id %>PostModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h5 class="modal-title" id="edit__post__title">Edit Post </h5>
+                </header>
+                <div class="modal-body">
+                    <div class="edit__gig__container">
+                        <!-- Edit Post Form-->
+                        <form action="home/edit-post/<%= post._id %>?_method=PUT" method="POST">
+                            <div class="form-group">
+                                <textarea name="content" placeholder="Whats on your mind?" cols="45" rows="4"> <%= post. content %> </textarea>
+                            </div>
+                            <input type="hidden" name="author" value="<%= currentUser._id %>">
+                            <footer class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary"> Edit Gig</button>
+                            </footer>
+                        </form>
+                        <!-- End Edit Post Form-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Edit Post Modal -->
+
+    
+
+
+            <!-- Delete Post Modal -->
+    <div class="modal fade" id="delete<%= post._id %>PostModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h5 class="modal-title" id="delete__post__title">Delete Post </h5>
+                </header>
+                <div class="modal-body">
+                    <div class="delete__post__container">
+
+
+                        <!-- Delete Post Form-->
+                        <form action="home/delete-post/<%= post._id %>?_method=DELETE" method="post">
+                            <button type=submit>delete </button>
+                        </form>
+                        <!-- End Delete Post Form -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Delete Post Modal -->
+
+<% } %>

@@ -1,11 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     
+<%- include('./partials/nav')%>
+<div class="row main__container">
+
+    <!-- User Profile Card -->
+    <section class="card user__profile__card">
+        <% if(!profile.profileImage.filename) { %>
+            <img class="default__profile__image" src="/images/1594697689234-rednose-blank-profile-picture.png" alt="profile image">
+        <% } else { %>
+            <img class='profile__image' src="/images/<%= profile.profileImage.filename%>" alt="profile image">
+        <% } %>
+        
+        <h5 class="card-title"><%= profile.firstName %> <%= profile.lastName %></h5>
+    </section>
+    <!-- End User Profile Card -->
+
+    <!-- Post Column -->
+    <div class="post__column">
+        <section class="row card create__post">
+        <img src="/images/<%= currentUser.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
+            <a href='#' data-toggle="modal" data-target="#addPostModal" class='create__post__caption anchor'>Say Something!</a>
+        </section>
+        <% if(!profile.posts) { %>
+            <h3>This profile has no posts!</h3>
+        <% } else { %>
+            <% profile.posts.forEach( post => { %>
+                <section class="row card post__container">
+                    <header class="row profile__header">
+                        <div class="col-2 poster__thumb">
+                            <img src="/images/<%= profile.profileImage.filename %>" alt="" class="image__thumb">
+                        </div>
+                        <p class="col-8 poster__name"><%= profile.firstName %> <%= profile.lastName %></p>
+                        <div class="col-2 post__options">
+                            <a href="#">
+                                <i class="fa fa-cog options" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </header>
+                    <section class="post__content">
+                        <p><%= post.content %></p>
+                    </section>
+                </section>
+            <% }) %>
+        <% } %>
+        
+    </div>
+        <!-- End Posts -->
+        
+    
+    <!-- Gig Column -->
+    <div class="gig__column">
+        <a class='create__gig__anchor' href="#" data-toggle='modal' data-target="#addGigModal">+</a>
+
+        <% profile.gigs.forEach( gig => { %>
+            <section class="row card gig__container">
+                <header class="row gig__header">
+                    <div class="col-2 gig__thumb">
+                        <img src="/images/<%= profile.profileImage.filename %>" alt="" class="image__thumb">
+                    </div>
+                    <p class='col-8 gig__name'><%= gig.title %></p>
+                </header>
+                <section class="gig__description">
+                    <p><%= gig.description  %></p>
+                </section>
+            </section>
+        <% }) %> 
+    </div>
+    <footer class="page__footer">
+        <h6>&copy; Bryan Kretz</h6>
+    </footer>
+    <!-- MODALS -->
+        
+
+        <!-- Add Post Modal -->
+        <div class="modal fade" id="addPostModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h5 class="modal-title" id="editTitle">Create Post </h5>
+                    </header>
+                    <div class="modal-body">
+                    <!-- Add Post Form-->
+                        <div class="add__post__container">
+                            <form action="home/add-post" method="POST">
+                                <textarea name="content" placeholder="Say whats on your mind..." cols="45" rows="7"></textarea>
+                                <input type="hidden" name="author" value='<%= profile._id %>'>
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add Photo</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Add Gig Modal -->
+        <div class="modal fade" id="addGigModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h5 class="modal-title" id="add__gig__title">Create Gig </h5>
+                    </header>
+                    <div class="modal-body">
+                    <!-- Add Gig Form-->
+                        <div class="add__gig__container">
+                            <form action="home/add-gig" method="POST">
+                                <input type="text" name="title" placeholder='What are you offering?'>
+                                <input type="text" name="location" placeholder="Where are you located?">
+                                <textarea name="description" placeholder="Description..." cols="45" rows="4"></textarea>
+                                <input type="hidden" name="author" value="<%= currentUser._id %>">
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add Gig</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        
+        
+        <!-- Edit Profile Picture Modal -->
+        <div class="modal fade" id="profilePhotoModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h5 class="modal-title" id="editTitle">Edit Profile Photo</h5>
+                    </header>
+                    <div class="modal-body">
+                    <!-- Edit Profile Form-->
+                        <div class="profile__photo__container">
+                            <form action="home/upload-profile-image/?_method=PUT" method="POST" enctype="multipart/form-data">
+                                <label class='col' for="profileImage">Choose image</label>
+                                <input class='col' type="file" name='profileImage'>
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add Photo</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+          <!-- Edit Profile Modal -->
+        <div class="modal fade" id="editModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editTitle">Edit Profile</h5>d
+                    </div>
+                    <div class="modal-body">
+                    <!-- Edit Profile Form-->
+                        <div class="edit__profile__container">
+                            <form action='home/edit-profile/<%= currentUser._id %>?_method=PUT' method='POST'>
+                                <section class="form-group row">
+                                  <input class='col' type="text" name='firstName' value=<%= currentUser.firstName %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='lastName' value=<%= currentUser.lastName %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='title' placeholder='Occupation' value=<%= currentUser.title %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='certifications' placeholder='Certifications'>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='insurance' placeholder='Insurance'>
+                                </section>
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
