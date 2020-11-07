@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 app.use(
     session({
     store: new MongoStore({
-        url: process.env.MONGO_URI
+        url: process.env.MONGODB_URI
     }),
     secret: 'super cyute doggo',
     resave: false,
