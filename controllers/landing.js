@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
             if(err) {
                 console.log(err)
             } else {
-                res.render('landing', {currentUser: foundUser, photos: { photo1 }});
+                res.render('landing', {currentUser: foundUser});
             }
         })
     } else {

@@ -1,5 +1,4 @@
 const express = require('express');
-// const { patch } = require('./landing');
 const { render } = require('ejs');
 const router = express.Router();
 const path = require('path');
