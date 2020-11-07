@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 app.use(
     session({
     store: new MongoStore({
-        url: 'mongodb://localhost:27017/circusnetwork'
+        url: process.env.MONGO_URI
     }),
     secret: 'super cyute doggo',
     resave: false,
