@@ -8,7 +8,7 @@ const mongoose= require('mongoose')
 
 
 // Creates new user and redefines the password with a hash
-router.post('/register', async function(req,res){
+router.post('/', async function(req,res){
     try {
         const foundUser = await db.User.findOne({email: req.body.email});
         if (foundUser) {

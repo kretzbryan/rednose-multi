@@ -3,8 +3,6 @@ const mongo = require('mongodb')
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const db = require('../models');
-const { render } = require('ejs');
-const { replaceOne } = require('../models/Gig');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const mongoose= require('mongoose')
@@ -27,7 +25,7 @@ router.get('/', (req, res) => {
             if(err) {
                 console.log(err)
             } else {
-                res.render('landing', {currentUser: foundUser});
+                res.render('landing', {currentUser: foundUser, photos: { photo1 }});
             }
         })
     } else {
