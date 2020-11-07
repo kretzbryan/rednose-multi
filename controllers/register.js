@@ -3,6 +3,7 @@ const mongo = require('mongodb')
 const router = express.Router();
 const db = require('../models');
 const mongoose= require('mongoose')
+const bcrypt = require('bcryptjs');
 
 
 

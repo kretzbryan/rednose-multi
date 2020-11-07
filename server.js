@@ -37,7 +37,7 @@ app.use('/home', controllers.home);
 app.use('/profile', controllers.profile);
 app.use('/images', controllers.imageshow);
 app.use('/faq', controllers.faq);
-app.use('/browse-profiles', controllers.profileBrowse);
+app.use('/browse-profiles', controllers.profileBrowse);  
 
 app.listen( PORT, () => {
     console.log(`Now on port ${PORT}`)

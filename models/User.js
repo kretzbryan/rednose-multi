@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     title: {type: String, required: false},
     profileImage: {
         filename: {type: String, required: false},
-        mimetype: {type: String, require: false},
+        mimetype: {type: String, required: false},
         required: false
     },
     location: {type: String, required: false},

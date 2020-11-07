@@ -20,7 +20,7 @@
         <!-- User Profile Card -->
         <section class="card user__profile__card">
             <% if(!currentUser.profileImage.filename) { %>
-                <img class="profile__image" src="/images/1594697689234-rednose-blank-profile-picture.png" alt="profile image">
+                <img class="profile__image" src="images/default-img.png" alt="profile image">
             <% } else { %>
                 <img class='profile__image' src="/images/<%= currentUser.profileImage.filename%>" alt="profile image">
             <% } %>
@@ -33,14 +33,22 @@
         <!-- Post Column -->
         <div class="post__column">
             <section class="row card create__post">
+                <% if( !currentUser.profileImage.filename ) { %>
+                    <img src="images/default-img.png" alt="profile thumbnail" class="create__post__thumb">
+                <% } else { %>
                 <img src="/images/<%= currentUser.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
+                <% } %>
                     <a href='#' data-toggle="modal" data-target="#addPostModal" class='create__post__caption anchor'><p class='options'>Say Something!</p></a>
             </section>
                 <% posts.forEach( post => { %>
                     <section class="row card post__container">
                         <header class="row profile__header">
                             <div class="col-2 poster__thumb">
-                                <img src="images/<%= post.author.profileImage.filename %>" alt="" class="image__thumb">
+                                <% if( !post.author.profileImage.filename ) { %>
+                                    <img src="images/default-img.png" alt="profile thumbnail" class="image__thumb">
+                                <% } else { %>
+                                    <img src="images/<%= post.author.profileImage.filename %>" alt="" class="image__thumb">
+                                <% } %>
                             </div>
                             <div class="col-8 poster__name">
                                 <a class='anchor' href="/profile/<%= post.author._id %>">
@@ -133,7 +141,11 @@
                 <section class="row card gig__container">
                     <header class="row gig__header">
                         <div class="col-2 gig__thumb"><a href="profile/<%=gig.author._id%>">
-                            <img src="images/<%= gig.author.profileImage.filename %>" alt="" class="image__thumb">
+                            <% if( !gig.author.profileImage.filename  ) { %>
+                                <img src="images/default-img.png" alt="profile thumbnail" class="image__thumb">
+                            <% } else { %>
+                                <img src="images/<%= gig.author.profileImage.filename %>" alt="" class="image__thumb">
+                            <% } %>
                         </a>
                         </div>
                         <p class='col-8 gig__name'><%= gig.title %></p>

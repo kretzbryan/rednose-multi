@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const connectionString = 'mongodb://localhost:27017/circusnetwork';
+const config = require('config');
 
-mongoose.connect(process.env.MONGODB_URI || connectionString, {
+mongoose.connect(process.env.MONGODB_URI || config.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
