@@ -9,8 +9,7 @@ const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const mongoose= require('mongoose');
 
-const mongoURI = 'mongodb://localhost:27017/circusnetwork';
-const conn = mongoose.createConnection(mongoURI);
+const conn = mongoose.createConnection(process.env.MONGODB_URI);
 
 let gfs;
 
