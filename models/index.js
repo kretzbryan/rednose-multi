@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const config = require('../config/default.json');
+const config = require('config');
 
 mongoose.connect(process.env.MONGODB_URI || config.mongoURI, {
     useNewUrlParser: true,
