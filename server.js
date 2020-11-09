@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const db = require('./models');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const config = require('./config/default.json')
+const config = require('config')
 
 
 app.use(bodyParser.urlencoded({extended: false}));
