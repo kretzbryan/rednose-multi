@@ -10,9 +10,10 @@ const db = require('../models');
 const upload = require('../middleware/upload');
 const mongo = require('mongodb')
 const mongoose = require('mongoose');
+const config = require('../config/default.json')
 
 
-const conn = mongoose.createConnection(process.env.MONGODB_URI);
+const conn = mongoose.createConnection(process.env.MONGODB_URI || config.mongoURI);
 
 let gfs;
 

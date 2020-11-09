@@ -1,9 +1,10 @@
 const util = require('util');
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
+const config = require('../config/default.json');
 
 const storage = new GridFsStorage({
-    url: process.env.MONGODB_URI,
+    url: process.env.MONGODB_URI || config.mongoURI,
     options: {
         useNewUrlParser: true,
         useUnifiedTopology: true

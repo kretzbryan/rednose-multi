@@ -1,0 +1,115 @@
+
+.card.user__profile__card {
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+
+    background-color: rgba(43, 32, 36, .2);
+    color: #2b2024;
+    padding: auto;
+    display: block;
+    margin: 34px auto 0;
+    justify-content: center;
+    align-items: center;
+    height: 275px;
+    width: 225px;
+    border: none;
+    border-radius: 10px;
+}
+
+
+.profile__image {
+    height: 175px;
+    width: 150px;
+    object-fit:cover;
+    border-radius: 100%;
+    display: block;
+    margin: 10px auto 0;
+}
+
+.options {
+    text-align: center;
+    color: #2b2024;
+    margin: 3px 0;
+    text-decoration: none;
+}
+
+.options:hover {
+    color: #a80038;
+}
+
+.card-title {
+    text-align: center;
+}
+
+
+.post__column {
+    max-width: 600px;
+    overflow: scroll;
+    height: 90vh;
+}
+
+.post__column::-webkit-scrollbar {
+    display: none;
+}
+
+
+.row.create__post,.card.post__container {
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+
+    background-color: rgba(43, 32, 36, .2);
+    width: 550px;
+    padding: 15px 30px;
+    display: block;
+    margin: 34px auto;
+    border: none;
+    border-radius: 10px;
+}
+
+
+.create__post__caption {
+    color: black;
+    padding: 3px 15px;
+    margin: auto;
+    margin-left: 10px;
+    width: 350px;
+    height: 30px;
+    background-color: rgba(43, 32, 36, 0.1);
+    border-radius: 15px;
+}
+
+
+.gig__thumb, .create__post__thumb, .image__thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit:cover;
+}
+
+@media only screen and (max-width: 450px) {
+
+.gig__thumb, .create__post__thumb, .image__thumb {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    object-fit:cover;
+    margin: 10px;
+}
+
+    .row.create__post {
+        padding: 0;
+        height: 55px;
+    }
+
+    .row.create__post,.card.post__container {
+        width: 100%;
+    }
+
+
+.create__post__caption {
+    color: black;
+    width: 80%;
+    background-color: rgba(43, 32, 36, 0.1);
+    border-radius: 15px;
+}
+}

@@ -4,8 +4,9 @@ const bcrypt = require('bcryptjs');
 const db = require('../models');
 const Grid = require('gridfs-stream');
 const mongoose= require('mongoose');
+const config = require('../config/default.json')
 
-const conn = mongoose.createConnection(process.env.MONGODB_URI);
+const conn = mongoose.createConnection(process.env.MONGODB_URI || config.mongoURI);
 
 let gfs;
 

@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const db = require('./models');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const config = require('./config/default.json')
 
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -20,7 +21,7 @@ app.set('view engine', 'ejs');
 app.use(
     session({
     store: new MongoStore({
-        url: process.env.MONGODB_URI
+        url: process.env.MONGODB_URI || config.mongoURI
     }),
     secret: 'super cyute doggo',
     resave: false,

@@ -92,22 +92,6 @@ div.profile__column::-webkit-scrollbar {
 
 
 /* Current Users profile card */
-.card.user__profile__card {
-    /* background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
-
-    background-color: rgba(43, 32, 36, .2);
-    color: #2b2024;
-    margin-top: 34px;
-    padding: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 275px;
-    width: 225px;
-    border: none;
-    border-radius: 10px;
-}
 
 .profile__image {
     height: 175px;
@@ -152,28 +136,6 @@ div.profile__column::-webkit-scrollbar {
 
     /* Post Column and Children */
 
-.post__column {
-    max-width: 600px;
-    margin-top: 0px;
-    overflow: scroll;
-    height: 90vh;
-}
-
-.post__column::-webkit-scrollbar {
-    display: none;
-}
-
-.row.create__post,.card.post__container {
-    /* background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
-
-    background-color: rgba(43, 32, 36, .2);
-    width: 550px;
-    padding: 15px 30px;
-    margin: 34px 20px;
-    border: none;
-    border-radius: 10px;
-}
 
 .card.create__post {
     display: flex;
@@ -250,6 +212,7 @@ div.profile__column::-webkit-scrollbar {
     color: #2b2024;
     margin: 0;
     text-decoration: none;
+    display: inline;
 }
 
 .options:hover {
@@ -311,10 +274,10 @@ footer.page__footer {
 
 .landing__container {
     width: 100vw;
-    height: 90vh;
     padding: 0 auto;
     overflow: scroll;
     background-color:  #fbf9fa;
+    position: relative;
 }
 
 .landing__container::-webkit-scrollbar {
@@ -350,4 +313,25 @@ div.modal-body {
 
 .edit__profile__container {
     width: 300px;
+}
+
+.navbar-toggler.toggler {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    border: 1px solid #fbf9fa;
+    height: 25px;
+    width: 15px;
+    color: #fbf9fa;
+    z-index: 5;
+    font-size: large;
+}
+
+.collapse.show {
+    z-index: 5;
+    
+}
+
+.navbar-toggler-icon.icon {
+    color: #fbf9fa;
 }
