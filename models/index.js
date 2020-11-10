@@ -17,5 +17,6 @@ mongoose.connect(process.env.MONGODB_URI || config.mongoURI, {
 module.exports = {
     Gig: require('./Gig'),
     Post: require('./Post'),
-    User: require('./User')
+    User: require('./User'),
+    Comment: require('./Comment')
 }

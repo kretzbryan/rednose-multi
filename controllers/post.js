@@ -48,6 +48,8 @@ router.put('/:id', (req, res) => {
 })
 
 
+
+
 router.delete('/:id', (req, res) => {
     db.Post.findByIdAndDelete(req.params.id, (err, deletedPost) => {
         if(err) {

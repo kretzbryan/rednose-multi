@@ -70,6 +70,7 @@
                             <footer class='options__footer'>
                                 <a class='anchor options' href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
                                 <a class='anchor options' href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal"><i class="fas fa-user-edit"></i></a>
+                                
                             </footer>
                             
     
@@ -129,6 +130,11 @@
                             <!-- End Delete Post Modal -->
     
                         <% } %>
+                        <div class="row comment-form">
+                            <form action="comment/<%= post._id %>">
+                                <textarea name="text" id="" cols="50" rows="1" placeholder="Write a comment..."></textarea>
+                            </form>
+                        </div>
                     </section>
                 <% }) %>
         </div>
