@@ -6,5 +6,5 @@ module.exports = {
     faq: require('./faq'),
     imageshow: require('./imageshow'),
     register: require('./register'),
-    
+    post: require('./post')
 }

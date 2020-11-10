@@ -26,6 +26,49 @@ i.fas.fa-user-edit {
     text-align: end;
 }
 
+
+.card.user__profile__card {
+    /* background: 
+        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+
+    background-color: rgba(43, 32, 36, .2);
+    color: #2b2024;
+    padding: auto;
+    display: block;
+    margin: 34px auto 0;
+    justify-content: center;
+    align-items: center;
+    height: 275px;
+    width: 225px;
+    border: none;
+    border-radius: 10px;
+}
+
+
+.profile__image {
+    height: 175px;
+    width: 150px;
+    object-fit:cover;
+    border-radius: 100%;
+    display: block;
+    margin: 10px auto 0;
+}
+
+.options {
+    text-align: center;
+    color: #2b2024;
+    margin: 3px 0;
+    text-decoration: none;
+}
+
+.options:hover {
+    color: #a80038;
+}
+
+.card-title {
+    text-align: center;
+}
+
 /* All pages except the landing page are contained within this container */
 .row.main__container {
     width: 100%;
@@ -36,7 +79,10 @@ i.fas.fa-user-edit {
     padding: 0px 50px;
     margin: 0 auto;
     background-color: #fbf9fa;
+    position: relative;
+    top: 5vh;
 }
+
 
 
 
@@ -131,6 +177,30 @@ div.profile__column::-webkit-scrollbar {
     border-radius: 100%;
     object-fit:cover;
 }
+
+
+/* Modal Styling */
+
+.modal-title {
+    width: 100%;
+    text-align: center;
+}
+
+button.close {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+}
+
+.form-group {
+    width: 85%;
+    margin: 0 auto 16px;
+}
+
+.form-group input {
+    width: 100%;
+}
+
 
 
 

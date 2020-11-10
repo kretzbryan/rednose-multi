@@ -16,18 +16,18 @@
     <%- include('./partials/nav') %>
     <div class="row main__container">
         <!-- User Profile Card -->
-        <section class="card user__profile__card">
+        <section class="col-sm-2 card user__profile__card">
             <% if(!currentUser.profileImage.filename) { %>
-                <img class="default__profile__image" src="/images/1594697689234-rednose-blank-profile-picture.png" alt="profile image">
+                <img class="profile__image" src="images/default-img.png" alt="profile image">
             <% } else { %>
                 <img class='profile__image' src="/images/<%= currentUser.profileImage.filename%>" alt="profile image">
             <% } %>
-            <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal">edit photo</a>
-            <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"> edit profile</a>
+            <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal"><p class ='options'>edit photo</p></a>
+            <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"><p class ='options'>edit profile</p></a>
             <h5 class="card-title"><%= currentUser.firstName %> <%= currentUser.lastName %></h5>
         </section>
         <!-- End User Profile Card -->
-        <div class="profile__column">
+        <div class="col-sm-7 profile__column">
             <div class="profile__card__container">
                 <% users.forEach( user => { %>
                     <section class="profile__card">
@@ -46,6 +46,11 @@
                     </section>
                 <% }) %>
             </div>
+        </div>
+    </div>
+    <div class="col-sm-3 browse-option-column">
+        <div class="browse-option-card">
+            ul>li
         </div>
     </div>
     <footer class="page__footer">
