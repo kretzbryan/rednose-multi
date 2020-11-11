@@ -18,4 +18,5 @@ module.exports = {
     Gig: require('./Gig'),
     Post: require('./Post'),
     User: require('./User'),
+    Comment: require('./Comment')
 }

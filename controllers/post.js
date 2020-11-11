@@ -15,6 +15,8 @@ router.post('/',  async (req, res) => {
             user: user._id
         });
         await post.save();
+        await user.posts.push(post);
+        await user.save();
         res.redirect('/home')
     } catch (err) {
         console.log(err)
@@ -47,15 +49,19 @@ router.put('/:id', (req, res) => {
     })
 })
 
+
+// Adds comment to post
 router.post('/comment/:id', async (req, res) => {
     try {
         const user = await db.User.findById(req.session.currentUser.id).select('-password');
         const post = await db.Post.findById(req.params.id);
         const comment = new db.Comment({
+            post: post._id,
             text: req.body.text,
             name: `${user.firstName} ${user.lastName}`,
             user: user._id 
         })
+        await comment.save();
         await post.comments.push(comment);
         await post.save();
         res.redirect('/home')
@@ -64,7 +70,7 @@ router.post('/comment/:id', async (req, res) => {
     }
 }) 
 
-
+// Edits comment on post
 router.put('/comment/:id', async (req, res) => {
     try {
         const post = await db.Post.findById(req.params.id);
@@ -77,23 +83,36 @@ router.put('/comment/:id', async (req, res) => {
     }
 }) 
 
+// Removes comment and comment objectId from post
+router.delete('/comment/:id', async (req, res) => {
+    try {
+        const comment = await db.Comment.findById(req.params.id);
+        const post = await db.Post.findById(comment.post);
+        await post.comments.remove(comment);
+        await post.save();
+        await comment.remove();
+        res.redirect('/home')
+    } catch (err) {
+        console.log(err);
+    }
+})
 
-router.delete('/:id', (req, res) => {
-    db.Post.findByIdAndDelete(req.params.id, (err, deletedPost) => {
-        if(err) {
-            console.log(err)
-        } else {
-            db.User.findById(deletedPost.author, (err, foundUser) => {
-                if(err) {
-                    console.log(err);
-                } else {
-                    foundUser.posts.remove(deletedPost)
-                    foundUser.save();
-                    res.redirect('/home');
-                }
-            })
-        }
-    })
+// Remove post and all comments associated with it.
+router.delete('/:id', async (req, res) => {
+
+    try {
+        const post = await db.Post.findById(req.params.id);
+        const user = await db.User.findById(req.session.currentUser.id);
+        await post.comments.forEach(async comment => {
+            await db.Comment.findByIdAndDelete(comment._id);
+        })
+        await user.posts.remove(post);
+        await user.save();
+        await post.remove();
+        res.redirect('/home')
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 
