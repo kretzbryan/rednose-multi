@@ -289,7 +289,21 @@ button.close {
     color: #a80038;
 }
 
+.row.comment__content {
+    width: 80%;
+    margin: 10px auto;
+}
 
+.comment__thumb {
+    width: 30px;
+    height: 30px;
+}
+
+p.comment__text {
+    height: 50%;
+    margin-bottom: 0;
+    margin: auto 5px;
+}
 
     /* Landing Page Elements */
 

@@ -23,7 +23,15 @@ router.get('/', async (req, res) => {
     if (req.session.currentUser) {
         try {
             const currentUser = await db.User.findById(req.session.currentUser.id);
-            const allPosts = await db.Post.find({}).populate('user');
+            const allPosts = await db.Post.find({})
+                .populate('user')
+                .populate({
+                    path: 'comments',
+                    populate: {
+                        path: 'user',
+                        model: 'User'
+                    }
+            });
             const allGigs = await db.Gig.find({}).populate('user');
             res.render('home', { currentUser: currentUser, posts: allPosts, gigs: allGigs })
         } catch (err) {
