@@ -51,11 +51,24 @@ router.post('/comment/:id', async (req, res) => {
     try {
         const user = await db.User.findById(req.session.currentUser.id).select('-password');
         const post = await db.Post.findById(req.params.id);
-        const comment = {
+        const comment = new db.Comment({
             text: req.body.text,
             name: `${user.firstName} ${user.lastName}`,
             user: user._id 
-        }
+        })
+        await post.comments.push(comment);
+        await post.save();
+        res.redirect('/home')
+    } catch (err) {
+        console.log(err)
+    }
+}) 
+
+
+router.put('/comment/:id', async (req, res) => {
+    try {
+        const post = await db.Post.findById(req.params.id);
+        
         await post.comments.push(comment);
         await post.save();
         res.redirect('/home')
