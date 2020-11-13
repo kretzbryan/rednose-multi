@@ -46,7 +46,7 @@
                     <section class="row card post__container">
                         <header class="row profile__header">
                             <div class="col-2 poster__thumb">
-                                <% if( !post.user.profileImage.filename ) { %>
+                                <% if( !post.user.profileImage ) { %>
                                     <img src="images/default-img.png" alt="profile thumbnail" class="image__thumb">
                                 <% } else { %>
                                     <img src="images/<%= post.user.profileImage.filename %>" alt="" class="image__thumb">

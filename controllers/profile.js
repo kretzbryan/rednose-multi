@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
+const { sendCancelEmail } = require('../emails/account')
 
 router.get('/:id', async (req, res) => {
     try {
@@ -12,11 +13,12 @@ router.get('/:id', async (req, res) => {
 }
 })
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const deletedUser = await db.User.findByIdAndDelete(req.params.id);
         const deletedPosts = await db.Post.remove({ author: deletedUser._id });
         const deletedGigs = await db.Gig.remove({ author: deletedUser._id });
+        sendCancelEmail(deletedUser.email, deletedUser.firstName);
         res.redirect('/');
     } catch (err) {
         console.log(err);

@@ -4,6 +4,7 @@ const router = express.Router();
 const db = require('../models');
 const mongoose= require('mongoose')
 const bcrypt = require('bcryptjs');
+const { sendWelcomeEmail } = require('../emails/account')
 
 
 
@@ -19,6 +20,7 @@ router.post('/', async function(req,res){
         const hash = await bcrypt.hash(req.body.password, salt);
         req.body.password = hash;
         const newUser = await db.User.create(req.body);
+        sendWelcomeEmail(newUser.email, newUser.firstName);
         res.redirect('/');
     } catch (err) {
         console.log(err)

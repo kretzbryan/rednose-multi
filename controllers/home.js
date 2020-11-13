@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
                     }
             });
             const allGigs = await db.Gig.find({}).populate('user');
+            console.log(allPosts);
             res.render('home', { currentUser: currentUser, posts: allPosts, gigs: allGigs })
         } catch (err) {
             console.log(err);

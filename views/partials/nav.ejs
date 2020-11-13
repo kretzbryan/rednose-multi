@@ -167,7 +167,7 @@
         </div>
         <div class="modal-body">
             <!-- Delete Profile Form -->
-            <form action="/profile/delete/<%= currentUser._id %>?_method=DELETE" method='POST'>
+            <form action="/profile/<%= currentUser._id %>?_method=DELETE" method='POST'>
               <h5>Are you sure you want to delete your profile?</h5>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
