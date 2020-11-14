@@ -1,0 +1,14 @@
+/* Current Users profile card */
+
+.user-card {
+    height: 275px;
+    width: 225px;
+
+    &__image {
+        height: 175px;
+        width: 150px;
+        object-fit:cover;
+        border-radius: 100%;
+        margin-top: 10px;
+    }
+}

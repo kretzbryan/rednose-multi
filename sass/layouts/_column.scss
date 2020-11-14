@@ -1,0 +1,20 @@
+
+.post__column {
+    max-width: 600px;
+    margin-top: 0px;
+    overflow: scroll;
+    height: 90vh;
+}
+.post__column::-webkit-scrollbar {
+    display: none;
+}
+.gig__column {
+    margin: 0px 0px -15px 0px;
+    width: 300px;
+    height: 90vh;
+    overflow: scroll;
+}
+
+.gig__column::-webkit-scrollbar {
+    display: none;
+}

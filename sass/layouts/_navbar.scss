@@ -1,0 +1,8 @@
+.nav {
+    height: 5vh;
+
+    &__list {
+        display: flex;
+        justify-content: end;
+    }
+}
