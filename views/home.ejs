@@ -33,7 +33,7 @@
         <!-- End User Profile Card -->
 
         <!-- Post Column -->
-        <div class="col-sm-7 post__column">
+        <div class="col-sm-7 column-primary">
             <section class="row card create__post">
                 <% if( !currentUser.profileImage.filename ) { %>
                     <img src="images/default-img.png" alt="profile thumbnail" class="create__post__thumb">
@@ -133,8 +133,12 @@
 
 
                         <% post.comments.forEach(comment => { %>
-                            <section class="row comment__content">
-                                <img src="images/<%= comment.user.profileImage.filename %>" alt="profile thumbnail" class="image__thumb comment__thumb">
+                            <section class="row comment">
+                                <% if( !comment.user.profileImage.filename ) { %>
+                                    <img src="images/default-img.png" alt="profile thumbnail" class="comment__thumb">
+                                <% } else { %>
+                                    <img src="images/<%= post.user.profileImage.filename %>" alt="" class="comment__thumb">
+                                <% } %>
                                 <p class='comment__text' ><%= comment.text %></p>
                             </section> 
                             
@@ -215,7 +219,7 @@
             
         
         <!-- Gig Column -->
-        <div class="col-sm-3 gig__column">
+        <div class="col-sm-3 column-tertiary">
             <a class='create__gig__anchor' href="#" data-toggle='modal' data-target="#addGigModal">+</a>
 
             <% gigs.forEach( gig => { %>

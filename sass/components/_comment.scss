@@ -1,0 +1,18 @@
+.gig__thumb, .create__post__thumb, .image__thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit:cover;
+}
+
+
+.comment {
+
+    &__thumb {
+
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    object-fit:cover;
+    }
+}

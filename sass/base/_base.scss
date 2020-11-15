@@ -17,25 +17,6 @@ body {
     }
 }
 
-* {
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
-
-body {
-    max-width: 1600px;
-}
-
-body::-webkit-scrollbar {
-    display: none;
-}
-
-i.fas.fa-user-edit {
-    height: 5px;
-    width: 5px;
-}
-
-
 
 .options__footer {
     text-align: end;
@@ -46,11 +27,10 @@ i.fas.fa-user-edit {
     width: 100vw;
     height: 90vh;
     justify-content: space-between;
-    padding: 0px 50px;
     margin-left: 0;
     margin-right: 0;
     background-color: #fbf9fa;
-    position: relative;
+    position: fixed;
     top: 5vh;
 }
 
@@ -94,102 +74,25 @@ div.profile__card__container {
     font-size: $font-default;
 }
 
-.edit__gig__container {
-    display: block;
-}
-
-    /* Nav */
-
-.navbar-brand, .nav-link {
-    color:  #fbf9fa;
-    text-decoration: rgba(216, 7, 7, 0.7);
-}
-
-.navbar {
-    background-color: #fd0054;
-    width: 100vw;
-    height: 5vh;
-    position: fixed;
-    top: 0px;
-}
-.navbar-collapse {
-    display: flex;
-    justify-content: flex-end;
-}
 
 
     /* Image Thumbs */
 
-.gig__thumb, .create__post__thumb, .image__thumb {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    object-fit:cover;
-}
 
 
 
     /* Post Column and Children */
 
 
-.row.create__post,.card.post__container {
-    /* background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
+// .row.create__post,.card.post__container {
+//     padding: 1.5rem 3rem;
+// }
 
-    background-color: rgba(43, 32, 36, .2);
-    width: 550px;
-    padding: 15px 30px;
-    margin: 34px auto;
-    border: none;
-    border-radius: 10px;
-}
 
-.card.create__post {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 0px;
-    border: none;
-    border-radius: 10px;
-}
-
-.create__post__caption {
-    color: black;
-    padding: 3px 15px;
-    margin: auto;
-    margin-left: 10px;
-    width: 350px;
-    height: 30px;
-    background-color: rgba(43, 32, 36, 0.1);
-    border-radius: 15px;
-}
-
-.post__row {
-    overflow: scroll;
-    max-height: 720px;
-}
-
-.post__content {
-    margin-top: 15px;
-}
-
-.poster__name {
-    margin: auto -5px;
-    color: rgb(216, 7, 7);
-}
 
     /* Gig Column and Children */
 
 
-.card.gig__container {
-    /* background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
-    background-color: rgba(43, 32, 36, .2);
-    width: 300px;
-    padding: 10px 15px;
-    margin: 0 auto 15px;
-    border: none;
-    border-radius: 10px;
-}
 .create__gig__anchor {
     font-size: $font-default;
     position: relative;
@@ -197,13 +100,6 @@ div.profile__card__container {
     color: rgb(216, 7, 7);
 }
 
-.gig__description {
-    padding: 5px;
-}
-
-.gig__name {
-    margin: auto 10px;
-}
 
 .options {
     color: #2b2024;
@@ -228,44 +124,7 @@ div.profile__card__container {
     height: 500px;
 }
 
-.row.about__title__header {
-    background-color: #fd0054;
-    color:  #fbf9fa;
-    margin-bottom: 25px;
-    display: flex;
-    justify-content: center;
-    height: 60px;
-    width: 100%;
-    padding: 15px;
-    margin-right: 0px;
-    margin-left: 0px;
-}
 
-
-.about__container {
-    margin: 0px;
-    width: 100%;
-}
-
-
-
-
-.about__main {
-    padding: 25px 50px;
-}
-
-footer.page__footer {
-    background-color: #fd0054;
-    color:  #fbf9fa;
-    margin: 0px;
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    width: 100vw;
-    padding: 15px;
-    text-align: end;
-    height: 5vh;
-}
 
 
 .landing__container {
@@ -281,31 +140,6 @@ footer.page__footer {
 }
 
 
-
-    /* For Modals */
-
-.btn.btn-primary {
-    background-color: rgba(216, 7, 7, 0.6);
-    border: none;
-}
-
-.btn.btn-primary:hover {
-    background-color: rgba(216, 7, 7, 0.4);
-}
-
-div.modal-footer {
-    margin: 15px;
-}
-
-div.modal-header {
-    margin: 15px;
-}
-
-div.modal-body {
-    display: flex;
-    justify-content: center;
-    padding: 10px 30px;
-}
 
 .edit__profile__container {
     width: 300px;

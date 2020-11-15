@@ -1,0 +1,31 @@
+
+.card.create__post {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0px;
+    border: none;
+    border-radius: 10px;
+}
+
+
+.create__post__caption {
+    color: black;
+    padding: 3px 15px;
+    margin: auto;
+    margin-left: 10px;
+    width: 350px;
+    height: 30px;
+    background-color: rgba(43, 32, 36, 0.1);
+    border-radius: 15px;
+}
+
+.create__post {
+    padding: 1.5rem 3rem;
+}
+
+.gig__thumb, .create__post__thumb, .image__thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit:cover;
+}
