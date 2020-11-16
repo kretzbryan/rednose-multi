@@ -1,0 +1,39 @@
+ 
+          <!-- Edit Profile Modal -->
+          <div class="modal fade" id="editModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editTitle">Edit Profile</h5>d
+                    </div>
+                    <div class="modal-body">
+                    <!-- Edit Profile Form-->
+                        <div class="edit__profile__container">
+                            <form action='home/edit-profile/<%= currentUser._id %>?_method=PUT' method='POST'>
+                                <section class="form-group row">
+                                  <input class='col' type="text" name='firstName' value=<%= currentUser.firstName %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='lastName' value=<%= currentUser.lastName %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='title' placeholder='Occupation' value=<%= currentUser.title %>>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='certifications' placeholder='Certifications'>
+                                </section>
+                                <section class="form-group row">
+                                    <input class='col' type="text" name='insurance' placeholder='Insurance'>
+                                </section>
+                                <footer class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -4,7 +4,8 @@ const Grid = require('gridfs-stream');
 const db = require('../models');
 const upload = require('../middleware/upload');
 const mongoose = require('mongoose');
-const config = require('config')
+const config = require('config');
+const time = require('time-since');
 
 
 const conn = mongoose.createConnection(process.env.MONGODB_URI || config.mongoURI);
@@ -33,8 +34,7 @@ router.get('/', async (req, res) => {
                     }
             });
             const allGigs = await db.Gig.find({}).populate('user');
-            console.log(allPosts);
-            res.render('home', { currentUser: currentUser, posts: allPosts, gigs: allGigs })
+            res.render('home', { currentUser: currentUser, posts: allPosts, gigs: allGigs, time: time })
         } catch (err) {
             console.log(err);
         }

@@ -1,8 +1,9 @@
 section.card {
 
     border: none;
-    border-radius: 10px;
-    background-color: rgba(43, 32, 36, .2);
+    border-radius: 5px;
+    border: .5px solid rgba($color-black, .3);
+    background-color: $color-offwhite;
     color: #2b2024;
     margin: 34px auto;
     padding: auto;

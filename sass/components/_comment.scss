@@ -14,5 +14,25 @@
     height: 3rem;
     border-radius: 100%;
     object-fit:cover;
+    float: right;
     }
+}
+
+.comment__text {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    
+
+    & span {
+        padding: .5rem 1rem;
+        max-width: 75%;
+        background-color: $color-grey-light-2;
+        margin-left: 6rem;
+        border-radius: 2000px;
+
+    }
+
+
 }

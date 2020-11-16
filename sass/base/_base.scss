@@ -17,6 +17,14 @@ body {
     }
 }
 
+.row.profile__header {
+    width: 100%;
+}
+
+.row.comment__text {
+    width: 100%;
+
+}
 
 .options__footer {
     text-align: end;
@@ -29,9 +37,22 @@ body {
     justify-content: space-between;
     margin-left: 0;
     margin-right: 0;
-    background-color: #fbf9fa;
-    position: fixed;
+    background-color: $color-grey-light-2;
+    // background-color: #fbf9fa;
+    position: absolute;
     top: 5vh;
+
+    &.landing {
+        width: 100vw;
+        height: 90vh;
+        padding: 0 auto;
+        overflow: scroll;
+        background-color:  #fbf9fa;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 }
 
 
@@ -75,24 +96,6 @@ div.profile__card__container {
 }
 
 
-
-    /* Image Thumbs */
-
-
-
-
-    /* Post Column and Children */
-
-
-// .row.create__post,.card.post__container {
-//     padding: 1.5rem 3rem;
-// }
-
-
-
-    /* Gig Column and Children */
-
-
 .create__gig__anchor {
     font-size: $font-default;
     position: relative;
@@ -105,41 +108,11 @@ div.profile__card__container {
     color: #2b2024;
     margin: 0;
     text-decoration: none;
+
+    &:hover {
+        color: #a80038;
+    }
 }
-
-.options:hover {
-    color: #a80038;
-}
-
-
-
-    /* Landing Page Elements */
-
-.carousel__content {
-    height: 500px;
-}
-
-.carousel__image {
-    object-fit:cover;
-    height: 500px;
-}
-
-
-
-
-.landing__container {
-    width: 100vw;
-    height: 90vh;
-    padding: 0 auto;
-    overflow: scroll;
-    background-color:  #fbf9fa;
-}
-
-.landing__container::-webkit-scrollbar {
-    display: none;
-}
-
-
 
 .edit__profile__container {
     width: 300px;

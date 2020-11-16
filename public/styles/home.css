@@ -16,13 +16,9 @@
     /* background: 
         linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
 
-    background-color: rgba(43, 32, 36, .2);
-    width: 550px;
     padding: 15px 25px;
     display: block;
     margin: 34px auto;
-    border: none;
-    border-radius: 10px;
 }
 
 

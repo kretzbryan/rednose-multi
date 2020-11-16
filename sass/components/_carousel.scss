@@ -1,10 +1,22 @@
 
-.carousel__content {
+.carousel {
+    width: 100vw;
     height: 50rem;
-}
+    
+    &__content {
+        height: 50rem;
+    }
 
-.carousel__image {
-    object-fit:cover;
-    height: 50rem;
-    width: 100%;
+    &__image {
+        object-fit:cover;
+        height: 50rem;
+        width: 100%;
+    }
+
+    &-control {
+        &-prev, &-next {
+            height: 50rem;
+        }
+    }
+    
 }

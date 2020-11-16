@@ -1,26 +1,18 @@
 
-.row.about__title__header {
-    background-color: #fd0054;
-    color:  #fbf9fa;
-    margin-bottom: 25px;
-    display: flex;
-    justify-content: center;
-    height: 60px;
-    width: 100%;
-    padding: 15px;
-    margin-right: 0px;
-    margin-left: 0px;
-}
+.about {
+    margin: 0;
+    padding: 2.5rem 5rem ;
 
 
-.about__container {
-    margin: 0px;
-    width: 100%;
-}
+    &__title {
+        width: 50%;
+        margin: 0 auto 2.5rem;
+        border-bottom: 1px solid $color-primary;
 
+        &__text {
+            font-size: $font-lg;
+            text-align: center;
+        }
 
-
-
-.about__main {
-    padding: 25px 50px;
+    }
 }

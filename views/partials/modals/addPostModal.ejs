@@ -1,0 +1,32 @@
+ <!-- Add Post Modal -->
+ <div class="modal fade" id="addPostModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h5 class="modal-title" id="editTitle">Create Post </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </header>
+            <div class="modal-body">
+            <!-- Add Post Form-->
+                    <form class='form' action="post/" method="POST">
+                        <div class="form__group">
+                            <figure class='shape' >
+                                <img src="images/default-img.png" alt="profile thumbnail" class="image__thumb">
+                            </figure>
+                            <div class="">
+                                <div>
+                                    <textarea name="text" placeholder="Say whats on your mind..." cols="45" rows="7"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="user" value='<%= currentUser._id %>'>
+                        <footer class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Confirm</button>
+                        </footer>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>

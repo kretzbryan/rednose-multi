@@ -1,8 +1,4 @@
-<% if(currentUser._id.toString() === post.author._id.toString()) { %>
-    <footer class='options__footer'>
-        <a href="#" class='anchor'data-target="#delete<%= post._id %>PostModal" data-toggle="modal">Delete</a>
-        <a href="#" class='anchor'data-target="#edit<%= post._id %>PostModal" data-toggle="modal">Edit</a>
-    </footer>
+
 
         <!-- Edit Post Modal -->
     <div class="modal fade" id="edit<%= post._id %>PostModal">
@@ -31,32 +27,3 @@
         </div>
     </div>
     <!-- End Edit Post Modal -->
-
-    
-
-
-            <!-- Delete Post Modal -->
-    <div class="modal fade" id="delete<%= post._id %>PostModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <header class="modal-header">
-                    <h5 class="modal-title" id="delete__post__title">Delete Post </h5>
-                </header>
-                <div class="modal-body">
-                    <div class="delete__post__container">
-
-
-                        <!-- Delete Post Form-->
-                        <form action="home/delete-post/<%= post._id %>?_method=DELETE" method="post">
-                            <button type=submit>delete </button>
-                        </form>
-                        <!-- End Delete Post Form -->
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Delete Post Modal -->
-
-<% } %>
