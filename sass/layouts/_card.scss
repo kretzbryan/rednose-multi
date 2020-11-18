@@ -5,9 +5,10 @@ section.card {
     border: .5px solid rgba($color-black, .3);
     background-color: $color-offwhite;
     color: #2b2024;
-    margin: 34px auto;
+    margin: 3rem 1rem;
     padding: auto;
-    display: flex;
-    justify-content: center;
+    display: inline-block;
+    // justify-content: center;
     align-items: center;
+    max-width: 60rem;
 }

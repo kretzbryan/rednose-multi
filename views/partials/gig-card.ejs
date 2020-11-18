@@ -1,0 +1,14 @@
+<div class="column-primary">
+    <section class="card gig-card">
+        <header>
+            <% if(!gig.user.profileImage.filename) { %>
+                <img class="user-card__image" src="/images/default-img.png" alt="profile image">
+            <% } else { %>
+                <img class='user-card__image' src="/images/<%=  gig.user.profileImage.filename%>" alt="profile image">
+            <% } %>
+            <%= gig.title %>
+            <%= gig.location %>
+        </header>
+        <p><%= gig.description %></p>
+    </section>
+</div>

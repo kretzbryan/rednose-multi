@@ -1,25 +1,152 @@
-.gig__thumb, .create__post__thumb, .image__thumb {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    object-fit:cover;
-}
 
 .edit__gig__container {
     display: block;
 }
 
-.card.gig__container {
-    padding: 10px 15px;
-    float: left;
-    border-radius: 5px;
-}
 
 
-.gig__description {
-    padding: 5px;
-}
+
 
 .gig__name {
     margin: auto 10px;
+}
+
+.gig {
+
+    &__text {
+        display: inline-block;
+    }
+
+    &__title, &__subtext {
+        width: 11rem;
+        margin-left: 1rem;
+        margin-bottom: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__thumb {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 100%;
+        object-fit:cover;
+        position: relative;
+        bottom: .7rem;
+
+        &-container {
+            display: inline-block;
+            height: 100%;
+        }
+    }
+
+    &__container {
+        border-radius: 5px;
+        width: 20rem;
+        position: relative;
+        padding: 0 1rem;
+
+
+        &-right {
+        }
+
+        &-left {
+            margin-right: 3rem;
+            float: right;
+        }
+       
+    }
+    &__anchor,
+    &__anchor:link, 
+    &__anchor:visited {
+        text-decoration: none;
+        color: $color-black;
+    }
+
+    &__list {
+        padding: 0 0 .25rem 0;
+        width: 100%;
+        margin-bottom: 0;
+        list-style: none;
+
+
+    &-item {
+        margin: 0 auto;
+        padding: 1rem .5rem .5rem .5rem;
+        width: 100%;
+        height: 5rem;
+        display: inline-block;
+        flex-wrap: nowrap;
+
+        &::before {
+            content: '\2022';
+            color: $color-red;
+            display: inline-block;
+            width: 1em;
+            font-size: large;
+            font-weight: 600;
+            position: relative;
+            bottom: .5rem;
+            padding-left: .5rem;
+        }
+
+        
+        &:after {
+            content: '';
+            height: 1px;
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            top: -1rem;
+            width: 0;
+            border-bottom: 1px solid red;
+            transition: all .3s;
+        }
+
+        &:hover {
+
+            &:after {
+                width: 100%;
+                display: block;
+
+                }
+        }
+
+    }
+
+       
+    }
+
+   
+
+    &__header {
+        width: 90%;
+        font-size: $font-lg;
+        text-align: center;
+        border-bottom: 1px solid rgba($color-red, .5);
+        padding: .25rem .5rem;
+    }
+
+    &__footer {
+        position: relative;
+        top: calc(-.5rem + 1px);
+        padding: .5rem 0;
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid transparent;
+
+        &:hover {
+            border-top: 1px solid rgba($color-red, .5);
+        }
+    }
+
+    &__description {
+        padding: 5px;
+    }
+
+}
+
+section.card.gig__container-left {
+    margin-right: 3rem;
+    margin-top: 0;
 }

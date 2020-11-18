@@ -15,42 +15,28 @@
 
     <%- include('./partials/nav') %>
     <div class="row main__container">
-        <!-- User Profile Card -->
-        <section class="col-sm-2 card user__profile__card">
-            <% if(!currentUser.profileImage.filename) { %>
-                <img class="profile__image" src="images/default-img.png" alt="profile image">
-            <% } else { %>
-                <img class='profile__image' src="/images/<%= currentUser.profileImage.filename%>" alt="profile image">
-            <% } %>
-            <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal"><p class ='options'>edit photo</p></a>
-            <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"><p class ='options'>edit profile</p></a>
-            <h5 class="card-title"><%= currentUser.firstName %> <%= currentUser.lastName %></h5>
-        </section>
-        <!-- End User Profile Card -->
-        <div class="col-sm-7 profile__column">
-            <div class="profile__card__container">
+        <div class="column-secondary">
+            <%- include('./partials/userCard') %>
+        </div>
+        <div class="column-primary">
+            <div class="profile-card__container">
                 <% users.forEach( user => { %>
-                    <section class="profile__card">
-                        <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile__image">
-                        <h6 class='profile__card__text'><%= user.firstName %> <%= user.lastName %></h6>
-                        <h6 class='profile__card__text'>
-                            <%= user.location %></h6>
-                        <h6 class='profile__card__text occupation'>
+                    <section class="card profile-card">
+                        <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile-card__image">
+                        <!-- <p class='profile-card__text'><%= user.firstName %> <%= user.lastName %></p>
+                        <p class='profile-card__text'>
+                            <%= user.location %></p>
+                        <p class='profile-card__text occupation'>
                             Occupation:
                             <% if(!user.title) { %>
                                 unknown
                             <% } else { %>
                                  <%= user.title %>
                             <% } %>
-                        </h6>
+                        </p> -->
                     </section>
                 <% }) %>
             </div>
-        </div>
-    </div>
-    <div class="col-sm-3 browse-option-column">
-        <div class="browse-option-card">
-            ul>li
         </div>
     </div>
     <footer class="page__footer">

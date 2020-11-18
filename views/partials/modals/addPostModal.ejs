@@ -13,7 +13,11 @@
                     <form class='form' action="post/" method="POST">
                         <div class="form__group">
                             <figure class='shape' >
-                                <img src="images/default-img.png" alt="profile thumbnail" class="image__thumb">
+                                <% if( !currentUser.profileImage.filename ) { %>
+                                    <img src="images/default-img.png" alt="profile thumbnail" class="create__post__thumb">
+                                <% } else { %>
+                                    <img src="/images/<%= currentUser.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
+                                <% } %>
                             </figure>
                             <div class="">
                                 <div>

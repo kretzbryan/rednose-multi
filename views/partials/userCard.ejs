@@ -1,7 +1,6 @@
 
         <!-- User Profile Card -->
-        <div class="col-sm-3 col-tertiary">
-            <section class=" card user-card">
+            <section class="row card user-card">
                 <% if(!currentUser.profileImage.filename) { %>
                     <img class="user-card__image" src="images/default-img.png" alt="profile image">
                 <% } else { %>
@@ -11,5 +10,6 @@
                 <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"><p class ='options'>edit profile</p></a>
                 <h5 class="card-title"><%= currentUser.firstName %> <%= currentUser.lastName %></h5>
             </section>
-        </div>
+
+
         <!-- End User Profile Card -->

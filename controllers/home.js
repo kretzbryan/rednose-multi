@@ -34,7 +34,18 @@ router.get('/', async (req, res) => {
                     }
             });
             const allGigs = await db.Gig.find({}).populate('user');
-            res.render('home', { currentUser: currentUser, posts: allPosts, gigs: allGigs, time: time })
+            const recentGigs = await db.Gig.aggregate([
+                { $sort: {createdAt: -1 } },
+                { $limit: 5 },
+                { $lookup: {
+                    from: 'users',
+                    localField: 'user',
+                    foreignField: '_id',
+                    as: 'user_doc'
+                } }
+            ]);
+            console.log(recentGigs.length)
+            res.render('home', { currentUser: currentUser, posts: allPosts, gigs: recentGigs, time: time })
         } catch (err) {
             console.log(err);
         }

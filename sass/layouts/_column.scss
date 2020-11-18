@@ -2,27 +2,44 @@
 
 .column {
 
-    &-primary {
-        margin-top: 0px;
+    &-profile, &-primary, &-tertiary, &-secondary {
+        position: fixed;
         overflow: scroll;
         height: 90vh;
+
 
         &::-webkit-scrollbar {
             display: none;
         }
     }
 
-    &-secondary {
+    &-profile {
+        position: fixed;
+        right: 0;
+        width: 75vw;
+    }
+
+    &-primary {
+        overflow: scroll;
+        width: 50vw;
+        left: 25vw;
 
     }
 
+    &-secondary {
+        width: 25vw;
+        left: 0;
+    }
+
     &-tertiary {
-        margin: 0px 0px -15px 0px;
+        right: 0;
         height: 90vh;
         overflow: scroll;
+        width: 25vw;
 
         &::-webkit-scrollbar {
             display: none;
         }
     }
 }
+

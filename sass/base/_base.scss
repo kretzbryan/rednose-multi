@@ -35,8 +35,7 @@ body {
     width: 100vw;
     height: 90vh;
     justify-content: space-between;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0 auto;
     background-color: $color-grey-light-2;
     // background-color: #fbf9fa;
     position: absolute;
@@ -59,19 +58,17 @@ body {
 
 /* For Browse Profiles */
 
-div.profile__card__container {
-    max-width: 800px;
-    display: flex;
-    flex-wrap: wrap;
+div.profile-card__container {
     padding: 0px 25px;
-    margin: 15px 50px 30px 20px;
+    margin: 3rem 5rem;
     background-color: rgba(43, 32, 36, .1);
     border-radius: 15px;
 }
 
 
 
-.profile__card {
+.profile-card {
+
     margin: 15px auto;
     padding: 0px 25px;
     border: none;
@@ -81,6 +78,10 @@ div.profile__card__container {
     /* background: 
         linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
     background-color: rgba(43, 32, 36, .2);
+
+    &__container {
+        margin-top: 3rem;
+    }
 }
 
 .profile__card__text {

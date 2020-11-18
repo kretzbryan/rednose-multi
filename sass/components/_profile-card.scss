@@ -1,0 +1,21 @@
+.card.profile-card {
+    
+    & p {
+
+    text-align: center;
+    }
+
+
+    &__image {
+        height: 175px;
+        width: 150px;
+        object-fit:cover;
+        border-radius: 100%;
+        margin-top: 10px;
+    }
+
+}
+
+p.profile-card__text.occupation {
+    text-align: center;
+}

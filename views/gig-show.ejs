@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= gig.title %></title>
+</head>
+<body>
+
+        <%- include('./partials/nav') %>
+    <div class="row main__container">
+        <div class="column-secondary">
+            <%- include('./partials/userCard') %>
+        <%- include('./partials/gig-card') %>
+        </div>
+        <div class="column-tertiary">
+            <%- include('./partials/gig-nav') %>
+        </div>
+          
+    </div>
+
+    <footer class="page__footer">
+        <h6>&copy; Bryan Kretz</h6>
+    </footer>
+</body>
+</html>

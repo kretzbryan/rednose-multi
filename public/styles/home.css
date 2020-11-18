@@ -12,13 +12,13 @@
 }
 
 
-.row.create__post,.card.post__container {
+.row.create__post,.card.post__container, .card.gig-card {
     /* background: 
         linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
 
     padding: 15px 25px;
     display: block;
-    margin: 34px auto;
+    margin: 3rem auto;
 }
 
 

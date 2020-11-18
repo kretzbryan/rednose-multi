@@ -1,4 +1,4 @@
-<div class="col-sm-5 column-primary">
+<div class=" column-primary">
     <section class="row card create__post">
         <% if( !currentUser.profileImage.filename ) { %>
             <img src="images/default-img.png" alt="profile thumbnail" class="create__post__thumb">
@@ -147,7 +147,7 @@
                             </div>
                         </header>
                         <div class="comment__text">
-                            <span><%= comment.text %></span>
+                            <p><%= comment.text %></p>
                         </div>
                     </section> 
                     <% if(currentUser._id.toString() === comment.user._id.toString()) { %>

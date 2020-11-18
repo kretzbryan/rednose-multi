@@ -1,9 +1,10 @@
-.gig__thumb, .create__post__thumb, .image__thumb {
+ .create__post__thumb, .image__thumb {
     width: 50px;
     height: 50px;
     border-radius: 100%;
     object-fit:cover;
 }
+
 
 
 .comment {
@@ -25,12 +26,12 @@
     padding-bottom: 1rem;
     
 
-    & span {
+    & p {
         padding: .5rem 1rem;
         max-width: 75%;
         background-color: $color-grey-light-2;
         margin-left: 6rem;
-        border-radius: 2000px;
+        border-radius: 15px;
 
     }
 
