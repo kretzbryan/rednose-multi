@@ -18,20 +18,25 @@ router.post('/', [
     check('password1', 'Please enter a password with 6 or more characters.').isLength({ min: 6 }),
     check('password2', 'Passwords do not match').matches('password1'),
 ], async function(req,res){
-    try {
-        const foundUser = await db.User.findOne({email: req.body.email});
-        if (foundUser) {
-            return res.send({message: 'Email is already in use'})
-        }
-        const salt = await bcrypt.genSalt(10);
-        const hash = await bcrypt.hash(req.body.password, salt);
-        req.body.password = hash;
-        const newUser = await db.User.create(req.body);
-        sendWelcomeEmail(newUser.email, newUser.firstName);
-        res.redirect('/');
-    } catch (err) {
-        console.log(err)
+    const errors = validationResult(req)
+    console.log(req.body)
+    if(!errors.isEmpty()) {
+        res.render('landing', {registerErrors: errors.errors, currentUser: null, loginError: null})
     }
+    // try {
+    //     const foundUser = await db.User.findOne({email: req.body.email});
+    //     if (foundUser) {
+    //         return res.send({message: 'Email is already in use'})
+    //     }
+    //     const salt = await bcrypt.genSalt(10);
+    //     const hash = await bcrypt.hash(req.body.password, salt);
+    //     req.body.password = hash;
+    //     const newUser = await db.User.create(req.body);
+    //     // sendWelcomeEmail(newUser.email, newUser.firstName);
+    //     res.redirect('/');
+    // } catch (err) {
+    //     console.log(err)
+    // }
 })
 
 module.exports = router;

@@ -206,9 +206,10 @@ div.modal-body {
   letter-spacing: .2rem;
   font-weight: 300; }
 
-#login-error {
+#login-error, #register-error {
   text-align: center;
-  color: #d80707; }
+  color: #d80707;
+  margin-bottom: 1rem; }
 
 /* Current Users profile card */
 .card.user-card {

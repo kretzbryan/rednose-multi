@@ -26,11 +26,11 @@ router.get('/', (req, res) => {
             if(err) {
                 console.log(err)
             } else {
-                res.render('landing', {currentUser: foundUser});
+                res.render('landing', {registerErrors: null, currentUser: foundUser, loginError: null});
             }
         })
     } else {
-        res.render('landing', {currentUser: null, error: null})
+        res.render('landing', {registerErrors: null, currentUser: null, loginError: null})
     }
 })
 
@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 router.get('/files', (req, res) => {
     gfs.files.find().toArray((err, files) => {
         if(!files) {
-            res.render('landing', {files: false})
+            res.json({files: false})
         }
         return res.json(files)
     })

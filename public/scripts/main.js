@@ -13,4 +13,10 @@ $(document).ready(() => {
     if( $loginError !== '' ) {
       $('#loginModal').modal('show');
     }
+
+    const $registerError = $.trim( $('#register-error').text() );
+
+    if( $registerError !== '' ) {
+      $('#registerModal').modal('show');
+    }
 })
