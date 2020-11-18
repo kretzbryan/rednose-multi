@@ -5,12 +5,19 @@ const db = require('../models');
 const mongoose= require('mongoose')
 const bcrypt = require('bcryptjs');
 const { sendWelcomeEmail } = require('../emails/account')
+const { check, validationResult } = require('express-validator')
 
 
 
 
 // Creates new user and redefines the password with a hash
-router.post('/', async function(req,res){
+router.post('/', [
+    check('firstName', 'First Name is required').not().isEmpty(),
+    check('lastName', 'Last Name is required').not().isEmpty(),
+    check('username', 'Username is required').not().isEmpty(),
+    check('password1', 'Please enter a password with 6 or more characters.').isLength({ min: 6 }),
+    check('password2', 'Passwords do not match').matches('password1'),
+], async function(req,res){
     try {
         const foundUser = await db.User.findOne({email: req.body.email});
         if (foundUser) {

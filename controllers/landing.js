@@ -7,6 +7,7 @@ const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const mongoose= require('mongoose');
 const config = require('config');
+const {check, validationResult} = require('express-validator');
 
 const conn = mongoose.createConnection(process.env.MONGODB_URI || config.mongoURI);
 
@@ -29,7 +30,7 @@ router.get('/', (req, res) => {
             }
         })
     } else {
-        res.render('landing', {currentUser: null})
+        res.render('landing', {currentUser: null, error: null})
     }
 })
 
@@ -54,12 +55,17 @@ router.post('/login', async function(req, res){
         users = await db.User.find({});
         const foundUser = await db.User.findOne({username: req.body.username});
         if (!foundUser) {
-
-            return res.send({message:'Password or email incorrect.'})
+            const error = 'Password or email incorrect.';
+            currentUser = null;
+            console.log(error)
+            return res.render('landing',{error})
         }
         const match = await bcrypt.compare(req.body.password, foundUser.password);
         if (!match) {
-            return res.send({message:'Password or email incorrect.'})
+            const error = 'Password or email incorrect.';
+            currentUser = null;
+            console.log(error)
+            return res.render('landing', {error})
         }
         req.session.currentUser = {
             id: foundUser._id,

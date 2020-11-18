@@ -6,3 +6,11 @@ function initMap() {
     zoom: 8,
   });
 }
+
+$(document).ready(() => {
+    const $loginError = $.trim( $('#login-error').text() );
+
+    if( $loginError !== '' ) {
+      $('#loginModal').modal('show');
+    }
+})
