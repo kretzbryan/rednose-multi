@@ -1,38 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-
+const time = require('time-since')
 
 
 
 
 // Shows all profiles with the exception of the current User
-router.get('/', (req, res) => {
-    if(req.session.currentUser) {
-        db.User.find({
-            id: {
-                $not: {
-                    $eq: {
-                        _id: req.session.currentUser.id
-                    }
-                }
-            }
-        }, (err, foundUsers) => {
-            if (err) {
-                console.log(err)
-            } else {
-                db.User.findById(req.session.currentUser.id, (err, foundUser) => {
-                    if(err) {
-                        console.log(err)
-                    } else {
-                        res.render('profile-browse', {users: foundUsers, currentUser: foundUser});
-                    }
-                })
-            }
-        })
-    } else {
-        res.redirect('/')
+router.get('/', async (req, res) => {
+    try {
+        const foundUsers = await db.User.find();
+        const foundUser = await db.User.findById(req.session.currentUser.id);
+        const recentGigs = await db.Gig.aggregate([
+            { $sort: {createdAt: -1 } },
+            { $limit: 5 },
+            { $lookup: {
+                from: 'users',
+                localField: 'user',
+                foreignField: '_id',
+                as: 'user_doc'
+            } }
+        ]);
+        res.render('profile-browse', {users: foundUsers, currentUser: foundUser, gigs: recentGigs, time: time});
+
+    } catch (err) {
+        
     }
+    
 })
 
 module.exports = router;

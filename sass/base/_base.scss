@@ -19,6 +19,22 @@ body {
 
 .row.profile__header {
     width: 100%;
+    margin: 0;
+
+
+    & .timestamp {
+        color: $color-grey-dark-2;     
+    }
+
+    & .user-options {
+        color: $color-grey-dark-2;   
+        transition: .2s;
+        
+        &:hover {
+            color: $color-black;
+        }
+    }
+
 }
 
 .row.comment__text {
@@ -58,43 +74,7 @@ body {
 
 /* For Browse Profiles */
 
-div.profile-card__container {
-    padding: 0px 25px;
-    margin: 3rem 5rem;
-    background-color: rgba(43, 32, 36, .1);
-    border-radius: 15px;
-}
 
-
-
-.profile-card {
-
-    margin: 15px auto;
-    padding: 0px 25px;
-    border: none;
-    border-radius: 10px;
-    height: 250px;
-    width: 200px;
-    /* background: 
-        linear-gradient(to top, rgba(236, 16, 16, 0.4), 10%, rgba(236, 16, 16, 0.0)); */
-    background-color: rgba(43, 32, 36, .2);
-
-    &__container {
-        margin-top: 3rem;
-    }
-}
-
-.profile__card__text {
-    text-align: center;
-}
-
-.profile__image {
-    margin-bottom: 10px;
-}
-
-.occupation {
-    font-size: $font-default;
-}
 
 
 .create__gig__anchor {

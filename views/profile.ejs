@@ -1,58 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/head') %>
     <title>Document</title>
 </head>
 <body>
     
 <%- include('./partials/nav')%>
 <div class="row main__container">
+    <div class="column-secondary">
+       <%- include('./partials/userCard') %>
+    </div>
 
-    <!-- User Profile Card -->
-    <section class="card user__profile__card">
-        <% if(!profile.profileImage.filename) { %>
-            <img class="default__profile__image" src="/images/1594697689234-rednose-blank-profile-picture.png" alt="profile image">
-        <% } else { %>
-            <img class='profile__image' src="/images/<%= profile.profileImage.filename%>" alt="profile image">
-        <% } %>
-        
-        <h5 class="card-title"><%= profile.firstName %> <%= profile.lastName %></h5>
-    </section>
-    <!-- End User Profile Card -->
 
     <!-- Post Column -->
-    <div class="post__column">
+    <div class="column-primary">
         <section class="row card create__post">
         <img src="/images/<%= currentUser.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
             <a href='#' data-toggle="modal" data-target="#addPostModal" class='create__post__caption anchor'>Say Something!</a>
         </section>
-        <% if(!profile.posts) { %>
+        <% if(!currentUser.posts) { %>
             <h3>This profile has no posts!</h3>
         <% } else { %>
-            <% profile.posts.forEach( post => { %>
+            <% currentUser.posts.forEach( post => { %>
                 <section class="row card post__container">
                     <header class="row profile__header">
                         <div class="col-2 poster__thumb">
-                            <img src="/images/<%= profile.profileImage.filename %>" alt="" class="image__thumb">
+                            <% if( !currentUser.profileImage.filename ) { %>
+                                <img src="/images/default-img.png" alt="profile thumbnail" class="image__thumb">
+                            <% } else { %>
+                                <img src="/images/<%= currentUser.profileImage.filename %>" alt="" class="image__thumb">
+                            <% } %>
                         </div>
-                        <p class="col-8 poster__name"><%= profile.firstName %> <%= profile.lastName %></p>
+                        <div class="col-8 poster__name">
+                            <a class='anchor' href="/profile/<%= post.user._id %>">
+                                <p class='options'><%= currentUser.firstName %> <%= currentUser.lastName %></p>
+                            </a>
+                            <span class='timestamp' > 
+                                
+    
+                                <% if (time.since(post.createdAt).secs() < 60) { %>
+                                    <%= time.since(post.createdAt).secs() %> sec
+                                <% } else if (time.since(post.createdAt).secs() >= 60  && time.since(post.createdAt).mins() < 60 ) { %>
+                                    <%= time.since(post.createdAt).mins() %> min
+                                <% } else if(time.since(post.createdAt).mins() >= 60 && time.since(post.createdAt).hours() < 24  ) { %>
+                                    <%= time.since(post.createdAt).hours() %> h
+                                <% } else if(time.since(post.createdAt).hours() >= 24 && time.since(post.createdAt).days() < 7  ) { %>
+                                    <%= time.since(post.createdAt).days() %> d
+                                <% } else { %>
+                                    <%= time.since(post.createdAt).weeks() %> w
+                                <% } %>
+                            </span>
+                        </div>
                         <div class="col-2 post__options">
-                            <a href="#">
+                            <a class='anchor' href="#">
                                 <i class="fa fa-cog options" aria-hidden="true"></i>
                             </a>
                         </div>
                     </header>
                     <section class="post__content">
-                        <p><%= post.content %></p>
+                        <p><%= post.text %></p>
                     </section>
+                    <% post.comment_doc.forEach(comment => { %>
+                        <section class="row comment mt-2"> 
+                            <header class="row profile__header">
+                                <div class="col-2 comment__thumb">
+                                    <% if( !comment.user.profileImage.filename ) { %>
+                                        <img src="images/default-img.png" alt="profile thumbnail" class="comment__thumb">
+                                    <% } else { %>
+                                        <img src="images/<%= comment.user.profileImage.filename %>" alt="" class="comment__thumb">
+                                    <% } %>
+                                </div>
+                                <div class="col poster__name">
+                                    <a class='anchor' href="/profile/<%= comment.user._id %>">
+                                        <p class='options'><%= comment.user.firstName %> <%= comment.user.lastName %></p>
+                                    </a>
+                                    <span class='timestamp' > 
+    
+                                        <% if (time.since(comment.createdAt).secs() < 60) { %>
+                                            <%= time.since(comment.createdAt).secs() %> sec
+                                        <% } else if (time.since(comment.createdAt).secs() >= 60  && time.since(comment.createdAt).mins() < 60 ) { %>
+                                            <%= time.since(comment.createdAt).mins() %> min
+                                        <% } else if(time.since(comment.createdAt).mins() >= 60 && time.since(comment.createdAt).hours() < 24  ) { %>
+                                            <%= time.since(comment.createdAt).hours() %> h
+                                        <% } else if(time.since(comment.createdAt).hours() >= 24 && time.since(comment.createdAt).days() < 7  ) { %>
+                                            <%= time.since(comment.createdAt).days() %> d
+                                        <% } else { %>
+                                            <%= time.since(comment.createdAt).weeks() %> w
+                                        <% } %>
+                                    </span>
+                                </div>
+                                <div class="col-2 comment__options">
+                                    <a class='anchor' href="#">
+                                        <i class="fa fa-cog options" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </header>
+                            <div class="comment__text">
+                                <p><%= comment.text %></p>
+                            </div>
+                        </section> 
+                        <% if(currentUser._id.toString() === comment.user._id.toString()) { %>
+                            <!-- <footer class='options__footer'>
+                                <a class='anchor options' href="#" data-target="#delete<%= comment._id %>CommentModal" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
+                                <a class='anchor options' href="#" data-target="#edit<%= comment._id %>CommentModal" data-toggle="modal"><i class="fas fa-user-edit"></i></a>
+                                
+                            </footer> -->
+    
+    
+                                <!-- Edit Comment Modal -->
+                            <div class="modal fade" id="edit<%= comment._id %>CommentModal">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog modal-dialog-centered-centered">
+                                    <div class="modal-content">
+                                        <header class="modal-header">
+                                            <h5 class="modal-title" id="edit__gig__title">Edit Comment </h5>
+                                        </header>
+                                        <div class="modal-body">
+    
+    
+                                        <!-- Edit Comment Form-->
+                                            <div class="edit__gig__container">
+                                                <form action="post/comment/<%= comment._id %>?_method=PUT" method="POST">
+                                                    <textarea name="content" placeholder="Say whats on your mind..." cols="45" rows="7"><%= comment.text %></textarea>
+                                                    <footer class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Confirm</button>
+                                                    </footer>
+                                                </form>
+                                                <!-- End Edit Comment Form -->
+    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <!-- End Edit Comment Modal -->
+    
+    
+                                    <!-- Delete Comment Modal -->
+                            <div class="modal fade" id="delete<%= comment._id %>CommentModal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <header class="modal-header">
+                                            <h5 class="modal-title" id="edit__gig__title">Edit Gig </h5>
+                                        </header>
+                                        <div class="modal-body">
+                                        <!-- Delete Comment Form-->
+                                            <div class="delete__comment__container">
+                                                <form action="post/comment/<%= comment._id %>?_method=DELETE" method="post">
+                                                    <h4>Are you sure you want to delete this comment?</h4>
+                                                    <footer class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button class='btn btn-primary'type=submit>Delete</button>
+                                                    </footer>
+                                                </form>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Delete Comment Modal -->
+    
+                        <% } %>
+                    <% }) %>
+                    <div class="row comment-form">
+                        <form action="post/comment/<%= post._id %>" method='POST'>
+                            <textarea name="text" id="" cols="50" rows="1" placeholder="Write a comment..."></textarea>
+                            <input type="submit" value="">
+                        </form>
+                    </div>
                 </section>
             <% }) %>
         <% } %>
@@ -62,22 +179,8 @@
         
     
     <!-- Gig Column -->
-    <div class="gig__column">
-        <a class='create__gig__anchor' href="#" data-toggle='modal' data-target="#addGigModal">+</a>
-
-        <% profile.gigs.forEach( gig => { %>
-            <section class="row card gig__container">
-                <header class="row gig__header">
-                    <div class="col-2 gig__thumb">
-                        <img src="/images/<%= profile.profileImage.filename %>" alt="" class="image__thumb">
-                    </div>
-                    <p class='col-8 gig__name'><%= gig.title %></p>
-                </header>
-                <section class="gig__description">
-                    <p><%= gig.description  %></p>
-                </section>
-            </section>
-        <% }) %> 
+    <div class="column-tertiary">
+        <%- include('./partials/gig-nav') %>
     </div>
     <footer class="page__footer">
         <h6>&copy; Bryan Kretz</h6>

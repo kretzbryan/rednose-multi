@@ -19,7 +19,7 @@
             <%- include('./partials/userCard') %>
         </div>
         <div class="column-primary">
-            <div class="profile-card__container">
+            <div class="row profile-card__container">
                 <% users.forEach( user => { %>
                     <section class="card profile-card">
                         <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile-card__image">
@@ -38,6 +38,9 @@
                 <% }) %>
             </div>
         </div>
+    </div>
+    <div class="column-tertiary">
+        <%- include('./partials/gig-nav') %>
     </div>
     <footer class="page__footer">
         <h6>&copy; Bryan Kretz</h6>

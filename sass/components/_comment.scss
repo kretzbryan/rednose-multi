@@ -15,14 +15,28 @@
     height: 3rem;
     border-radius: 100%;
     object-fit:cover;
-    float: right;
+    margin-right: 1rem;
+    }
+
+    &__options {
+        position: absolute;
+        right: 5rem;
+
+    }
+
+    & .timestamp {
+        color: $color-grey-dark-2; 
+        transition: .2s;
+
+        &:hover {
+            color: $color-black;
+        }    
     }
 }
 
 .comment__text {
     width: 100%;
     margin-top: 1rem;
-    margin-bottom: 1rem;
     padding-bottom: 1rem;
     
 
@@ -32,8 +46,15 @@
         background-color: $color-grey-light-2;
         margin-left: 6rem;
         border-radius: 15px;
+        margin-bottom: 0;
 
     }
 
 
+}
+
+.row.comment{
+    width: 100%;
+    margin: 0;
+    padding: 1.5rem 3rem 0 3rem;
 }

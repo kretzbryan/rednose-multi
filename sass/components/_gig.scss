@@ -121,19 +121,20 @@
 
     &__header {
         width: 90%;
+        margin: 0 auto;
         font-size: $font-lg;
         text-align: center;
-        border-bottom: 1px solid rgba($color-red, .5);
+        border-bottom: 1px solid $color-red;
         padding: .25rem .5rem;
     }
 
     &__footer {
         position: relative;
         top: calc(-.5rem + 1px);
-        padding: .5rem 0;
         width: 100%;
         text-align: center;
         border-top: 1px solid transparent;
+        transition: .4s;
 
         &:hover {
             border-top: 1px solid rgba($color-red, .5);
@@ -144,9 +145,23 @@
         padding: 5px;
     }
 
+    &__link-all {
+        font-size: $font-default;
+        display: block;
+        width: 100%;
+        color: rgba($color-red, .5);
+        transition: .4s;
+
+        &:hover {
+            text-decoration: none;
+            color: $color-red;
+        }
+    }
+
 }
 
 section.card.gig__container-left {
     margin-right: 3rem;
     margin-top: 0;
 }
+

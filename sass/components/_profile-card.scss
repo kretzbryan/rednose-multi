@@ -1,21 +1,50 @@
 .card.profile-card {
-    
-    & p {
-
-    text-align: center;
-    }
-
-
-    &__image {
-        height: 175px;
-        width: 150px;
-        object-fit:cover;
-        border-radius: 100%;
-        margin-top: 10px;
-    }
+   height: 25rem;
+   width: 20rem;
+//    margin: 3rem auto;
+   display: flex;
+    align-items: start;
 
 }
 
-p.profile-card__text.occupation {
+
+.profile-card {
+    &__container {
+        border-radius: 15px;
+    }
+    &__image {
+        height: 15rem;
+        width: 13rem;
+        object-fit:cover;
+        border-radius: 100%;
+        margin: 1rem auto 0 auto;
+        border: 1px solid $color-black;
+    }
+}
+
+.row.profile-card__container {
+
+    margin: 0 auto;
+}
+
+.profile-card {
+
+    margin: 15px auto;
+    padding: 0px 25px;
+    border: none;
+    border-radius: 10px;
+
+    
+}
+
+.profile__card__text {
     text-align: center;
+}
+
+.profile__image {
+    margin-bottom: 10px;
+}
+
+.occupation {
+    font-size: $font-default;
 }

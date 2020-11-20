@@ -1,0 +1,23 @@
+.gig-card {
+    &__header {
+        padding: 2rem 3rem;
+        border-bottom: 1px solid rgba($color-red, .2);
+
+        &-details {
+            font-size: $font-default;
+            display: block;
+            margin: auto;
+        }
+    }
+
+    &__image {
+        height: 11.5rem;
+        width: 9.9rem;
+        object-fit:cover;
+        border-radius: 100%;
+    }
+
+    &__main {
+        padding: 1rem 2rem;
+    }
+}

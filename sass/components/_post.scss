@@ -2,15 +2,24 @@
     padding: 1.5rem 3rem;
 }
 
-.post__row {
-    overflow: scroll;
-    max-height: 720px;
-}
 
 .post__content {
     margin-top: 15px;
 }
 
 .poster__name {
-    margin: auto 0 auto -2rem;
+    margin: auto 0;
+}
+
+.post__options {
+    position: absolute;
+    right: 5rem;
+}
+
+.poster {
+
+    &__thumb {
+        margin-right: 1rem;
+    }
+    
 }
