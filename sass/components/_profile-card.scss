@@ -37,7 +37,8 @@
     
 }
 
-.profile__card__text {
+.profile-card__text {
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -46,5 +47,4 @@
 }
 
 .occupation {
-    font-size: $font-default;
 }

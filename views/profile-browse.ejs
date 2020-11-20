@@ -23,17 +23,17 @@
                 <% users.forEach( user => { %>
                     <section class="card profile-card">
                         <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile-card__image">
-                        <!-- <p class='profile-card__text'><%= user.firstName %> <%= user.lastName %></p>
+                        <p class='profile-card__text'><%= user.firstName %> <%= user.lastName %></p>
                         <p class='profile-card__text'>
                             <%= user.location %></p>
                         <p class='profile-card__text occupation'>
-                            Occupation:
+                            Specialty:
                             <% if(!user.title) { %>
                                 unknown
                             <% } else { %>
                                  <%= user.title %>
                             <% } %>
-                        </p> -->
+                        </p>
                     </section>
                 <% }) %>
             </div>

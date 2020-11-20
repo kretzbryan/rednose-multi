@@ -25,9 +25,6 @@ body {
 .row.comment__text {
   width: 100%; }
 
-.options__footer {
-  text-align: end; }
-
 /* All pages except the landing page are contained within this container */
 .row.main__container {
   width: 100vw;
@@ -75,7 +72,8 @@ body {
 
 i.fas.fa-user-edit {
   height: 5px;
-  width: 5px; }
+  width: 5px;
+  margin-right: .6rem; }
 
 .nav {
   height: 5vh; }
@@ -244,10 +242,6 @@ div.modal-body {
 
 .poster__name {
   margin: auto 0; }
-
-.post__options {
-  position: absolute;
-  right: 5rem; }
 
 .poster__thumb {
   margin-right: 1rem; }
@@ -538,14 +532,12 @@ section.card.gig__container-left {
   border: none;
   border-radius: 10px; }
 
-.profile__card__text {
+.profile-card__text {
+  margin: 0 auto;
   text-align: center; }
 
 .profile__image {
   margin-bottom: 10px; }
-
-.occupation {
-  font-size: 1.6rem; }
 
 .gig-card__header {
   padding: 2rem 3rem;
@@ -563,3 +555,31 @@ section.card.gig__container-left {
 
 .gig-card__main {
   padding: 1rem 2rem; }
+
+.post-options {
+  position: absolute;
+  right: 5rem; }
+  .post-options__checkbox {
+    position: absolute;
+    right: 0;
+    top: 0; }
+  .post-options__nav {
+    border-radius: 5px;
+    width: 12rem; }
+  .post-options__list {
+    list-style: none;
+    padding: .25rem 0;
+    margin: .5rem auto;
+    background-color: #eee; }
+  .post-options__item {
+    text-align: center;
+    padding: .5rem 0; }
+  .post-options_link {
+    width: 100%;
+    color: #696969; }
+  .post-options .options {
+    position: absolute;
+    right: 0;
+    top: 0; }
+  .post-options span {
+    margin-left: .5rem; }

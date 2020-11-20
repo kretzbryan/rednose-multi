@@ -37,10 +37,26 @@
                             <% } %>
                         </span>
                     </div>
-                    <div class="post__options">
-                        <a class='anchor' href="#">
-                            <i class="fa fa-cog options user-options" aria-hidden="true"></i>
-                        </a>
+                    <div class="post-options">
+                            <input type="checkbox" class="post-options__checkbox" id='option-toggle<%= post._id %>'>
+                            <label for="option-toggle<%= post._id %>">
+                                <i class="fa fa-cog options user-options" aria-hidden="true" ></i>
+                            </label>
+                            <nav class="post-options__nav">
+                                <ul class="post-options__list">
+                                    <li class="post-options__item">
+                                        <a class='post-options__link' href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal">
+                                            <i class="fas fa-trash-alt"></i><span>Delete Post</span> 
+                                        </a>
+                                    </li>
+                                    <li class="post-options__item">
+                                        <a class='post-options__link' href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal">
+                                            <i class="fas fa-user-edit"></i> <span>Edit Post</span> 
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+
                     </div>
                 </header>
                 <section class="post__content">
