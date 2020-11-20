@@ -23,12 +23,16 @@
     &__item {
         text-align: center;
         padding: .5rem 0;
+        transition: .1s;
+
+        &:hover {
+            background-color: $color-grey-dark-3;
+        }
     }
 
     &_link {
         width: 100%;
         
-        color: $color-grey-dark-3;
         &:hover {
 
         }
@@ -44,6 +48,15 @@
         margin-left: .5rem;
     }
 
-    & i {
+}
+
+a.post-options__link {
+    width: 100%;
+    color: $color-grey-dark-3;
+    transition: .2s;
+
+    &:hover {
+        color: $color-grey-light-2;
+        text-decoration: none;
     }
 }

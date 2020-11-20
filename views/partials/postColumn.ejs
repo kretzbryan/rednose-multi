@@ -44,16 +44,16 @@
                             </label>
                             <nav class="post-options__nav">
                                 <ul class="post-options__list">
+                                    <a class='post-options__link' href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal">
                                     <li class="post-options__item">
-                                        <a class='post-options__link' href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal">
-                                            <i class="fas fa-trash-alt"></i><span>Delete Post</span> 
-                                        </a>
+                                        <i class="fas fa-trash-alt"></i><span>Delete Post</span>
                                     </li>
+                                    </a>
+                                    <a class='post-options__link' href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal">
                                     <li class="post-options__item">
-                                        <a class='post-options__link' href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal">
                                             <i class="fas fa-user-edit"></i> <span>Edit Post</span> 
-                                        </a>
                                     </li>
+                                </a>
                                 </ul>
                             </nav>
 

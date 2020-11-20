@@ -573,13 +573,23 @@ section.card.gig__container-left {
     background-color: #eee; }
   .post-options__item {
     text-align: center;
-    padding: .5rem 0; }
+    padding: .5rem 0;
+    transition: .1s; }
+    .post-options__item:hover {
+      background-color: #696969; }
   .post-options_link {
-    width: 100%;
-    color: #696969; }
+    width: 100%; }
   .post-options .options {
     position: absolute;
     right: 0;
     top: 0; }
   .post-options span {
     margin-left: .5rem; }
+
+a.post-options__link {
+  width: 100%;
+  color: #696969;
+  transition: .2s; }
+  a.post-options__link:hover {
+    color: #eee;
+    text-decoration: none; }
