@@ -2,25 +2,36 @@
 
 .card.user-card {
 
+    &-mobile {
+        margin: 3rem auto;
+        display: none;
+
+        @include respond(phone) {
+            display: flex;
+        }
+    }
+
     display: flex;
     justify-content: center;
     position: relative;
     right: 0;
-    margin-right: 3rem;
+    margin-right: 1rem;
+    margin-left: 2rem;
 }
 
 
 .user-card {
-    height: 275px;
-    width: 225px;
-    margin-right: 3rem;
+    height: 27.5rem;
+    width: 22.5rem;
     float: right;
 
     &__image {
-        height: 175px;
-        width: 150px;
+        height: 17.5rem;
+        width: 15rem;
         object-fit:cover;
         border-radius: 100%;
         margin-top: 10px;
     }
 }
+
+

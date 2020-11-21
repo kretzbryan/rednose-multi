@@ -1,4 +1,4 @@
-<div class=" column-primary">
+
     <section class="row card create__post">
         <% if( !currentUser.profileImage.filename ) { %>
             <img src="images/default-img.png" alt="profile thumbnail" class="create__post__thumb">
@@ -9,7 +9,7 @@
     </section>
         <% posts.forEach( post => { %>
             <section class="row card post__container">
-                <header class="row profile__header">
+                <header class="row profile__header post__header">
                     <div class="poster__thumb">
                         <% if( !post.user.profileImage.filename ) { %>
                             <img src="images/default-img.png" alt="profile thumbnail" class="image__thumb">
@@ -37,20 +37,20 @@
                             <% } %>
                         </span>
                     </div>
-                    <div class="post-options">
-                            <input type="checkbox" class="post-options__checkbox" id='option-toggle<%= post._id %>'>
+                    <div class="content-options">
+                            <input type="checkbox" class="content-options__checkbox" id='option-toggle<%= post._id %>'>
                             <label for="option-toggle<%= post._id %>">
                                 <i class="fa fa-cog options user-options" aria-hidden="true" ></i>
                             </label>
-                            <nav class="post-options__nav">
-                                <ul class="post-options__list">
-                                    <a class='post-options__link' href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal">
-                                    <li class="post-options__item">
+                            <nav class="content-options__nav">
+                                <ul class="content-options__list">
+                                    <a class='content-options__link' href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal">
+                                    <li class="content-options__item">
                                         <i class="fas fa-trash-alt"></i><span>Delete Post</span>
                                     </li>
                                     </a>
-                                    <a class='post-options__link' href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal">
-                                    <li class="post-options__item">
+                                    <a class='content-options__link' href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal">
+                                    <li class="content-options__item">
                                             <i class="fas fa-user-edit"></i> <span>Edit Post</span> 
                                     </li>
                                 </a>
@@ -63,11 +63,6 @@
                     <p><%= post.text %></p>
                 </section>
                 <% if(currentUser._id.toString() === post.user._id.toString()) { %>
-                    <footer class='options__footer'>
-                        <a class='anchor options' href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
-                        <a class='anchor options' href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal"><i class="fas fa-user-edit"></i></a>
-                        
-                    </footer>
 
 
                         <!-- Edit Post Modal -->
@@ -83,7 +78,7 @@
                                 <!-- Edit Post Form-->
                                     <div class="edit__gig__container">
                                         <form action="post/<%= post._id %>?_method=PUT" method="POST">
-                                            <textarea name="content" placeholder="Say whats on your mind..." cols="45" rows="7"><%= post.content %></textarea>
+                                            <textarea name="content" placeholder="Say whats on your mind..." cols="45" rows="7"><%= post.text %></textarea>
                                             <input type="hidden" name="user" value='<%= currentUser._id %>'>
                                             <footer class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -157,23 +152,34 @@
                                     <% } %>
                                 </span>
                             </div>
-                            <div class="comment__options">
-                                <a class='anchor' href="#">
-                                    <i class="fa fa-cog options user-options" aria-hidden="true"></i>
-                                </a>
-                            </div>
+                            <div class="content-options">
+                                <input type="checkbox" class="content-options__checkbox" id='option-toggle<%= comment._id %>'>
+                                <label for="option-toggle<%= comment._id %>">
+                                    <i class="fa fa-cog options user-options" aria-hidden="true" ></i>
+                                </label>
+                                <nav class="content-options__nav">
+                                    <ul class="content-options__list">
+                                        <a class='content-options__link' href="#" data-target="#delete<%= comment._id %>CommentModal" data-toggle="modal">
+                                        <li class="content-options__item">
+                                            <i class="fas fa-trash-alt"></i><span>Delete Comment</span>
+                                        </li>
+                                        </a>
+                                        <a class='content-options__link' href="#" data-target="#edit<%= comment._id %>CommentModal" data-toggle="modal">
+                                        <li class="content-options__item">
+                                                <i class="fas fa-user-edit"></i> <span>Edit Comment</span> 
+                                        </li>
+                                    </a>
+                                    </ul>
+                                </nav>
+    
+                        </div>
                         </header>
                         <div class="comment__text">
                             <p><%= comment.text %></p>
                         </div>
                     </section> 
                     <% if(currentUser._id.toString() === comment.user._id.toString()) { %>
-                        <!-- <footer class='options__footer'>
-                            <a class='anchor options' href="#" data-target="#delete<%= comment._id %>CommentModal" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
-                            <a class='anchor options' href="#" data-target="#edit<%= comment._id %>CommentModal" data-toggle="modal"><i class="fas fa-user-edit"></i></a>
-                            
-                        </footer> -->
-
+                       
 
                             <!-- Edit Comment Modal -->
                         <div class="modal fade" id="edit<%= comment._id %>CommentModal">
@@ -239,6 +245,5 @@
                 </div>
             </section>
         <% }) %>
-</div>
     <!-- End Post Column -->
   

@@ -3,10 +3,9 @@
 .column {
 
     &-profile, &-primary, &-tertiary, &-secondary {
-        position: fixed;
         overflow: scroll;
         height: 90vh;
-        top: 5vh;
+        
 
 
         &::-webkit-scrollbar {
@@ -15,28 +14,46 @@
     }
 
     &-profile {
-        position: fixed;
-        right: 0;
         width: 75vw;
+        height: 90vh;
     }
 
     &-primary {
+        padding: 0 3rem;
         overflow: scroll;
         width: 50vw;
-        left: 25vw;
+        
+        @include respond(gfold-land) {
+            width: 70vw;
+        }
+        @include respond(phone) {
+            width: 100vw;
+        }
 
     }
 
     &-secondary {
         width: 25vw;
-        left: 0;
+
+        @include respond(gfold-land) {
+            width: 30vw;
+        }
+
+        @include respond(phone) {
+            display: none;
+        }
+
     }
 
     &-tertiary {
-        right: 0;
         height: 90vh;
         overflow: scroll;
         width: 25vw;
+        margin: 0;
+
+        @include respond(gfold-land) {
+            display: none;
+        }
 
         &::-webkit-scrollbar {
             display: none;

@@ -2,12 +2,13 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body {
+html body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 1.7;
-    color: $color-grey-dark-1;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color: $color-grey-dark-3;
+    margin: 0 auto;
 }
 
 i.fas.fa-user-edit {

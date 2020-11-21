@@ -8,22 +8,28 @@
 
 .create__post__caption {
     color: black;
-    padding: 3px 15px;
+    padding: .3rem 1.5rem;
     margin: auto;
-    margin-left: 10px;
-    width: 350px;
-    height: 30px;
+    margin-left: 1rem;
+    width: 25rem;
+    height: 3rem;
     background-color: rgba(43, 32, 36, 0.1);
     border-radius: 15px;
+    display: inline;
+
+    & .options {
+        display: block;
+        margin: auto 0;
+    }
 }
 
 .create__post {
     padding: 1.5rem 3rem;
 }
 
- .create__post__thumb, .image__thumb {
-    width: 50px;
-    height: 50px;
+ .create__post__thumb {
+    width: 5rem;
+    height: 5rem;
     border-radius: 100%;
     object-fit:cover;
 }
