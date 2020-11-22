@@ -1,0 +1,38 @@
+<section class="row card gig__container gig__container-left">
+    <header class='gig__header'>Recent Gigs</header>
+    <% gigs.forEach( gig => { %>
+        <ul class='gig__list' >
+            <a href="/gig/<%= gig._id %>" class='gig__anchor'>
+                <li class='gig__list-item' >
+                    <div class="gig__thumb-container">
+                        <% if( !gig.user_doc[0].profileImage.filename  ) { %>
+                            <img src="/images/default-img.png" alt="profile thumbnail" class="gig__thumb">
+                        <% } else { %>
+                            <img src="/images/<%= gig.user_doc[0].profileImage.filename %>" alt="" class="gig__thumb">
+                        <% } %>
+                    </div>
+                    <div class="gig__text">
+                        <p class="gig__title"><%= gig.title %></p> 
+                        <span class='gig__subtext'>
+                            
+                            <% if (time.since(gig.createdAt).secs() < 60) { %>
+                                <%= time.since(gig.createdAt).secs() %> sec
+                            <% } else if (time.since(gig.createdAt).secs() >= 60  && time.since(gig.createdAt).mins() < 60 ) { %>
+                                <%= time.since(gig.createdAt).mins() %> min
+                            <% } else if(time.since(gig.createdAt).mins() >= 60 && time.since(gig.createdAt).hours() < 24  ) { %>
+                                <%= time.since(gig.createdAt).hours() %> h
+                            <% } else if(time.since(gig.createdAt).hours() >= 24 && time.since(gig.createdAt).days() < 7  ) { %>
+                                <%= time.since(gig.createdAt).days() %> d
+                            <% } else { %>
+                                <%= time.since(gig.createdAt).weeks() %> w
+                            <% } %>
+                        </span>
+                    </div>
+                </li>
+            </a>
+        </ul>
+    <% }) %>
+    <footer class='gig__footer' >
+        <a class='gig__link-all' href="/gigs"> See More </a>
+    </footer>
+</section>

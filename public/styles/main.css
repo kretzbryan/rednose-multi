@@ -88,6 +88,10 @@ body {
 .edit__profile__container {
   width: 300px; }
 
+@media only screen and (max-width: 31.25em) {
+  .post-section {
+    margin-top: 27rem; } }
+
 * {
   font-family: 'Montserrat', sans-serif; }
 
@@ -243,7 +247,13 @@ div.modal-body {
     display: none; }
     @media only screen and (max-width: 31.25em) {
       .card.user-card-mobile {
-        display: flex; } }
+        display: flex;
+        position: fixed;
+        width: 92vw;
+        height: 20vh;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10000; } }
 
 .user-card {
   height: 27.5rem;
@@ -455,6 +465,26 @@ section.card.gig__container-left {
     section.card.gig__container-left {
       display: initial; } }
 
+.card.gig-card {
+  padding: 0;
+  position: relative;
+  height: 10rem; }
+
+.gig-card__thumb {
+  height: 8rem;
+  width: 7rem;
+  object-fit: cover;
+  margin: auto 1rem;
+  border-radius: .6rem;
+  border: 1px solid #000; }
+  .gig-card__thumb-container {
+    width: 25%;
+    height: 100%; }
+
+.gig-card__info {
+  position: absolute;
+  right: 0; }
+
 .carousel {
   width: 100vw;
   height: 50rem; }
@@ -540,10 +570,13 @@ section.card.gig__container-left {
     visibility: hidden;
     transform: translateY(-5rem); }
   .form__label {
+    width: 50%;
+    display: block;
     font-size: 1.2rem;
     font-weight: 700;
-    margin-left: 1.5rem;
-    transition: all .6s; }
+    margin: 0 auto;
+    transition: all .6s;
+    padding-left: 1.5rem; }
 
 .btn.btn-primary {
   background-color: #fff;
@@ -566,8 +599,13 @@ section.card.gig__container-left {
 .card.profile-card {
   height: 25rem;
   width: 20rem;
+  margin: 3rem auto;
   display: flex;
   align-items: start; }
+  @media only screen and (max-width: 31.25em) {
+    .card.profile-card {
+      height: 22rem;
+      width: 19rem; } }
 
 .profile-card__container {
   border-radius: 15px; }
@@ -579,13 +617,20 @@ section.card.gig__container-left {
   border-radius: 100%;
   margin: 1rem auto 0 auto;
   border: 1px solid #000; }
+  @media only screen and (max-width: 31.25em) {
+    .profile-card__image {
+      height: 13rem;
+      width: 11rem; } }
 
 .row.profile-card__container {
   margin: 0 auto; }
+  @media only screen and (max-width: 31.25em) {
+    .row.profile-card__container {
+      margin-top: 27rem; } }
 
 .profile-card {
-  margin: 15px auto;
-  padding: 0px 25px;
+  margin: 1.5rem auto;
+  padding: 0px 2.5rem;
   border: none;
   border-radius: 10px; }
 

@@ -112,3 +112,9 @@ body {
 .edit__profile__container {
     width: 300px;
 }
+
+.post-section {
+    @include respond(phone) {
+        margin-top: 27rem;
+    }
+}

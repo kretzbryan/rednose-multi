@@ -10,31 +10,84 @@
 <div class="row main__container">
     <div class="column-secondary">
        <%- include('./partials/userCard') %>
+       <section class="row card gig__container gig__container-left">
+        <header class='gig__header'>Recent Gigs</header>
+    <% gigs.forEach( gig => { %>
+            <ul class='gig__list' >
+                <a href="/gig/<%= gig._id %>" class='gig__anchor'>
+                    <li class='gig__list-item' >
+                        <div class="gig__thumb-container">
+                            <% if( !gig.user_doc[0].profileImage.filename  ) { %>
+                                <img src="/images/default-img.png" alt="profile thumbnail" class="gig__thumb">
+                            <% } else { %>
+                                <img src="/images/<%= gig.user_doc[0].profileImage.filename %>" alt="" class="gig__thumb">
+                            <% } %>
+                        </div>
+                        <div class="gig__text">
+                            <p class="gig__title"><%= gig.title %></p> 
+                            <span class='gig__subtext'>
+                                
+                                <% if (time.since(gig.createdAt).secs() < 60) { %>
+                                    <%= time.since(gig.createdAt).secs() %> sec
+                                <% } else if (time.since(gig.createdAt).secs() >= 60  && time.since(gig.createdAt).mins() < 60 ) { %>
+                                    <%= time.since(gig.createdAt).mins() %> min
+                                <% } else if(time.since(gig.createdAt).mins() >= 60 && time.since(gig.createdAt).hours() < 24  ) { %>
+                                    <%= time.since(gig.createdAt).hours() %> h
+                                <% } else if(time.since(gig.createdAt).hours() >= 24 && time.since(gig.createdAt).days() < 7  ) { %>
+                                    <%= time.since(gig.createdAt).days() %> d
+                                <% } else { %>
+                                    <%= time.since(gig.createdAt).weeks() %> w
+                                <% } %>
+                            </span>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+
+
+    <% }) %>
+    <footer class='gig__footer' >
+        <a class='gig__link-all' href="#"> See More </a>
+    </footer>
+</section>
+    
     </div>
 
 
     <!-- Post Column -->
     <div class="column-primary">
+         <section class="row card user-card-mobile">
+        <% if(!currentUser.profileImage.filename) { %>
+            <img class="user-card__image" src="images/default-img.png" alt="profile image">
+        <% } else { %>
+            <img class='user-card__image' src="/images/<%= currentUser.profileImage.filename%>" alt="profile image">
+        <% } %>
+        <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal"><p class ='options'>edit photo</p></a>
+        <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"><p class ='options'>edit profile</p></a>
+        <h5 class="card-title"><%= currentUser.firstName %> <%= currentUser.lastName %></h5>
+    </section>
+
+    <div class="post-section">
         <section class="row card create__post">
-        <img src="/images/<%= currentUser.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
+        <img src="/images/<%= profile.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
             <a href='#' data-toggle="modal" data-target="#addPostModal" class='create__post__caption anchor'>Say Something!</a>
         </section>
-        <% if(!currentUser.posts) { %>
+        <% if(!profilePosts) { %>
             <h3>This profile has no posts!</h3>
         <% } else { %>
-            <% currentUser.posts.forEach( post => { %>
+            <% profilePosts.forEach( post => { %>
                 <section class="row card post__container">
-                    <header class="row profile__header">
-                        <div class="col-2 poster__thumb">
-                            <% if( !currentUser.profileImage.filename ) { %>
+                    <header class="row profile__header post__header">
+                        <div class="poster__thumb">
+                            <% if( !profile.profileImage.filename ) { %>
                                 <img src="/images/default-img.png" alt="profile thumbnail" class="image__thumb">
                             <% } else { %>
-                                <img src="/images/<%= currentUser.profileImage.filename %>" alt="" class="image__thumb">
+                                <img src="/images/<%= profile.profileImage.filename %>" alt="" class="image__thumb">
                             <% } %>
                         </div>
-                        <div class="col-8 poster__name">
+                        <div class="poster__name">
                             <a class='anchor' href="/profile/<%= post.user._id %>">
-                                <p class='options'><%= currentUser.firstName %> <%= currentUser.lastName %></p>
+                                <p class='options'><%= profile.firstName %> <%= profile.lastName %></p>
                             </a>
                             <span class='timestamp' > 
                                 
@@ -52,28 +105,44 @@
                                 <% } %>
                             </span>
                         </div>
-                        <div class="col-2 post__options">
-                            <a class='anchor' href="#">
-                                <i class="fa fa-cog options" aria-hidden="true"></i>
-                            </a>
-                        </div>
+                        <div class="content-options">
+                            <input type="checkbox" class="content-options__checkbox" id='option-toggle<%= post._id %>'>
+                            <label for="option-toggle<%= post._id %>">
+                                <i class="fa fa-cog options user-options" aria-hidden="true" ></i>
+                            </label>
+                            <nav class="content-options__nav">
+                                <ul class="content-options__list">
+                                    <a class='content-options__link' href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal">
+                                    <li class="content-options__item">
+                                        <i class="fas fa-trash-alt"></i><span>Delete Post</span>
+                                    </li>
+                                    </a>
+                                    <a class='content-options__link' href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal">
+                                    <li class="content-options__item">
+                                            <i class="fas fa-user-edit"></i> <span>Edit Post</span> 
+                                    </li>
+                                </a>
+                                </ul>
+                            </nav>
+
+                    </div>
                     </header>
                     <section class="post__content">
                         <p><%= post.text %></p>
                     </section>
-                    <% post.comment_doc.forEach(comment => { %>
+                    <% post.comments.forEach(comment => { %>
                         <section class="row comment mt-2"> 
                             <header class="row profile__header">
-                                <div class="col-2 comment__thumb">
-                                    <% if( !comment.user.profileImage.filename ) { %>
-                                        <img src="images/default-img.png" alt="profile thumbnail" class="comment__thumb">
+                                <div class="comment__thumb">
+                                    <% if( !comment.user[0].profileImage ) { %>
+                                        <img src="/images/default-img.png" alt="profile thumbnail" class="comment__thumb">
                                     <% } else { %>
-                                        <img src="images/<%= comment.user.profileImage.filename %>" alt="" class="comment__thumb">
+                                        <img src="/images/<%= comment.user[0].profileImage.filename %>" alt="" class="comment__thumb">
                                     <% } %>
                                 </div>
-                                <div class="col poster__name">
-                                    <a class='anchor' href="/profile/<%= comment.user._id %>">
-                                        <p class='options'><%= comment.user.firstName %> <%= comment.user.lastName %></p>
+                                <div class="poster__name">
+                                    <a class='anchor' href="/profile/<%= comment.user[0]._id %>">
+                                        <p class='options'><%= comment.user[0].firstName %> <%= comment.user[0].lastName %></p>
                                     </a>
                                     <span class='timestamp' > 
     
@@ -90,17 +159,33 @@
                                         <% } %>
                                     </span>
                                 </div>
-                                <div class="col-2 comment__options">
-                                    <a class='anchor' href="#">
-                                        <i class="fa fa-cog options" aria-hidden="true"></i>
-                                    </a>
-                                </div>
+                                <div class="content-options">
+                                    <input type="checkbox" class="content-options__checkbox" id='option-toggle<%= post._id %>'>
+                                    <label for="option-toggle<%= post._id %>">
+                                        <i class="fa fa-cog options user-options" aria-hidden="true" ></i>
+                                    </label>
+                                    <nav class="content-options__nav">
+                                        <ul class="content-options__list">
+                                            <a class='content-options__link' href="#" data-target="#delete<%= post._id %>PostModal" data-toggle="modal">
+                                            <li class="content-options__item">
+                                                <i class="fas fa-trash-alt"></i><span>Delete Post</span>
+                                            </li>
+                                            </a>
+                                            <a class='content-options__link' href="#" data-target="#edit<%= post._id %>PostModal" data-toggle="modal">
+                                            <li class="content-options__item">
+                                                    <i class="fas fa-user-edit"></i> <span>Edit Post</span> 
+                                            </li>
+                                        </a>
+                                        </ul>
+                                    </nav>
+        
+                            </div>
                             </header>
                             <div class="comment__text">
                                 <p><%= comment.text %></p>
                             </div>
                         </section> 
-                        <% if(currentUser._id.toString() === comment.user._id.toString()) { %>
+                        <% if(profile._id.toString() === comment.user._id) { %>
                             <!-- <footer class='options__footer'>
                                 <a class='anchor options' href="#" data-target="#delete<%= comment._id %>CommentModal" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
                                 <a class='anchor options' href="#" data-target="#edit<%= comment._id %>CommentModal" data-toggle="modal"><i class="fas fa-user-edit"></i></a>
@@ -175,6 +260,7 @@
         <% } %>
         
     </div>
+</div>
         <!-- End Posts -->
         
     
@@ -227,7 +313,7 @@
                                 <input type="text" name="title" placeholder='What are you offering?'>
                                 <input type="text" name="location" placeholder="Where are you located?">
                                 <textarea name="description" placeholder="Description..." cols="45" rows="4"></textarea>
-                                <input type="hidden" name="author" value="<%= currentUser._id %>">
+                                <input type="hidden" name="author" value="<%= profile._id %>">
                                 <footer class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Add Gig</button>
@@ -277,15 +363,15 @@
                     <div class="modal-body">
                     <!-- Edit Profile Form-->
                         <div class="edit__profile__container">
-                            <form action='home/edit-profile/<%= currentUser._id %>?_method=PUT' method='POST'>
+                            <form action='home/edit-profile/<%= profile._id %>?_method=PUT' method='POST'>
                                 <section class="form-group row">
-                                  <input class='col' type="text" name='firstName' value=<%= currentUser.firstName %>>
+                                  <input class='col' type="text" name='firstName' value=<%= profile.firstName %>>
                                 </section>
                                 <section class="form-group row">
-                                    <input class='col' type="text" name='lastName' value=<%= currentUser.lastName %>>
+                                    <input class='col' type="text" name='lastName' value=<%= profile.lastName %>>
                                 </section>
                                 <section class="form-group row">
-                                    <input class='col' type="text" name='title' placeholder='Occupation' value=<%= currentUser.title %>>
+                                    <input class='col' type="text" name='title' placeholder='Occupation' value=<%= profile.title %>>
                                 </section>
                                 <section class="form-group row">
                                     <input class='col' type="text" name='certifications' placeholder='Certifications'>

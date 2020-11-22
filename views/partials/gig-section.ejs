@@ -1,0 +1,16 @@
+
+            <div class="gig-section">
+                <% gigs.forEach( gig => { %>
+                    <section class="card gig-card">
+                        <div class="gig-card__thumb-container">
+                            <img src="/images/<%=gig.user.profileImage.filename%>" alt="" class="gig-card__thumb">
+                        </div>
+                        <div class="gig-card__info">
+                            <p class='gig-card__text'><%= gig.user.firstName %> <%= gig.user.lastName %></p>
+                            <p class='gig-card__text'><%= gig.location %></p>
+                                <p>Skills: N/A</p>
+                                <p><%= gig.description %></p>
+                            </div>
+                    </section>
+                <% }) %>
+            </div>

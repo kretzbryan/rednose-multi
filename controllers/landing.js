@@ -58,14 +58,13 @@ router.post('/login', async function(req, res){
             const error = 'Password or email incorrect.';
             currentUser = null;
             console.log(error)
-            return res.render('landing',{error})
+            return res.render('landing',{registerErrors: null, currentUser: null, loginError: error})
         }
         const match = await bcrypt.compare(req.body.password, foundUser.password);
         if (!match) {
             const error = 'Password or email incorrect.';
-            currentUser = null;
             console.log(error)
-            return res.render('landing', {error})
+            return res.render('landing', {registerErrors: null, currentUser: null, loginError: error})
         }
         req.session.currentUser = {
             id: foundUser._id,

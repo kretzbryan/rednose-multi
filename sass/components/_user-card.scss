@@ -8,6 +8,13 @@
 
         @include respond(phone) {
             display: flex;
+            position: fixed;
+            width: 92vw;
+            height: 20vh;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+
         }
     }
 

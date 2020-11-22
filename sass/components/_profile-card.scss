@@ -1,9 +1,14 @@
 .card.profile-card {
    height: 25rem;
    width: 20rem;
-//    margin: 3rem auto;
+   margin: 3rem auto;
    display: flex;
     align-items: start;
+
+    @include respond(phone) {
+        height: 22rem;
+        width: 19rem;
+    }
 
 }
 
@@ -19,18 +24,26 @@
         border-radius: 100%;
         margin: 1rem auto 0 auto;
         border: 1px solid $color-black;
+
+        @include respond(phone) {
+            height: 13rem;
+            width: 11rem;
+        }
     }
 }
 
 .row.profile-card__container {
 
     margin: 0 auto;
+    @include respond(phone) {
+        margin-top: 27rem; }
 }
+
 
 .profile-card {
 
-    margin: 15px auto;
-    padding: 0px 25px;
+    margin: 1.5rem auto;
+    padding: 0px 2.5rem;
     border: none;
     border-radius: 10px;
 

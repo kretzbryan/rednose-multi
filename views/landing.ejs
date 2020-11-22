@@ -106,11 +106,11 @@
         </div>
         <div class="modal-body">
             <form class='form' action="/register" method='POST'>
+              <% registerErrors && registerErrors.forEach(error => { %>
               <p id='register-error'>
-                <% registerErrors && registerErrors.forEach(error => { %>
                   <%= error.msg %>
-                <% }) %>
               </p>
+              <% }) %>
               <div class="form__group">
                 <input class='form__input' type="text" placeholder='First Name' name='firstName' required />
                 <label for='firstName' class='form__label'>First Name</label>
@@ -128,8 +128,8 @@
                 <label for='email' class='form__label'>Email</label>
               </div>
               <div class="form__group">
-                <input class='form__input' type="password" placeholder='Password' name="password1" minlength="6" required />
-                <label for='password1' class='form__label'>Password</label>
+                <input class='form__input' type="password" placeholder='Password' name="password" minlength="6" required />
+                <label for='password' class='form__label'>Password</label>
               </div>
               <div class="form__group">
                 <input class='form__input' type="password" placeholder='Retype Password' name="password2" minlength="6" required />

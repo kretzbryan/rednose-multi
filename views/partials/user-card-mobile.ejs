@@ -1,0 +1,10 @@
+<section class="row card user-card-mobile">
+    <% if(!currentUser.profileImage.filename) { %>
+        <img class="user-card__image" src="images/default-img.png" alt="profile image">
+    <% } else { %>
+        <img class='user-card__image' src="/images/<%= currentUser.profileImage.filename%>" alt="profile image">
+    <% } %>
+    <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal"><p class ='options'>edit photo</p></a>
+    <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"><p class ='options'>edit profile</p></a>
+    <h5 class="card-title"><%= currentUser.firstName %> <%= currentUser.lastName %></h5>
+</section>

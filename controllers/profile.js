@@ -6,7 +6,53 @@ const time = require('time-since')
 
 router.get('/:id', async (req, res) => {
     try {
-        const foundProfile = await (await db.User.findById(req.params.id).populate('gigs')).populated('posts');
+        const foundProfile = await db.User.findById(req.params.id).populate('gigs').populate('posts');
+        const profilePosts =  await db.Post.aggregate([
+            { $match: { user: foundProfile._id } },
+            // { 
+            //     $unwind: 
+            //     {
+            //         path: '$comments',
+            //         includeArrayIndex: 'comment',
+            //         preserveNullAndEmptyArrays: true
+            //     }
+            // },
+            { $lookup: 
+                {
+                    from: 'comments',
+                    localField: 'comments',
+                    foreignField: '_id',
+                    as: 'comments'
+                }
+            },
+            { 
+                $unwind: 
+                {
+                    path: '$comments',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            { $lookup: 
+                {
+                    from: 'users',
+                    localField: 'comments.user',
+                    foreignField: '_id',
+                    as: 'comments.user'
+                }
+            },
+            { "$group": {
+                "_id": "$_id",
+                comments: { $push: "$comments" },
+                name : { $first: "$name" },
+                user : { $first: "$user" },
+                user_id: { $first: "$text" },
+                createdAt : { $first: "$createdAt" }
+              }}
+        ])
+
+       
+        const postComments = profilePosts[0].comments;
+        console.log('post comments', postComments);
         const currentUser = await db.User.findById(req.session.currentUser.id);
         const recentGigs = await db.Gig.aggregate([
             { $sort: {createdAt: -1 } },
@@ -18,8 +64,7 @@ router.get('/:id', async (req, res) => {
                 as: 'user_doc'
             } }
         ]);
-        await db.Post.populate()
-        res.render('profile', {currentUser: currentUser, profile: foundProfile, time: time, gigs: recentGigs})
+        res.render('profile', {currentUser: currentUser, profilePosts: profilePosts,profile: foundProfile, time: time, gigs: recentGigs})
     } catch(err) {
         console.log(err)
 }

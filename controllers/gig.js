@@ -6,8 +6,9 @@ const time = require('time-since')
 
 router.get('/', async (req, res) => {
     try {
-        const gigs = await db.Gig.find({});
-        res.render('all-gigs', { gigs })
+        const currentUser = await db.User.findById(req.session.currentUser.id);
+        const gigs = await db.Gig.find({}).populate('user');
+        res.render('gigs', { currentUser, gigs, time })
     } catch (err) {
         console.log(err)
     }

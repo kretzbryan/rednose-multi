@@ -4,29 +4,36 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editTitle">Edit Profile</h5>d
+                        <h5 class="modal-title" id="editTitle">Edit Profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
-                    <!-- Edit Profile Form-->
+                    <!-- Edit Profile Form -->
                         <div class="edit__profile__container">
                             <form action='home/edit-profile/<%= currentUser._id %>?_method=PUT' method='POST'>
-                                <section class="form-group row">
-                                  <input class='col' type="text" name='firstName' value=<%= currentUser.firstName %>>
+                                <section class="form__group">
+                                  <input class='form__input' type="text" name='firstName' value=<%= currentUser.firstName %>>
+                                  <label for='username' class='form__label'>First Name</label>
                                 </section>
-                                <section class="form-group row">
-                                    <input class='col' type="text" name='lastName' value=<%= currentUser.lastName %>>
+                                <section class="form__group">
+                                    <input class='form__input' type="text" name='lastName' value=<%= currentUser.lastName %>>
+                                    <label for='username' class='form__label'>Last Name</label>
                                 </section>
-                                <section class="form-group row">
-                                    <input class='col' type="text" name='title' placeholder='Occupation' value=<%= currentUser.title %>>
+                                <section class="form__group">
+                                    <input class='form__input' type="text" name='title' placeholder='Occupation' value=<%= currentUser.title %>>
+                                    <label for='title' class='form__label'>Occupation</label>
                                 </section>
-                                <section class="form-group row">
-                                    <input class='col' type="text" name='certifications' placeholder='Certifications'>
+                                <section class="form__group">
+                                    <input class='form__input' type="text" name='certifications' placeholder='Certifications'>
+                                    <label for='username' class='form__label'>Certifications</label>
                                 </section>
-                                <section class="form-group row">
-                                    <input class='col' type="text" name='insurance' placeholder='Insurance'>
+                                <section class="form__group">
+                                    <input class='form__input' type="text" name='insurance' placeholder='Insurance'>
+                                    <label for='username' class='form__label'>Insurance</label>
                                 </section>
                                 <footer class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </footer>
                             </form>

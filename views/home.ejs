@@ -14,60 +14,14 @@
 
         <div class="column-secondary">
             <%- include('./partials/userCard') %>
-            <section class="row card gig__container gig__container-left">
-                <header class='gig__header'>Recent Gigs</header>
-            <% gigs.forEach( gig => { %>
-                    <ul class='gig__list' >
-                        <a href="/gig/<%= gig._id %>" class='gig__anchor'>
-                            <li class='gig__list-item' >
-                                <div class="gig__thumb-container">
-                                    <% if( !gig.user_doc[0].profileImage.filename  ) { %>
-                                        <img src="/images/default-img.png" alt="profile thumbnail" class="gig__thumb">
-                                    <% } else { %>
-                                        <img src="/images/<%= gig.user_doc[0].profileImage.filename %>" alt="" class="gig__thumb">
-                                    <% } %>
-                                </div>
-                                <div class="gig__text">
-                                    <p class="gig__title"><%= gig.title %></p> 
-                                    <span class='gig__subtext'>
-                                        
-                                        <% if (time.since(gig.createdAt).secs() < 60) { %>
-                                            <%= time.since(gig.createdAt).secs() %> sec
-                                        <% } else if (time.since(gig.createdAt).secs() >= 60  && time.since(gig.createdAt).mins() < 60 ) { %>
-                                            <%= time.since(gig.createdAt).mins() %> min
-                                        <% } else if(time.since(gig.createdAt).mins() >= 60 && time.since(gig.createdAt).hours() < 24  ) { %>
-                                            <%= time.since(gig.createdAt).hours() %> h
-                                        <% } else if(time.since(gig.createdAt).hours() >= 24 && time.since(gig.createdAt).days() < 7  ) { %>
-                                            <%= time.since(gig.createdAt).days() %> d
-                                        <% } else { %>
-                                            <%= time.since(gig.createdAt).weeks() %> w
-                                        <% } %>
-                                    </span>
-                                </div>
-                            </li>
-                        </a>
-                    </ul>
-        
-        
-            <% }) %>
-            <footer class='gig__footer' >
-                <a class='gig__link-all' href="#"> See More </a>
-            </footer>
-        </section>
+            <%- include('./partials/gig-nav-left') %>
+            
             
         </div>
+        
         <div class="column-primary">
-            <section class="row card user-card-mobile">
-                <% if(!currentUser.profileImage.filename) { %>
-                    <img class="user-card__image" src="images/default-img.png" alt="profile image">
-                <% } else { %>
-                    <img class='user-card__image' src="/images/<%= currentUser.profileImage.filename%>" alt="profile image">
-                <% } %>
-                <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal"><p class ='options'>edit photo</p></a>
-                <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"><p class ='options'>edit profile</p></a>
-                <h5 class="card-title"><%= currentUser.firstName %> <%= currentUser.lastName %></h5>
-            </section>
-
+           
+        <%- include('./partials/user-card-mobile') %>
         <%- include('./partials/postColumn') %>  
         </div>
         
@@ -121,8 +75,8 @@
                     <!-- Edit Profile Form-->
                         <div class="profile__photo__container">
                             <form action="home/upload-profile-image/?_method=PUT" method="POST" enctype="multipart/form-data">
-                                <label class='col' for="profileImage">Choose image</label>
-                                <input class='col' type="file" name='profileImage'>
+                                <label class='form__label ' for="profileImage">Choose image</label>
+                                <input class='form__input' type="file" name='profileImage'>
                                 <footer class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Add Photo</button>
@@ -134,3 +88,4 @@
             </div>
         </div>
          
+    </div>
