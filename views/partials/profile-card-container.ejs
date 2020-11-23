@@ -1,18 +1,22 @@
 <div class="row profile-card__container">
     <% users.forEach( user => { %>
+        <a href="/profile/<%= user._id %>" class='profile-card__anchor'>
         <section class="card profile-card">
-            <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile-card__image">
-            <p class='profile-card__text'><%= user.firstName %> <%= user.lastName %></p>
-            <p class='profile-card__text'>
-                <%= user.location %></p>
-            <p class='profile-card__text occupation'>
-                Specialty:
-                <% if(!user.title) { %>
-                    unknown
-                <% } else { %>
-                     <%= user.title %>
-                <% } %>
-            </p>
+                <img src="/images/<%=user.profileImage.filename%>" alt="" class="profile-card__image">
+                <section class="profile-card__info">
+                    <p class='profile-card__text'><%= user.firstName %> <%= user.lastName %></p>
+                    <p class='profile-card__text'>
+                        <%= user.location %></p>
+                    <p class='profile-card__text occupation'>
+                        Specialty:
+                        <% if(!user.title) { %>
+                            unknown
+                        <% } else { %>
+                             <%= user.title %>
+                        <% } %>
+                    </p>
+                </section>
         </section>
+    </a>
     <% }) %>
 </div>

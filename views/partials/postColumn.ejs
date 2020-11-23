@@ -37,7 +37,9 @@
                             <% } %>
                         </span>
                     </div>
-                    <div class="content-options">
+                    
+                    <% if(currentUser._id.toString() === post.user._id.toString()) { %>
+                        <div class="content-options">
                             <input type="checkbox" class="content-options__checkbox" id='option-toggle<%= post._id %>'>
                             <label for="option-toggle<%= post._id %>">
                                 <i class="fa fa-cog options user-options" aria-hidden="true" ></i>
@@ -58,12 +60,6 @@
                             </nav>
 
                     </div>
-                </header>
-                <section class="post__content">
-                    <p><%= post.text %></p>
-                </section>
-                <% if(currentUser._id.toString() === post.user._id.toString()) { %>
-
 
                         <!-- Edit Post Modal -->
                     <div class="modal fade" id="edit<%= post._id %>PostModal">
@@ -71,6 +67,9 @@
                             <div class="modal-content">
                                 <header class="modal-header">
                                     <h5 class="modal-title" id="edit__gig__title">Edit Post </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
                                 </header>
                                 <div class="modal-body">
 
@@ -81,7 +80,6 @@
                                             <textarea name="content" placeholder="Say whats on your mind..." cols="45" rows="7"><%= post.text %></textarea>
                                             <input type="hidden" name="user" value='<%= currentUser._id %>'>
                                             <footer class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Confirm</button>
                                             </footer>
                                         </form>
@@ -101,6 +99,9 @@
                             <div class="modal-content">
                                 <header class="modal-header">
                                     <h5 class="modal-title" id="edit__gig__title">Edit Gig </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
                                 </header>
                                 <div class="modal-body">
                                 <!-- Delete Post Form-->
@@ -108,7 +109,6 @@
                                         <form action="post/<%= post._id %>?_method=DELETE" method="post">
                                             <h4>Are you sure you want to delete this post?</h4>
                                             <footer class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button class='btn btn-primary'type=submit>Delete</button>
                                             </footer>
                                         </form>
@@ -121,6 +121,11 @@
                     <!-- End Delete Post Modal -->
 
                 <% } %>
+                </header>
+                <section class="post__content">
+                    <p><%= post.text %></p>
+                </section>
+               
 
 
                 <% post.comments.forEach(comment => { %>
@@ -152,95 +157,106 @@
                                     <% } %>
                                 </span>
                             </div>
-                            <div class="content-options">
-                                <input type="checkbox" class="content-options__checkbox" id='option-toggle<%= comment._id %>'>
-                                <label for="option-toggle<%= comment._id %>">
-                                    <i class="fa fa-cog options user-options" aria-hidden="true" ></i>
-                                </label>
-                                <nav class="content-options__nav">
-                                    <ul class="content-options__list">
-                                        <a class='content-options__link' href="#" data-target="#delete<%= comment._id %>CommentModal" data-toggle="modal">
-                                        <li class="content-options__item">
-                                            <i class="fas fa-trash-alt"></i><span>Delete Comment</span>
-                                        </li>
-                                        </a>
-                                        <a class='content-options__link' href="#" data-target="#edit<%= comment._id %>CommentModal" data-toggle="modal">
-                                        <li class="content-options__item">
-                                                <i class="fas fa-user-edit"></i> <span>Edit Comment</span> 
-                                        </li>
-                                    </a>
-                                    </ul>
-                                </nav>
+                            
+
+                            <% if(currentUser._id.toString() === post.user._id.toString()) { %>
+                                <div class="content-options">
+                                    <input type="checkbox" class="content-options__checkbox" id='option-toggle<%= comment._id %>'>
+                                    <label for="option-toggle<%= comment._id %>">
+                                        <i class="fa fa-cog options user-options" aria-hidden="true" ></i>
+                                    </label>
+                                    <nav class="content-options__nav">
+                                        <ul class="content-options__list">
+                                            <a class='content-options__link' href="#" data-target="#delete<%= comment._id %>CommentModal" data-toggle="modal">
+                                            <li class="content-options__item">
+                                                <i class="fas fa-trash-alt"></i><span>Delete Comment</span>
+                                            </li>
+                                            </a>
+                                            <% if(currentUser._id.toString() === comment.user._id.toString()) { %>
+                                                <a class='content-options__link' href="#" data-target="#edit<%= comment._id %>CommentModal" data-toggle="modal">
+                                                    <li class="content-options__item">
+                                                            <i class="fas fa-user-edit"></i> <span>Edit Comment</span> 
+                                                    </li>
+                                                </a>
+                                            <% } %>
+                                        </ul>
+                                    </nav>
+                                </div>
+                       
+
+                                
+                                <% if(currentUser._id.toString() === comment.user._id.toString()) { %>
+
+                                        <!-- Edit Comment Modal -->
+                                    <div class="modal fade" id="edit<%= comment._id %>CommentModal">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog modal-dialog-centered-centered">
+                                            <div class="modal-content">
+                                                <header class="modal-header">
+                                                    <h5 class="modal-title" id="edit__gig__title">Edit Comment </h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </header>
+                                                <div class="modal-body">
+            
+            
+                                                <!-- Edit Comment Form-->
+                                                    <div class="edit__gig__container">
+                                                        <form action="post/comment/<%= comment._id %>?_method=PUT" method="POST">
+                                                            <textarea name="content" placeholder="Say whats on your mind..." cols="45" rows="7"><%= comment.text %></textarea>
+                                                            <footer class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary">Confirm</button>
+                                                            </footer>
+                                                        </form>
+                                                        <!-- End Edit Comment Form -->
+            
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <!-- End Edit Comment Modal -->
+                                <% } %>
     
-                        </div>
+                                    <!-- Delete Comment Modal -->
+                            <div class="modal fade" id="delete<%= comment._id %>CommentModal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <header class="modal-header">
+                                            <h5 class="modal-title" id="edit__gig__title">Edit Gig </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                        </header>
+                                        <div class="modal-body">
+                                        <!-- Delete Comment Form-->
+                                            <div class="delete__comment__container">
+                                                <form action="post/comment/<%= comment._id %>?_method=DELETE" method="post">
+                                                    <h4>Are you sure you want to delete this comment?</h4>
+                                                    <footer class="modal-footer">
+                                                        <button class='btn btn-primary'type=submit>Delete</button>
+                                                    </footer>
+                                                </form>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Delete Comment Modal -->
+    
+                        <% } %>
                         </header>
                         <div class="comment__text">
                             <p><%= comment.text %></p>
                         </div>
                     </section> 
-                    <% if(currentUser._id.toString() === comment.user._id.toString()) { %>
-                       
-
-                            <!-- Edit Comment Modal -->
-                        <div class="modal fade" id="edit<%= comment._id %>CommentModal">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog modal-dialog-centered-centered">
-                                <div class="modal-content">
-                                    <header class="modal-header">
-                                        <h5 class="modal-title" id="edit__gig__title">Edit Comment </h5>
-                                    </header>
-                                    <div class="modal-body">
-
-
-                                    <!-- Edit Comment Form-->
-                                        <div class="edit__gig__container">
-                                            <form action="post/comment/<%= comment._id %>?_method=PUT" method="POST">
-                                                <textarea name="content" placeholder="Say whats on your mind..." cols="45" rows="7"><%= comment.text %></textarea>
-                                                <footer class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Confirm</button>
-                                                </footer>
-                                            </form>
-                                            <!-- End Edit Comment Form -->
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            <!-- End Edit Comment Modal -->
-
-
-                                <!-- Delete Comment Modal -->
-                        <div class="modal fade" id="delete<%= comment._id %>CommentModal">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <header class="modal-header">
-                                        <h5 class="modal-title" id="edit__gig__title">Edit Gig </h5>
-                                    </header>
-                                    <div class="modal-body">
-                                    <!-- Delete Comment Form-->
-                                        <div class="delete__comment__container">
-                                            <form action="post/comment/<%= comment._id %>?_method=DELETE" method="post">
-                                                <h4>Are you sure you want to delete this comment?</h4>
-                                                <footer class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button class='btn btn-primary'type=submit>Delete</button>
-                                                </footer>
-                                            </form>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Delete Comment Modal -->
-
-                    <% } %>
+                    
                 <% }) %>
                 <div class="row comment-form">
                     <form action="post/comment/<%= post._id %>" method='POST'>
                         <textarea name="text" id="" cols="50" rows="1" placeholder="Write a comment..."></textarea>
-                        <input type="submit" value="">
+                        <input type="submit" value="Add Comment">
                     </form>
                 </div>
             </section>

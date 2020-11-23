@@ -1,10 +1,35 @@
-<section class="row card user-card-mobile">
-    <% if(!currentUser.profileImage.filename) { %>
-        <img class="user-card__image" src="images/default-img.png" alt="profile image">
-    <% } else { %>
-        <img class='user-card__image' src="/images/<%= currentUser.profileImage.filename%>" alt="profile image">
-    <% } %>
-    <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal"><p class ='options'>edit photo</p></a>
-    <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"><p class ='options'>edit profile</p></a>
-    <h5 class="card-title"><%= currentUser.firstName %> <%= currentUser.lastName %></h5>
+<section class="card user-card-mobile">
+        <section class="user-card-mobile__image-container">
+            <% if(!currentUser.profileImage.filename) { %>
+                <img class="user-card__image" src="images/default-img.png" alt="profile image">
+            <% } else { %>
+                <img class='user-card__image' src="/images/<%= currentUser.profileImage.filename%>" alt="profile image">
+            <% } %>
+        </section>
+        <section class=" user-card-mobile__nav">
+            <div class="user-card-mobile__nav-left">
+                <ul>
+                    <li><a href="/profile/<%= currentUser._id %>"><p class="options">My Profile</p></a></li>
+                    <li>
+                        <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#profilePhotoModal"><p class ='options'>Edit Photo</p></a>
+                    </li>
+                    <li>
+                        <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#editModal"><p class ='options'>Edit Profile</p></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="user-card-mobile__nav-right">
+                <ul>
+                    <li><a href="/gigs"><p class="options">Gigs</p></a></li>
+                    <li>
+                        <a href='/browse-profiles'><p class ='options'>People</p></a>
+                    </li>
+                    <li>
+                        <a class="edit__modal__anchor anchor" href="#" data-toggle="modal" data-target="#addGigModal"><p class ='options'>Add Gig</p></a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+    
 </section>

@@ -36,16 +36,34 @@
 
     margin: 0 auto;
     @include respond(phone) {
-        margin-top: 27rem; }
+        margin-top: 16rem; }
 }
 
 
 .profile-card {
-
+    position: relative;
     margin: 1.5rem auto;
     padding: 0px 2.5rem;
     border: none;
     border-radius: 10px;
+    box-shadow: $box-shadow-1;
+
+    &__info {
+        position: relative;
+        bottom: 0;
+        margin: auto;
+
+    }
+
+    &__anchor {
+        margin: 0 auto;
+        transition: all .2s;
+        &:hover {
+            transform: scale(1.03);
+            text-decoration: none;
+        }
+    }
+
 
     
 }

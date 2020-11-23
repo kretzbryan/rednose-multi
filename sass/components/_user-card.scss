@@ -6,14 +6,38 @@
         margin: 3rem auto;
         display: none;
 
+        &__image-container {
+            display: inline;
+            width: 25%;
+        }
+
+        &__nav {
+            display: inline;
+            width: 75%;
+        }
+
+        & img.user-card__image {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: inline;
+            height: 10rem;
+            width: 10rem;
+            object-fit:cover;
+            border-radius: 100%;
+            margin-left: 2rem;
+        }
+
         @include respond(phone) {
-            display: flex;
+            display: initial;
             position: fixed;
             width: 92vw;
-            height: 20vh;
+            height: 12rem;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 10000;
+            z-index: 10;
 
         }
     }
@@ -37,7 +61,81 @@
         width: 15rem;
         object-fit:cover;
         border-radius: 100%;
-        margin-top: 10px;
+    }
+
+    &-mobile {
+        margin: 3rem auto;
+        display: none;
+
+        
+
+        &__image-container {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30%;
+            height: 100%;
+
+            & .user-card__image {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        &__nav {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: inline;
+            width: 70%;
+            height: 100%;
+
+            &-left, &-right {
+                width: 50%;
+                text-align: center;
+                top: 50%;
+                transform: translateY(-50%);
+
+                & ul {
+                    padding-left: 0;
+                    margin: auto;
+                    text-align: center;
+                    list-style: none;
+                }
+
+                & p {
+                    padding: 1rem;
+
+                    &:after {
+                        content: '';
+                        display: block;
+                        width: 90%;
+                        height: 1px;
+                        position: relative;
+                        top: 3px;
+                        margin: 0 auto;
+                        border-bottom: 1px solid $color-red;
+
+                        
+                    }
+                }
+
+
+               
+            }
+
+            &-left {
+                position: absolute;
+                left: 0;
+            }
+
+            &-right {
+                position: absolute;
+                right: 0;
+            }
+        }
+
     }
 }
 

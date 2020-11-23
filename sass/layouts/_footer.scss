@@ -1,7 +1,6 @@
 footer.page__footer, footer.footer {
     background-color: #fd0054;
     color:  #fbf9fa;
-    margin: 0px;
     position: fixed;
     bottom: 0px;
     left: 0px;
@@ -9,4 +8,11 @@ footer.page__footer, footer.footer {
     padding: 15px;
     text-align: end;
     height: 5vh;
+
+    & h6 {
+       position: absolute;
+       bottom: .7vh;
+       right: 1vw;
+       
+    }
 }

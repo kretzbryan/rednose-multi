@@ -126,11 +126,11 @@
 
     &__header {
         width: 90%;
-        margin: 0 auto;
+        margin: 1rem auto 0;
         font-size: $font-lg;
         text-align: center;
         border-bottom: 1px solid $color-red;
-        padding: .25rem .5rem;
+        padding: .25rem .5rem 1rem;
     }
 
     &__footer {
@@ -178,9 +178,23 @@ section.card.gig__container-left {
     padding: 0;
     position: relative;
     height: 10rem;
+
+    &-show {
+        height: auto;
+        display: flex;
+
+        &__main p {
+            width: 40rem;
+        }
+    }
 }
 
 .gig-card {
+
+    &__anchor:hover {
+        text-decoration: none;
+    }
+
     &__thumb {
         height: 8rem;
         width: 7rem;
@@ -188,20 +202,121 @@ section.card.gig__container-left {
         margin: auto 1rem;
         border-radius: .6rem;
         border: 1px solid $color-black;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
         
         &-container {
-            display: inline;
             width: 25%;
             height: 100%;
-            margin
         }
 
         @include respond(phone) {
         }
     }
+    
+    &-browse {
+        align-items: start;
+        transition: all .4s;
+        box-shadow: $box-shadow-1;
+         &:hover {
+            transform: scale(1.05);
+            
+         }
+    }
 
     &__info {
-        position: absolute;
-        right: 0;
+        width: 75%;
+        display: flex;
+        font-size: $font-sm;
+
+        &-left, &-right {
+            width: 100%;
+        }
+    }
+
+    &-show {
+
+
+        &__title {
+            font-weight: 600;
+        }
+
+        &__image {
+            width: 13rem;
+            height: 13rem;
+            display: block;
+            margin: auto;
+            border-radius: .5rem;
+
+            &-container {
+                width: 50%;
+                margin: auto;
+
+               
+            }
+        }
+
+        &__header {
+            width: 100%;
+            position: relative;
+            height: 20rem;
+
+            & p {
+                display: block;
+                margin: 1.5rem 2.5rem;
+            }
+
+            &-details {
+                position: relative;
+                width: 50%;
+                padding: 3rem auto; 
+                margin: 1.5rem auto;
+                border-left: 1px solid $color-red;
+                align-content: center;
+
+                & .detail-container {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%)
+                }
+
+               
+            }
+
+        }
+
+        &__main p {
+            width: 80%;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-top: 1px solid $color-red;
+
+            
+        }
+
+        &__main {
+            margin: auto;
+           
+        }
     }
 }
+
+section.card.gig-card-browse {
+    display: flex;
+    align-items: initial;
+    justify-content: center;
+}
+
+.card.gig-card-show {
+    margin: 3rem auto;
+    @include respond(phone) {
+        margin-top: 18rem;
+    }
+}
+
+.row.gig-card-show__main {
+    margin-left: 0;
+    margin-right: 0;
+}
+

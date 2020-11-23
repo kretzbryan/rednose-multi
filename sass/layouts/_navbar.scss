@@ -3,7 +3,20 @@
 
     &__list {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
+        background-color: #fd0054;
+        border-radius: 3rem;
+        
+
+        &-mobile {
+            display: inline-block;
+            width: 20rem;
+        }
+
+    }
+
+    &-link-mobile {
+        display: inline-block;
     }
 }
 
@@ -17,11 +30,38 @@
 .navbar {
     background-color: #fd0054;
     width: 100vw;
-    height: 5vh;
+    height: 6vh;
     position: fixed;
     top: 0px;
 }
 .navbar-collapse {
     display: flex;
     justify-content: flex-end;
+}
+
+.nav-link {
+    &.nav-link-mobile {
+        width: 10rem;
+        background-color: #fd0054;
+        text-align: center;
+    }
+}
+
+.navbar.nav {
+    background-color: #fd0054;
+    & .navbar-brand,& a.nav-link  {
+        color:  #fbf9fa;
+        text-decoration: rgba(216, 7, 7, 0.7);
+    }
+    
+}
+
+button.navbar-toggler {
+    color:  #fbf9fa;
+    background-color: #fbf9fa;
+}
+
+ul.navbar-nav {
+
+    border-radius: 3rem;
 }

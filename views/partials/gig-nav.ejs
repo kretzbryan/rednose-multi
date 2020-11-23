@@ -4,7 +4,7 @@
         <header class='gig__header'>Recent Gigs</header>
     <% gigs.forEach( gig => { %>
             <ul class='gig__list' >
-                <a href="/gig/<%= gig._id %>" class='gig__anchor'>
+                <a href="/gigs/<%= gig._id %>" class='gig__anchor'>
                     <li class='gig__list-item' >
                         <div class="gig__thumb-container">
                             <% if( !gig.user_doc[0].profileImage.filename  ) { %>
@@ -37,6 +37,6 @@
 
     <% }) %>
     <footer class='gig__footer' >
-        <a class='gig__link-all' href="#"> See More </a>
+        <a class='gig__link-all' href="/gigs"> See More </a>
     </footer>
 </section>

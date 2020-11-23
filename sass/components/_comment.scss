@@ -57,4 +57,36 @@
     margin: 0;
     padding: 1.5rem 3rem 0 3rem;
     font-size: 1rem;
+
+    &-form {
+        & form {
+            position: relative;
+            margin: 2rem auto 0;
+        }
+
+        & textarea {
+            border-radius: 2rem;
+            padding: .5rem 1rem;
+            
+        }
+
+        & input {
+            position: relative;
+            top: -1rem;
+            right: 0;
+            border-radius: 2rem;
+            border: none;
+            height: 3rem;
+            width:13rem;
+            padding: auto 1rem;
+            color: $color-red;
+            background-color: $color-offwhite;
+            transition: all .5s;
+
+            &:hover {
+                border: 1px solid $color-red;  
+                transition: all .5s;
+            }
+        }
+    }
 }

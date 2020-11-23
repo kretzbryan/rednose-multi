@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <%- include('./partials/head') %>
-    <title>Document</title>
+    <title>Home-<%=currentUser.firstName %> <%=currentUser.lastName%></title>
 </head>
 
 <body>
@@ -56,6 +56,7 @@
         <%- include('./partials/modals/addPostModal') %>
         <%- include('./partials/modals/addGigModal') %>
         <%- include('./partials/modals/editProfileModal') %>
+        <%- include('./partials/modals/edit-profile-picture') %>
         
         
 
@@ -63,29 +64,6 @@
 
         
         
-        
-        <!-- Edit Profile Picture Modal -->
-        <div class="modal fade" id="profilePhotoModal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <header class="modal-header">
-                        <h5 class="modal-title" id="editTitle">Edit Profile Photo</h5>
-                    </header>
-                    <div class="modal-body">
-                    <!-- Edit Profile Form-->
-                        <div class="profile__photo__container">
-                            <form action="home/upload-profile-image/?_method=PUT" method="POST" enctype="multipart/form-data">
-                                <label class='form__label ' for="profileImage">Choose image</label>
-                                <input class='form__input' type="file" name='profileImage'>
-                                <footer class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Add Photo</button>
-                                </footer>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-         
     </div>
+
+</body>

@@ -1,5 +1,6 @@
 // Font Sizes
 
+$font-sm: 1.2rem;
 $font-default: 1.6rem;
 $font-lg: 1.8rem;
 $font-xl: 2rem;
@@ -18,3 +19,7 @@ $color-grey-dark-2: #888888;
 $color-grey-dark-3: #696969;
 
 $color-primary: #fd0054;
+
+
+$box-shadow-1: 0 2rem 4rem rgba($color-black, .15);
+$box-shadow-2: 0 1rem 4rem rgba($color-black, .15);

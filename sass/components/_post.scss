@@ -1,5 +1,6 @@
 .card.post__container {
     padding: 1.5rem 3rem;
+    box-shadow: $box-shadow-1;
 }
 
 
@@ -27,3 +28,7 @@
     }
 }
 
+.post-error {
+    text-align: center;
+    margin-top: 2rem;
+}

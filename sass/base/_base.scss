@@ -62,14 +62,14 @@ body {
 /* All pages except the landing page are contained within this container */
 .row.main__container {
     width: 100vw;
-    height: 90vh;
+    height: 89vh;
     display: flex;
     margin: 0 auto;
     padding: 0;
     background-color: $color-grey-light-2;
     // background-color: #fbf9fa;
     position: absolute;
-    top: 5vh;
+    top: 6vh;
 
     &.landing {
         width: 100vw;
@@ -113,8 +113,14 @@ body {
     width: 300px;
 }
 
-.post-section {
+.post-section, .gig-section {
     @include respond(phone) {
-        margin-top: 27rem;
+        margin-top: 18rem;
+    }
+}
+
+.options {
+    &:hover {
+        text-decoration: none;
     }
 }

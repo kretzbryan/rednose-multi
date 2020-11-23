@@ -1,16 +1,38 @@
 
             <div class="gig-section">
                 <% gigs.forEach( gig => { %>
-                    <section class="card gig-card">
+                    <a href="/gigs/<%= gig._id %>" class="gig-card__anchor">
+                    <section class="row card gig-card gig-card-browse">
                         <div class="gig-card__thumb-container">
                             <img src="/images/<%=gig.user.profileImage.filename%>" alt="" class="gig-card__thumb">
                         </div>
-                        <div class="gig-card__info">
-                            <p class='gig-card__text'><%= gig.user.firstName %> <%= gig.user.lastName %></p>
-                            <p class='gig-card__text'><%= gig.location %></p>
-                                <p>Skills: N/A</p>
-                                <p><%= gig.description %></p>
-                            </div>
+                        <section class=" gig-card__info">
+                                <div class="gig-card__info-left">
+                                    <p class="gig-card__text"><%= gig.title %></p>
+                                    <p class='gig-card__text'>location: <%= gig.location %></p>
+                                    <p>skills: N/A</p>
+                                    
+                                </div>
+                                <div class="gig-card__info-right">
+                                    <p class='gig-card__text'>posted by:<%= gig.user.firstName %> <%= gig.user.lastName %></p>
+                                    <span class='timestamp' > 
+                            
+                                        posted:
+                                        <% if (time.since(gig.createdAt).secs() < 60) { %>
+                                            <%= time.since(gig.createdAt).secs() %> seconds ago
+                                        <% } else if (time.since(gig.createdAt).secs() >= 60  && time.since(gig.createdAt).mins() < 60 ) { %>
+                                            <%= time.since(gig.createdAt).mins() %> minutes ago
+                                        <% } else if(time.since(gig.createdAt).mins() >= 60 && time.since(gig.createdAt).hours() < 24  ) { %>
+                                            <%= time.since(gig.createdAt).hours() %> hours ago
+                                        <% } else if(time.since(gig.createdAt).hours() >= 24 && time.since(gig.createdAt).days() < 7  ) { %>
+                                            <%= time.since(gig.createdAt).days() %> days ago
+                                        <% } else { %>
+                                            <%= time.since(gig.createdAt).weeks() %> wweeks ago
+                                        <% } %>
+                                    </span>
+                                </div>
+                            </section>
                     </section>
+                </a>
                 <% }) %>
             </div>

@@ -45,13 +45,13 @@ router.get('/:id', async (req, res) => {
                 comments: { $push: "$comments" },
                 name : { $first: "$name" },
                 user : { $first: "$user" },
-                user_id: { $first: "$text" },
+                text: { $first: "$text" },
                 createdAt : { $first: "$createdAt" }
               }}
         ])
 
        
-        const postComments = profilePosts[0].comments;
+        const postComments = profilePosts;
         console.log('post comments', postComments);
         const currentUser = await db.User.findById(req.session.currentUser.id);
         const recentGigs = await db.Gig.aggregate([
