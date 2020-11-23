@@ -731,7 +731,9 @@ section.card.gig-card-browse {
     height: 100%;
     border: none;
     resize: none;
-    float: left; }
+    float: left;
+    background-color: #f7f7f7;
+    padding-left: 1rem; }
   .form__group {
     display: block; }
     .form__group:not(:last-child) {

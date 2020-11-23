@@ -12,18 +12,9 @@
             <!-- Add Post Form-->
                     <form class='form' action="post/" method="POST">
                         <div class="form__group">
-                            <figure class='shape' >
-                                <% if( !currentUser.profileImage.filename ) { %>
-                                    <img src="images/default-img.png" alt="profile thumbnail" class="create__post__thumb">
-                                <% } else { %>
-                                    <img src="/images/<%= currentUser.profileImage.filename%>" alt="profile thumbnail" class="create__post__thumb">
-                                <% } %>
-                            </figure>
-                            <div class="">
                                 <div>
                                     <textarea name="text" placeholder="Say whats on your mind..." cols="45" rows="7"></textarea>
                                 </div>
-                            </div>
                         </div>
                         <input type="hidden" name="user" value='<%= currentUser._id %>'>
                         <footer class="modal-footer">
