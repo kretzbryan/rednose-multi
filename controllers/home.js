@@ -101,6 +101,8 @@ router.put('/edit-gig/:id', (req, res) => {
 
 // Uploads profile image to Grid-Fs storage in mongodb
 router.put('/upload-profile-image', async function(req, res) {
+
+console.log('req.body before hits upload middleware', req.file);
     try {
         await upload(req, res);
         const updatedUser = await db.User.findByIdAndUpdate(req.session.currentUser.id, {
