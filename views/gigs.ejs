@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <%- include('./partials/head') %>
-    <title>Rednose-Gigs</title>
-</head>
-<body>
-    <%- include('./partials/nav') %>
-    <div class="row main__container">
-        <div class="column-secondary">
-            <%- include('./partials/userCard') %>
-        </div>
-        <div class="column-primary">
-            <%- include('./partials/user-card-mobile') %>
-            <%- include('./partials/gig-section') %>
-        </div>
-        <div class="column-tertiary">
-        </div>
-    </div>
-    <!-- Page Footer -->
-    <footer class="page__footer">
-        <h6>&copy; Bryan Kretz</h6>
-    </footer>
+	<head>
+		<%- include('./partials/head') %>
+		<title>Rednose-Gigs</title>
+	</head>
+	<body>
+		<%- include('./partials/nav') %>
+		<div class="row main__container">
+			<div class="column-secondary"><%- include('./partials/userCard') %></div>
+			<div class="column-primary">
+				<%- include('./partials/user-card-mobile') %> <%-
+				include('./partials/gig-section') %>
+			</div>
+			<div class="column-tertiary"></div>
+		</div>
+		<!-- Page Footer -->
+		<footer class="page__footer">
+			<h6>&copy; Bryan Kretz</h6>
+		</footer>
 
-
-    <%- include('./partials/modals/addGigModal') %>
-    <%- include('./partials/modals/editProfileModal') %>
-    <%- include('./partials/modals/edit-profile-picture') %>
-</body>
+		<%- include('./partials/modals/addGigModal') %> <%-
+		include('./partials/modals/editProfileModal') %> <%-
+		include('./partials/modals/edit-profile-picture') %>
+	</body>
 </html>

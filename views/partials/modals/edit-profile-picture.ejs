@@ -1,27 +1,34 @@
- 
-        <!-- Edit Profile Picture Modal -->
-        <div class="modal fade" id="profilePhotoModal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <header class="modal-header">
-                        <h5 class="modal-title" id="editTitle">Edit Profile Photo</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                    </header>
-                    <div class="modal-body">
-                    <!-- Edit Profile Form-->
-                        <div class="profile__photo__container">
-                            <form action="home/upload-profile-image/?_method=PUT" method="POST" enctype="multipart/form-data">
-                                <label class='form__label ' for="profileImage">Choose image</label>
-                                <input class='photo__input' type="file" name='profileImage'>
-                                <footer class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Add Photo</button>
-                                </footer>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-         
+<!-- Edit Profile Picture Modal -->
+<div class="modal fade" id="profilePhotoModal">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<header class="modal-header">
+				<h5 class="modal-title" id="editTitle">Edit Profile Photo</h5>
+				<button
+					type="button"
+					class="close"
+					data-dismiss="modal"
+					aria-label="Close"
+				>
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</header>
+			<div class="modal-body">
+				<!-- Edit Profile Form-->
+				<div class="profile__photo__container">
+					<form
+						action="home/upload-profile-image/?_method=PUT"
+						method="POST"
+						enctype="multipart/form-data"
+					>
+						<label class="form__label" for="profileImage">Choose image</label>
+						<input class="photo__input" type="file" name="profileImage" />
+						<footer class="modal-footer">
+							<button type="submit" class="btn btn-primary">Add Photo</button>
+						</footer>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

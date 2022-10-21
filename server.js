@@ -8,29 +8,27 @@ const mongoose = require('mongoose');
 const db = require('./models');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const config = require('config')
+const config = require('config');
 
-
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 
-
 // Session Configuration
 app.use(
-    session({
-    store: new MongoStore({
-        url: process.env.MONGODB_URI || config.mongoURI
-    }),
-    secret: 'super cyute doggo',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 3 // 3 hours
-    }
-}))
-
+	session({
+		store: new MongoStore({
+			url: process.env.MONGODB_URI || config.mongoURI,
+		}),
+		secret: 'super cyute doggo',
+		resave: false,
+		saveUninitialized: false,
+		cookie: {
+			maxAge: 1000 * 60 * 60 * 3, // 3 hours
+		},
+	})
+);
 
 app.use('/', controllers.landing);
 app.use('/register', controllers.register);
@@ -40,8 +38,8 @@ app.use('/post', controllers.post);
 app.use('/gigs', controllers.gig);
 app.use('/images', controllers.imageshow);
 app.use('/faq', controllers.faq);
-app.use('/browse-profiles', controllers.profileBrowse);  
+app.use('/browse-profiles', controllers.profileBrowse);
 
-app.listen( PORT, () => {
-    console.log(`Now on port ${PORT}`)
-})
+app.listen(PORT, () => {
+	console.log(`Now on port ${PORT}`);
+});

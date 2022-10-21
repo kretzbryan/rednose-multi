@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <%- include('./partials/head') %>
-    <title>Browse Profiles</title>
-</head>
-<body>
+	<head>
+		<%- include('./partials/head') %>
+		<title>Browse Profiles</title>
+	</head>
+	<body>
+		<%- include('./partials/nav') %>
+		<div class="row main__container">
+			<div class="column-secondary">
+				<%- include('./partials/userCard') %> <%-
+				include('./partials/gig-nav-left') %>
+			</div>
+			<div class="column-primary">
+				<%- include('./partials/user-card-mobile') %> <%-
+				include('./partials/profile-card-container') %>
+			</div>
+			<div class="column-tertiary"><%- include('./partials/gig-nav') %></div>
+		</div>
+		<footer class="page__footer">
+			<h6>&copy; Bryan Kretz</h6>
+		</footer>
 
-    <%- include('./partials/nav') %>
-    <div class="row main__container">
-        <div class="column-secondary">
-            <%- include('./partials/userCard') %>
-            <%- include('./partials/gig-nav-left') %>
-        </div>
-        <div class="column-primary">
-            <%- include('./partials/user-card-mobile') %>
-            <%- include('./partials/profile-card-container') %>
-        </div>
-        <div class="column-tertiary">
-            <%- include('./partials/gig-nav') %>
-        </div>
-    </div>
-    <footer class="page__footer">
-        <h6>&copy; Bryan Kretz</h6>
-    </footer>
-
-    <%- include('./partials/modals/addGigModal') %>
-    <%- include('./partials/modals/editProfileModal') %>
-    <%- include('./partials/modals/edit-profile-picture') %>
-</body>
+		<%- include('./partials/modals/addGigModal') %> <%-
+		include('./partials/modals/editProfileModal') %> <%-
+		include('./partials/modals/edit-profile-picture') %>
+	</body>
 </html>
-

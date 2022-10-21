@@ -1,30 +1,35 @@
+<section class="card gig-card-show">
+	<header class="row gig-card-show__header">
+		<div class="gig-card-show__image-container">
+			<% if(!gig.user.profileImage.filename) { %>
+			<img
+				class="gig-card-show__image"
+				src="/images/default-img.png"
+				alt="profile image"
+			/>
+			<% } else { %>
+			<img
+				class="gig-card-show__image"
+				src="/images/<%=  gig.user.profileImage.filename%>"
+				alt="profile image"
+			/>
+			<% } %>
+		</div>
 
-    <section class="card gig-card-show">
-        <header class='row gig-card-show__header'>
-            <div class="gig-card-show__image-container">
-                <% if(!gig.user.profileImage.filename) { %>
-                    <img class="gig-card-show__image" src="/images/default-img.png" alt="profile image">
-                <% } else { %>
-                    <img class='gig-card-show__image' src="/images/<%=  gig.user.profileImage.filename%>" alt="profile image">
-                <% } %>
-            </div>
-            
-            <div class=" gig-card-show__header-details">
-                <div class="detail-container">
-                    <p class='gig-card-show__title' >
-                        <%= gig.title %>
-                    </p>
-                    <p>
-                       location: <%= gig.location %>
-                    </p>
-                    <p>
-                        posted by: <a class='options' href="/profile/<%= gig.user._id %>"><%= gig.user.firstName %> <%= gig.user.lastName %></a>
-                    </p>
-                </div>
-                
-            </div>
-        </header>
-        <section class="row gig-card-show__main">
-        <p><%= gig.description %></p>
-        </section>
-    </section>
+		<div class="gig-card-show__header-details">
+			<div class="detail-container">
+				<p class="gig-card-show__title"><%= gig.title %></p>
+				<p>location: <%= gig.location %></p>
+				<p>
+					posted by:
+					<a class="options" href="/profile/<%= gig.user._id %>"
+						><%= gig.user.firstName %> <%= gig.user.lastName %></a
+					>
+				</p>
+			</div>
+		</div>
+	</header>
+	<section class="row gig-card-show__main">
+		<p><%= gig.description %></p>
+	</section>
+</section>

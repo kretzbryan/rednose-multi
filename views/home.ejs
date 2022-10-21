@@ -1,69 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <%- include('./partials/head') %>
-    <title>Home-<%=currentUser.firstName %> <%=currentUser.lastName%></title>
-</head>
+	<head>
+		<%- include('./partials/head') %>
+		<title>Home-<%=currentUser.firstName %> <%=currentUser.lastName%></title>
+	</head>
 
-<body>
-    
+	<body>
+		<%- include('./partials/nav')%>
 
-    <%- include('./partials/nav')%>
+		<div class="row main__container">
+			<div class="column-secondary">
+				<%- include('./partials/userCard') %> <%-
+				include('./partials/gig-nav-left') %>
+			</div>
 
-    <div class="row main__container">
+			<div class="column-primary">
+				<%- include('./partials/user-card-mobile') %> <%-
+				include('./partials/postColumn') %>
+			</div>
 
-        <div class="column-secondary">
-            <%- include('./partials/userCard') %>
-            <%- include('./partials/gig-nav-left') %>
-            
-            
-        </div>
-        
-        <div class="column-primary">
-           
-        <%- include('./partials/user-card-mobile') %>
-        <%- include('./partials/postColumn') %>  
-        </div>
-        
-        <div class="column-tertiary">
-            <%- include('./partials/gig-nav') %>
-        </div>
-       
-       
-        <!-- Page Footer -->
-        <footer class="page__footer">
-            <h6>&copy; Bryan Kretz</h6>
-        </footer>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <!-- MODALS -->
-        
+			<div class="column-tertiary"><%- include('./partials/gig-nav') %></div>
 
+			<!-- Page Footer -->
+			<footer class="page__footer">
+				<h6>&copy; Bryan Kretz</h6>
+			</footer>
 
-        <%- include('./partials/modals/addPostModal') %>
-        <%- include('./partials/modals/addGigModal') %>
-        <%- include('./partials/modals/editProfileModal') %>
-        <%- include('./partials/modals/edit-profile-picture') %>
-        
-        
+			<!-- MODALS -->
 
-        
-
-        
-        
-    </div>
-
-</body>
+			<%- include('./partials/modals/addPostModal') %> <%-
+			include('./partials/modals/addGigModal') %> <%-
+			include('./partials/modals/editProfileModal') %> <%-
+			include('./partials/modals/edit-profile-picture') %>
+		</div>
+	</body>
+</html>

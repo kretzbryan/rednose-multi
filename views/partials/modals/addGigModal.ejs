@@ -1,35 +1,55 @@
 <!-- Add Gig Modal -->
 <div class="modal fade" id="addGigModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <header class="modal-header">
-                <h5 class="modal-title" id="add__gig__title">Create Gig </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-            </header>
-            <div class="modal-body">
-            <!-- Add Gig Form-->
-                <div class="add__gig__container">
-                    <form class='form' action="home/add-gig" method="POST">
-                        <div class="form__group">
-                            <input type="text" name="location" class='form__input' placeholder="Location">
-                            <label for="location" class='form__label'>Location</label>
-                        </div>
-                        <div class="form__group">
-                            <input type="text" name="title" class='form__input' placeholder='Job'>
-                            <label for="title" class='form__label'>Job</label>
-                        </div>
-                        <div class="form__group">
-                            <textarea name="description"  cols="45" rows="4" placeholder="Job Description"></textarea>
-                        </div>
-                        <input type="hidden" name="user" value="<%= currentUser._id %>">
-                        <footer class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Confirm</button>
-                        </footer>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<header class="modal-header">
+				<h5 class="modal-title" id="add__gig__title">Create Gig</h5>
+				<button
+					type="button"
+					class="close"
+					data-dismiss="modal"
+					aria-label="Close"
+				>
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</header>
+			<div class="modal-body">
+				<!-- Add Gig Form-->
+				<div class="add__gig__container">
+					<form class="form" action="home/add-gig" method="POST">
+						<div class="form__group">
+							<input
+								type="text"
+								name="location"
+								class="form__input"
+								placeholder="Location"
+							/>
+							<label for="location" class="form__label">Location</label>
+						</div>
+						<div class="form__group">
+							<input
+								type="text"
+								name="title"
+								class="form__input"
+								placeholder="Job"
+							/>
+							<label for="title" class="form__label">Job</label>
+						</div>
+						<div class="form__group">
+							<textarea
+								name="description"
+								cols="45"
+								rows="4"
+								placeholder="Job Description"
+							></textarea>
+						</div>
+						<input type="hidden" name="user" value="<%= currentUser._id %>" />
+						<footer class="modal-footer">
+							<button type="submit" class="btn btn-primary">Confirm</button>
+						</footer>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
